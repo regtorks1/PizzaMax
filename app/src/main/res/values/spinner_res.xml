@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinner_list_item_array">
+        <item>Selected Location</item>
+        <item>Cologne</item>
+        <item>Bonn</item>
+        <item>Dusseldorf</item>
+        <item>Wolfsburg</item>
+        <item>Berlin</item>
+        <item>Hamburg</item>
+        <item>Saarbrucken</item>
+    </string-array>
+</resources>

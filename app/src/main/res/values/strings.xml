@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Pizza Max</string>
+    <string name="profile">profile</string>
+    <string name="search">Search</string>
+    <string name="favorite">Favorite</string>
+    <string name="actionbar_spinner">ActionBar Spinner</string>
+    <string name="spinner">spinner</string>
+</resources>

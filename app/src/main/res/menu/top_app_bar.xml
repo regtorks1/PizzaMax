@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/spinner"
+        android:title="@string/spinner"
+        app:actionViewClass="androidx.appcompat.widget.AppCompatSpinner"
+        app:showAsAction="always"
+        android:icon="@drawable/expand_more_24"
+        android:iconTint="@color/black" />
+
+    <item
+    android:id="@+id/none1"
+    app:showAsAction="always"
+    android:title=""/>
+
+
+   <item
+       android:id="@+id/search"
+       android:icon="@drawable/search_24"
+       app:showAsAction="always"
+       android:title="@string/search"/>
+
+    <item
+        android:id="@+id/favorite"
+        android:icon="@drawable/favorite_border"
+        app:showAsAction="always"
+        android:title="@string/favorite"/>
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/person_outline"
+        app:showAsAction="always"
+        android:title="@string/profile"/>
+
+
+
+
+</menu>
