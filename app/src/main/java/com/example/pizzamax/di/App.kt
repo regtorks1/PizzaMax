@@ -1,4 +1,4 @@
-package com.example.pizzamax
+package com.example.pizzamax.di
 
 import android.app.Application
 import com.example.pizzamax.data.repository.ValueDealsRepository
@@ -11,6 +11,6 @@ class App : Application() {
     // rather than when the application starts
 
     private val appScope = CoroutineScope(SupervisorJob())
-    private val db by lazy { RoomDb.getDatabase(this, appScope) }
-    val repository by lazy { ValueDealsRepository(db.dealsDao()) }
+    val roomDatabaseInstance by lazy { RoomDb.getDatabase(this, appScope) }
+    val repository by lazy { ValueDealsRepository(roomDatabaseInstance.dealsDao()) }
 }
