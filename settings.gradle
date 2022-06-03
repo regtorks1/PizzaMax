@@ -3,6 +3,7 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+         maven { url 'https://jitpack.io' }
     }
 }
 dependencyResolutionManagement {
@@ -10,7 +11,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+<<<<<<< HEAD
         maven { url 'https://jitpack.io' }
+=======
+         maven { url 'https://jitpack.io' }
+>>>>>>> 3e5cc12e69f83163d91a2b8abdf1723c13ff2951
     }
 }
 rootProject.name = "Pizza Max"

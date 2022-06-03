@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".views.MainActivity">
 
 <!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
 <!--        android:layout_width="match_parent"-->
@@ -91,6 +91,10 @@
     android:layout_marginStart="5dp"
     android:layout_marginEnd="5dp"
     tools:listitem="@layout/recycler_list"/>
+
+   <com.rilixtech.CountryCodePicker
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
 
 
 
