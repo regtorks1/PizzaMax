@@ -14,4 +14,13 @@
     <string name="_7_inch_papan_pizza">7-inch Papan Pizza</string>
     <string name="ghc_100">Ghc 100</string>
     <string name="add">ADD</string>
+    <string name="back_arrow">Back Arrow</string>
+    <string name="checkout">Checkout</string>
+    <string name="delete">delete</string>
+    <string name="your_delivery_details">YOUR DELIVERY DETAILS</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="name_cannot_be_longer_than_25_letters">Name cannot be longer than 25 letters</string>
+    <string name="_301_22345689">301 22345689</string>
+    <string name="select_your_delivery_address">Select your delivery address</string>
+    <string name="select">Select</string>
 </resources>
