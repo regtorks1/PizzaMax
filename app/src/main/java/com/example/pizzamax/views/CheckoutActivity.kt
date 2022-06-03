@@ -17,7 +17,7 @@ class CheckoutActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-
+        //Spinner
         val firstSpinner : Spinner = binding.spinnerSelectPayment
         ArrayAdapter.createFromResource(this,
             R.array.payment_method,
