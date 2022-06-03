@@ -76,7 +76,7 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
 
 
-<<<<<<< HEAD
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.6.0'
@@ -88,7 +88,8 @@ dependencies {
     //Country code picker
     //implementation 'com.hbb20:ccp:2.4.5'
     //implementation 'com.github.joielechong:countrycodepicker:2.1.5'
-=======
+
     implementation 'com.github.joielechong:countrycodepicker:2.1.5'
->>>>>>> 3e5cc12e69f83163d91a2b8abdf1723c13ff2951
+    implementation 'com.github.inpossoft:CountryCodePickerProject:2.0.0'
+
 }
