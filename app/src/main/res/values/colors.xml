@@ -11,4 +11,7 @@
     <color name="light_orange">#F5B916</color>
     <color name ="red">#FA500A</color>
     <color name="off_white">#FAF9F6</color>
+    <color name ="real_red">#FF0000</color>
+    <color name ="green">#32CD32</color>
+    <color name ="grey">#BEBEBE</color>
 </resources>

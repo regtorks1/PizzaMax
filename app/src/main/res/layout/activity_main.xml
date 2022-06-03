@@ -92,4 +92,12 @@
     android:layout_marginEnd="5dp"
     tools:listitem="@layout/recycler_list"/>
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> d5a03d1b2005cae43ce81c26608a9d5d49ea9614
 </androidx.constraintlayout.widget.ConstraintLayout>
