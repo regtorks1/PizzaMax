@@ -49,32 +49,27 @@
       >
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/max_value_deals"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/max_value_deals"
             />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/big_better"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_2_big_2_better"/>
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/appetizers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/appetizers"/>
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/signature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/signature_pizza"/>
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/max"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/max_value_deals"/>
@@ -92,12 +87,5 @@
     android:layout_marginEnd="5dp"
     tools:listitem="@layout/recycler_list"/>
 
-<<<<<<< HEAD
-=======
 
-
-
-
-
->>>>>>> d5a03d1b2005cae43ce81c26608a9d5d49ea9614
 </androidx.constraintlayout.widget.ConstraintLayout>

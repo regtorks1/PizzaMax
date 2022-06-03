@@ -75,10 +75,10 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
 
 
-<<<<<<< HEAD
+
   //  implementation 'com.github.joielechong:countrycodepicker:2.1.5'
     implementation("io.coil-kt:coil:1.0.0-rc3")
-=======
+
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -92,8 +92,8 @@ dependencies {
     //implementation 'com.hbb20:ccp:2.4.5'
     //implementation 'com.github.joielechong:countrycodepicker:2.1.5'
 
-    implementation 'com.github.joielechong:countrycodepicker:2.1.5'
+//    implementation 'com.github.joielechong:countrycodepicker:2.1.5'
     implementation 'com.github.inpossoft:CountryCodePickerProject:2.0.0'
 
->>>>>>> d5a03d1b2005cae43ce81c26608a9d5d49ea9614
+
 }
