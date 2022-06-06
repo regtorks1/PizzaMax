@@ -1,5 +1,6 @@
 package com.example.pizzamax
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -17,6 +18,7 @@ import com.example.pizzamax.di.App
 import com.example.pizzamax.model.ValuesDeals
 import com.example.pizzamax.viewmodel.ActivityViewModelFactory
 import com.example.pizzamax.viewmodel.ActivityViewmodel
+import com.example.pizzamax.views.CheckoutActivity
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import com.example.pizzamax.views.util.getBitmap
 import kotlinx.coroutines.launch
@@ -53,8 +55,6 @@ class MainActivity : AppCompatActivity() {
         activityViewmodel.getList.observe(this, Observer {
             recyclerAdapter.submitList(it)
         })
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -80,6 +80,11 @@ class MainActivity : AppCompatActivity() {
         )
         val deal = ValuesDeals(image = image, size = 1, price = "$100")
         activityViewmodel.insertIntoRoom(deal)
+    }
+
+    private fun adapterOnClick(){
+        val intent = Intent(this, CheckoutActivity::class.java)
+        startActivity(intent)
     }
 
 

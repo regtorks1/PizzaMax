@@ -1,27 +1,32 @@
 package com.example.pizzamax.views.adapters
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.pizzamax.databinding.RecyclerListBinding
 import com.example.pizzamax.model.ValuesDeals
+import com.example.pizzamax.views.CheckoutActivity
+
 
 class ValuesDealRecyclerAdapter :
     ListAdapter<ValuesDeals, ValuesDealRecyclerAdapter.RecyclerViewHolder>(ListComparator()) {
 
     //bind the recycler list items
-  inner class RecyclerViewHolder(private val binding: RecyclerListBinding) :
+  inner class RecyclerViewHolder(val binding: RecyclerListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(list: ValuesDeals?) {
             binding.deal.text = list?.id.toString()
             binding.price.text = list?.price
             binding.description.text = list?.size.toString()
             binding.posterBanner.load(list?.image)
-
+//            val add_btn : Button = binding.addCart
         }
     }
 
@@ -37,6 +42,10 @@ class ValuesDealRecyclerAdapter :
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val postN = getItem(position)
         holder.bind(postN)
+        holder.binding.addCart.setOnClickListener {
+            val intent = Intent(holder.itemView.context, CheckoutActivity::class.java)
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
 
@@ -44,9 +53,11 @@ class ValuesDealRecyclerAdapter :
         override fun areItemsTheSame(oldItem: ValuesDeals, newItem: ValuesDeals): Boolean {
             return oldItem == newItem
         }
+
         override fun areContentsTheSame(oldItem: ValuesDeals, newItem: ValuesDeals): Boolean {
             return oldItem.id == newItem.id
         }
     }
+
 
 }
