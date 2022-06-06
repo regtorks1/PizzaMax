@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name = "time_array">
-        <item>ASAP</item>
+        <item></item>
         <item>1 hour</item>
         <item>2 hours</item>
         <item>3 hours</item>

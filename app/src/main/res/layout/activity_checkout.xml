@@ -104,7 +104,7 @@
         android:hint="@string/_301_22345689"
         android:textSize="12sp"
         android:layout_marginTop="10dp"
-        android:paddingStart="95dp"
+        android:paddingStart="125dp"
         tools:ignore="RtlSymmetry"
         android:inputType="phone"/>
 
@@ -119,6 +119,17 @@
 <!--        app:ccp_textColor="@color/red"-->
 <!--        app:ccp_backgroundColor="@color/red"/>-->
 
+
+    <com.hbb20.CountryCodePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/phone_number"
+        app:textSize="12sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="149dp" />
 
     <TextView
         android:id="@+id/select_delivery"
@@ -202,7 +213,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/expand_more_24"
+        android:src="@drawable/expand_more_24"
         android:gravity="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.958"
@@ -227,24 +238,38 @@
         android:id="@+id/access_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="18dp"
         android:background="@drawable/access_time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/delivery" />
 
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/asap"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delivery"
+        android:layout_marginTop="22dp"
+        android:layout_marginStart="30dp"/>
+
     <Spinner
         android:id="@+id/spinner_select_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/expand_more_24"
+        android:src="@drawable/expand_more_24"
         android:gravity="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delivery" />
+        app:layout_constraintTop_toBottomOf="@+id/delivery"
+        style="@style/SpinnerLook"/>
 
     <TextView
         android:id="@+id/Items"
@@ -443,7 +468,7 @@
         android:id="@+id/apply"
         android:layout_width="85dp"
         android:layout_height="41dp"
-        android:layout_marginStart="175dp"
+        android:layout_marginStart="225dp"
         android:backgroundTint="@color/grey"
         android:text="@string/apply"
         android:textColor="@color/white"
@@ -472,7 +497,7 @@
     <Button
         android:id="@+id/place_order"
         android:layout_width="match_parent"
-        android:layout_height="74dp"
+        android:layout_height="54dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/red"
         android:text="@string/place_order"

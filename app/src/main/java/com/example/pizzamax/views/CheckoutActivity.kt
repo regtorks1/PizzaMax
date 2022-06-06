@@ -1,9 +1,12 @@
 package com.example.pizzamax.views
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.pizzamax.MainActivity
 import com.example.pizzamax.R
 import com.example.pizzamax.databinding.ActivityCheckoutBinding
 
@@ -34,5 +37,15 @@ class CheckoutActivity : AppCompatActivity() {
             secondSpinner.adapter = adapter
         }
 
+        binding.arrowBack.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.delete.setOnClickListener{
+            Toast.makeText(applicationContext, "Deleting cart items", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

@@ -90,10 +90,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     //Country code picker
-    //implementation 'com.hbb20:ccp:2.4.5'
+    //implementation 'com.hbb20:ccp:1.9.0'
     //implementation 'com.github.joielechong:countrycodepicker:2.1.5'
 
-//    implementation 'com.github.joielechong:countrycodepicker:2.1.5'
+    //implementation 'com.github.joielechong:countrycodepicker:2.1.5'
     implementation 'com.github.inpossoft:CountryCodePickerProject:2.0.0'
 
 

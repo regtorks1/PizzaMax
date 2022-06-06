@@ -19,7 +19,7 @@
     <string name="your_delivery_details">YOUR DELIVERY DETAILS</string>
     <string name="enter_your_name">Enter your name</string>
     <string name="name_cannot_be_longer_than_25_letters">Name cannot be longer than 25 letters</string>
-    <string name="_301_22345689">301 22345689</string>
+    <string name="_301_22345689"> 22345689</string>
     <string name="select_your_delivery_address">Select your delivery address</string>
     <string name="select">Select</string>
     <string name="payment_method">PAYMENT METHOD</string>
@@ -39,4 +39,5 @@
     <string name="please_login_to_apply_promo_code">Please login to apply promo code</string>
     <string name="special_instruction_optional">SPECIAL INSTRUCTION (OPTIONAL)</string>
     <string name="place_order">Place Order</string>
+    <string name="asap">ASAP</string>
 </resources>
