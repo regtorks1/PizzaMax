@@ -21,5 +21,10 @@ class ActivityViewmodel(private val repository: ValueDealsRepository) : ViewMode
         repository.updateList(valueDeals)
     }
 
+            fun deleteAll() = viewModelScope.launch {
+                repository.deleteAll()
+            }
+
+
     val getList: LiveData<List<ValuesDeals>> = repository.getAll().asLiveData()
 }

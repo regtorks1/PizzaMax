@@ -41,8 +41,14 @@ class MainActivity : AppCompatActivity() {
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(this)
 
-
+        activityViewmodel.deleteAll()
         addToRoom()
+        addToRoom()
+        addToRoom()
+        addToRoom()
+        addToRoom()
+        addToRoom()
+
 
         activityViewmodel.getList.observe(this, Observer {
             recyclerAdapter.submitList(it)
@@ -70,7 +76,7 @@ class MainActivity : AppCompatActivity() {
     private fun addToRoom() = lifecycleScope.launch {
         val image = getBitmap(
             this@MainActivity,
-            "https://avatars3.githubusercontent.com/u/14994036?s=400&u=2832879700f03d4b37ae1c09645352a352b9d2d0&v=4"
+            "https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
         )
         val deal = ValuesDeals(image = image, size = 1, price = "$100")
         activityViewmodel.insertIntoRoom(deal)
