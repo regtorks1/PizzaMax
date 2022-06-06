@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.databinding.ActivityMainBinding
+
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.ValuesDeals
 import com.example.pizzamax.viewmodel.ActivityViewModelFactory

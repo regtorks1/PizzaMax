@@ -3,22 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
-        <entry key="..\:/Users/PeacemakerNanaKwesiO/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/activity_main.xml" value="0.10364583333333334" />
-        <entry key="..\:/Users/PeacemakerNanaKwesiO/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/recycler_list.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/PeacemakerNanaKwesiO/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/activity_checkout.xml" value="0.2" />
+        <entry key="..\:/Users/PeacemakerNanaKwesiO/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/PeacemakerNanaKwesiO/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/recycler_list.xml" value="0.136" />
         <entry key="..\:/Users/PeacemakerNanaKwesiO/AndroidStudioProjects/PizzaMax/app/src/main/res/menu/top_app_bar.xml" value="0.20729166666666668" />
-=======
-        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/drawable/background_tag.xml" value="0.3025" />
-        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/drawable/background_textfield.xml" value="0.2" />
-        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/drawable/card_payment.xml" value="0.2" />
-        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/drawable/circle_card.xml" value="0.3025" />
->>>>>>> d5a03d1b2005cae43ce81c26608a9d5d49ea9614
         <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/drawable/expand_more_24.xml" value="0.1525" />
         <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/drawable/favorite_border.xml" value="0.3025" />
         <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/drawable/person_outline.xml" value="0.1525" />
-        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/activity_checkout.xml" value="0.4" />
         <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/recycler_list.xml" value="0.365625" />
         <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/menu/top_app_bar.xml" value="0.36666666666666664" />
       </map>
     </option>
