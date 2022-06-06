@@ -57,7 +57,6 @@
                         android:contentDescription="@string/delete"/>
                 </com.google.android.material.appbar.MaterialToolbar>
             </com.google.android.material.appbar.AppBarLayout>
-
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <TextView

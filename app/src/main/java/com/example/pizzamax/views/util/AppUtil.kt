@@ -23,3 +23,7 @@ import coil.request.SuccessResult
     return (result as BitmapDrawable).bitmap
 
 }
+
+
+
+fun String.toInteger(string: String) = Integer.parseInt(string)
