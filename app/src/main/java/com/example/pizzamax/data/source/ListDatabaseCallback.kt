@@ -37,7 +37,7 @@ class ListDatabaseCallback(
 
                     //get item by name
                     val price = item.getString("price")
-                    val size = item.getString("size").toInt()
+                    val size = item.getString("size")
                     val image = item.getString("image")
                     val imgUrl = getBitmap(context, image)//if loading from url
 

@@ -1,7 +1,9 @@
 package com.example.pizzamax
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -13,6 +15,7 @@ import androidx.core.view.MenuItemCompat.getActionView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.pizzamax.databinding.ActivityMainBinding
 
 import com.example.pizzamax.di.App
@@ -23,6 +26,8 @@ import com.example.pizzamax.views.CheckoutActivity
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import com.example.pizzamax.views.util.getBitmap
 import kotlinx.coroutines.launch
+import org.json.JSONArray
+import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity() {
@@ -44,17 +49,12 @@ class MainActivity : AppCompatActivity() {
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(this)
 
-        activityViewmodel.deleteAll()
-        addToRoom()
-        addToRoom()
-        addToRoom()
-        addToRoom()
-        addToRoom()
-        addToRoom()
-
-
         activityViewmodel.getList.observe(this, Observer {
-            recyclerAdapter.submitList(it)
+            lifecycleScope.launch {
+
+                productList()
+                recyclerAdapter.submitList(it)
+            }
         })
     }
 
@@ -74,18 +74,32 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun addToRoom() = lifecycleScope.launch {
-        val image = getBitmap(
-            this@MainActivity,
-            "https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
-        )
-        val deal = ValuesDeals(image = image, size = 1, price = "$100")
-        activityViewmodel.insertIntoRoom(deal)
-    }
-
-    private fun adapterOnClick(){
+    private fun adapterOnClick() {
         val intent = Intent(this, CheckoutActivity::class.java)
         startActivity(intent)
+    }
+
+
+    suspend fun productList() {
+
+        val bufferReader = application.assets.open("value_deala.json").bufferedReader()
+        val jsonString = bufferReader.use {
+            it.readText()
+        }
+        val jsonArray = JSONArray(jsonString)
+        for (i in 0 until jsonArray.length()) {
+            val jsonObject: JSONObject = jsonArray.getJSONObject(i)
+            val id = jsonObject.getString("id")
+            val size = jsonObject.getString("size")
+            val price = jsonObject.getString("price")
+            val imgUrl = jsonObject.getString("image")
+            val image = Glide.with(this).asBitmap().load(imgUrl)
+                //getBitmap(this@MainActivity, imgUrl)
+
+           // val deal = ValuesDeals(image = image, size = size, price = price, id = id.toInt())
+          //  activityViewmodel.insertIntoRoom(deal)
+            Log.d("readArrayOfJsonObject", "image: $image  name: $price || version : $size  \n")
+        }
     }
 
 

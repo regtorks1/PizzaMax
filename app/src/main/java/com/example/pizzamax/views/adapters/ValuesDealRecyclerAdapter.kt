@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.pizzamax.databinding.ActivityCheckoutBinding
 import com.example.pizzamax.databinding.RecyclerListBinding
 import com.example.pizzamax.model.ValuesDeals
 import com.example.pizzamax.views.CheckoutActivity
@@ -19,13 +20,19 @@ class ValuesDealRecyclerAdapter :
     ListAdapter<ValuesDeals, ValuesDealRecyclerAdapter.RecyclerViewHolder>(ListComparator()) {
 
     //bind the recycler list items
-  inner class RecyclerViewHolder(val binding: RecyclerListBinding) :
+  inner class RecyclerViewHolder(val binding: RecyclerListBinding, val cartBinding: ActivityCheckoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(list: ValuesDeals?) {
             binding.deal.text = list?.id.toString()
             binding.price.text = list?.price
             binding.description.text = list?.size.toString()
             binding.posterBanner.load(list?.image)
+
+            //checkout update
+            cartBinding.price.text = binding.price.text
+            cartBinding.amount.text = binding.price.text
+
+
 //            val add_btn : Button = binding.addCart
         }
     }
@@ -33,7 +40,9 @@ class ValuesDealRecyclerAdapter :
     //inflate the List
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
         return RecyclerViewHolder(
-            RecyclerListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            RecyclerListBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+             ActivityCheckoutBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+
         )
     }
 
@@ -43,6 +52,7 @@ class ValuesDealRecyclerAdapter :
         val postN = getItem(position)
         holder.bind(postN)
         holder.binding.addCart.setOnClickListener {
+
             val intent = Intent(holder.itemView.context, CheckoutActivity::class.java)
             holder.itemView.context.startActivity(intent)
         }

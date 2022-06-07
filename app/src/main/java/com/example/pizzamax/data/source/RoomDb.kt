@@ -24,8 +24,8 @@ abstract class RoomDb : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     RoomDb::class.java,
-                    "deals"
-                ).addCallback(ListDatabaseCallback(context, scope))
+                    "deal"
+                )
                     .build()
                 INSTANCE = instance
                 // return instance
