@@ -59,7 +59,6 @@ class CheckoutActivity : AppCompatActivity() {
                 grandTotal1.text = priceString.toString()
             }
 
-
         }
 
         cartCalculator()
