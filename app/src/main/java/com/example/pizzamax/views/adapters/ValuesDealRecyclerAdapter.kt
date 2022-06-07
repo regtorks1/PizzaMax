@@ -27,12 +27,6 @@ class ValuesDealRecyclerAdapter :
             binding.description.text = list?.size.toString()
             binding.posterBanner.load(list?.imgUrl)
 
-            //checkout update
-            cartBinding.price.text = binding.price.text
-            cartBinding.amount.text = binding.price.text
-
-
-//            val add_btn : Button = binding.addCart
         }
     }
 
