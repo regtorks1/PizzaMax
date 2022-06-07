@@ -1,6 +1,7 @@
 package com.example.pizzamax.views.adapters
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -16,24 +17,21 @@ import com.example.pizzamax.model.ValuesDeals
 import com.example.pizzamax.views.CheckoutActivity
 
 
-class ValuesDealRecyclerAdapter :
+class ValuesDealRecyclerAdapter(
+    context: Context,
+    private  val updateCheckout: UpdateCheckout
+) :
     ListAdapter<ValuesDeals, ValuesDealRecyclerAdapter.RecyclerViewHolder>(ListComparator()) {
 
     //bind the recycler list items
   inner class RecyclerViewHolder(val binding: RecyclerListBinding, val cartBinding: ActivityCheckoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(list: ValuesDeals?) {
-            binding.deal.text = list?.id.toString()
-            binding.price.text = list?.price
+            binding.deal.text = "Deal "+ list?.id.toString()
+            binding.price.text = "Ghc "+list?.price
             binding.description.text = list?.size.toString()
             binding.posterBanner.load(list?.image)
-
-            //checkout update
-            cartBinding.price.text = binding.price.text
-            cartBinding.amount.text = binding.price.text
-
-
-//            val add_btn : Button = binding.addCart
         }
     }
 
@@ -52,10 +50,9 @@ class ValuesDealRecyclerAdapter :
         val postN = getItem(position)
         holder.bind(postN)
         holder.binding.addCart.setOnClickListener {
-
-            val intent = Intent(holder.itemView.context, CheckoutActivity::class.java)
-            holder.itemView.context.startActivity(intent)
+            updateCheckout.onAddCart(postN)
         }
+
     }
 
 
@@ -67,6 +64,10 @@ class ValuesDealRecyclerAdapter :
         override fun areContentsTheSame(oldItem: ValuesDeals, newItem: ValuesDeals): Boolean {
             return oldItem.id == newItem.id
         }
+    }
+
+    interface UpdateCheckout{
+        fun onAddCart(cart: ValuesDeals)
     }
 
 
