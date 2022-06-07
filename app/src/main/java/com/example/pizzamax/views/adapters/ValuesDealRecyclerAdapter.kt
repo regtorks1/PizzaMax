@@ -4,13 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.bumptech.glide.Glide
 import com.example.pizzamax.databinding.ActivityCheckoutBinding
 import com.example.pizzamax.databinding.RecyclerListBinding
 import com.example.pizzamax.model.ValuesDeals
@@ -49,8 +48,10 @@ class ValuesDealRecyclerAdapter(
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val postN = getItem(position)
         holder.bind(postN)
+        Glide.with(holder.itemView.context).load(postN.imgUrl).into(holder.binding.posterBanner)
         holder.binding.addCart.setOnClickListener {
             updateCheckout.onAddCart(postN)
+
         }
 
     }

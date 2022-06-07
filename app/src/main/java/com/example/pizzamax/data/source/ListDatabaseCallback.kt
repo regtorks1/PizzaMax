@@ -4,68 +4,43 @@ import android.content.Context
 import android.util.Log
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.pizzamax.R
 import com.example.pizzamax.data.dao.ValueDealsDao
 import com.example.pizzamax.data.source.RoomDb.Companion.INSTANCE
 import com.example.pizzamax.model.ValuesDeals
-import com.example.pizzamax.views.util.getBitmap
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.json.JSONArray
-import org.json.JSONException
-import java.io.BufferedReader
+import org.json.JSONObject
 
 class ListDatabaseCallback(
-    private val context: Context,
+    private val application: Context,
     private val scope: CoroutineScope
 ) : RoomDatabase.Callback() {
     override fun onCreate(db: SupportSQLiteDatabase) {
         super.onCreate(db)
         INSTANCE?.let { database ->
             scope.launch {
-                populateDatabase(database.dealsDao())
+                populateList(database.dealsDao())
             }
         }
     }
 
-    private suspend fun populateDatabase(listDao: ValueDealsDao) {
-        try {
-            val list = loadJsonData()
-            if (list != null) {
-                for (i in 0 until list.length()) {//read from 0 until length-1
-                    val item = list.getJSONObject(i)//obtain the json object
 
-                    //get item by name
-                    val price = item.getString("price")
-                    val size = item.getString("size")
-                    val image = item.getString("image")
-                    val imgUrl = getBitmap(context, image)//if loading from url
-
-                    //load the data into entity
-                    val data = ValuesDeals(
-                        image = imgUrl,
-                        size = size,
-                        price = price
-                    )
-
-                    //using dao to insert data to the database
-                    listDao.insertToRoom(data)
-
-                }
-
-            }
-        } catch (e: JSONException) {
-            Log.d("populateDatabase", "$e")
+    private suspend fun populateList(valueDealsDao: ValueDealsDao) {
+        val bufferReader = application.assets.open("value_deala.json").bufferedReader()
+        val jsonString = bufferReader.use {
+            it.readText()
         }
-    }
-
-    private fun loadJsonData(): JSONArray {
-        //obtain input from resources
-        val inputStream = context.resources.openRawResource(R.raw.value_deala)
-
-        //using buffered reader to read the inputStream byte
-        BufferedReader(inputStream.reader()).use {
-            return JSONArray(it.readText())
+        val jsonArray = JSONArray(jsonString)
+        for (i in 0 until jsonArray.length()) {
+            val jsonObject: JSONObject = jsonArray.getJSONObject(i)
+            val id = jsonObject.getString("id")
+            val size = jsonObject.getString("size")
+            val price = jsonObject.getString("price")
+            val imgUrl = jsonObject.getString("image")
+            val deal = ValuesDeals(imgUrl = imgUrl, size = size, price = price, id = id.toInt())
+            valueDealsDao.insertToRoom(deal)
+            Log.d("readArrayOfJsonObject", "image: $imgUrl  name: $price || version : $size  \n")
         }
     }
 }
