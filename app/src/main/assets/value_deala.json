@@ -2,63 +2,63 @@
   {
     "id": "1",
     "size": "7-inch papan pizza",
-    "price": "Ghc 200",
+    "price": "200",
     "image": "https://img.freepik.com/free-photo/veg-pizza-wooden-pizza-board-isolated-rustic-wooden-background-selective-focus_57665-8616.jpg?w=1060"
 
   },
   {
     "id": "2",
     "size": "8-inch beautiful pizza",
-    "price": "Ghc 250",
+    "price": "250",
     "image": "https://img.freepik.com/free-photo/whole-italian-pizza-wooden-table-with-ingredients_251318-13.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
   },
   {
     "id": "3",
     "size": "5-inch Pepperoni pizza",
-    "price": "Ghc 150",
+    "price": "150",
     "image": "https://img.freepik.com/free-photo/front-view-delicious-cheese-pizza-consists-olives-pepper-tomatoes-dark-surface_179666-34391.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
   },
   {
     "id": "4",
     "size": "6-inch bolognese pizza",
-    "price": "Ghc 200",
+    "price": "200",
     "image": "https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
   },
   {
     "id": "5",
     "size": "7.5-inch pizzaroni",
-    "price": "Ghc 250",
+    "price": "250",
     "image": "https://img.freepik.com/free-photo/side-view-pizza-with-slices-bell-pepper-pizza-slices-flour-board-cookware_176474-3185.jpg?size=338&ext=jpg&ga=GA1.2.707152998.1654271208"
   },
   {
     "id": "6",
     "size": "5.5-inch pizza new york",
-    "price": "Ghc 100",
+    "price": "100",
     "image": "https://img.freepik.com/free-photo/pizza-pizza-filled-with-tomatoes-salami-olives_140725-1200.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208&ga=GA1.2.707152998.1654271208"
   },
 
   {
     "id": "7",
     "size": "8.5-inch pizza paparazzi",
-    "price": "Ghc 300",
+    "price": "300",
     "image": "https://img.freepik.com/free-photo/classic-pizza-dark-wooden-table-surface-scattering-flour-pizza-restaurant-menu-concept_152625-1030.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208&ga=GA1.2.707152998.1654271208"
   },
   {
     "id": "8",
     "size": "7-inch pizza rum",
-    "price": "Ghc 250",
+    "price": "250",
     "image": "https://img.freepik.com/free-photo/delicious-pizza-isolated-white_53876-138507.jpg?w=826&t=st=1654273396~exp=1654273996~hmac=a03de8248b37364a2d8617fdbdb74d82f3adae74858e981cc71ec8e54ea7a9ac"
   },
   {
     "id": "9",
     "size": "6-inch pizza tuscany",
-    "price": "Ghc 200",
+    "price": "200",
     "image": "https://img.freepik.com/free-photo/whole-italian-pizza-wooden-table-with-ingredients_251318-13.jpg?w=996"
   },
   {
     "id": "10",
     "size": "6.5-inch pizza rome",
-    "price": "Ghc 150",
+    "price": "150",
     "image": "https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
   }
 ]

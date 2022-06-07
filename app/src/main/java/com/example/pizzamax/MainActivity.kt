@@ -22,7 +22,7 @@ import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import kotlinx.coroutines.launch
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateCheckout {
     private lateinit var binding: ActivityMainBinding
     private val activityViewmodel: ActivityViewmodel by viewModels {
         ActivityViewModelFactory((application as App).repository)
@@ -34,15 +34,21 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val recyclerAdapter: ValuesDealRecyclerAdapter by lazy { ValuesDealRecyclerAdapter() }  //initialize adapter
+        val recyclerAdapter: ValuesDealRecyclerAdapter by lazy { ValuesDealRecyclerAdapter(this, this) }  //initialize adapter
 
         //recycler setup
         val thisRecycler = binding.recyclerView
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(this)
 
+
         activityViewmodel.getList.observe(this, Observer {
             lifecycleScope.launch {
+
+                //activityViewmodel.deleteAll()
+                productList()
+
+
                 recyclerAdapter.submitList(it)
             }
         })
@@ -70,6 +76,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
     /*  suspend fun productList() {
 
           val bufferReader = application.assets.open("value_deala.json").bufferedReader()
@@ -88,6 +95,16 @@ class MainActivity : AppCompatActivity() {
               Log.d("readArrayOfJsonObject", "image: $imgUrl  name: $price || version : $size  \n")
           }
       }*/
+
+
+    override fun onAddCart(cart: ValuesDeals) {
+        val intent = Intent(this, CheckoutActivity::class.java)
+        intent.putExtra("type","cart")
+        intent.putExtra("size",cart.size)
+        intent.putExtra("price", cart.price)
+        startActivity(intent)
+        this.finish()
+    }
 
 
 }
