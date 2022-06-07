@@ -25,7 +25,7 @@ abstract class RoomDb : RoomDatabase() {
                     context.applicationContext,
                     RoomDb::class.java,
                     "AppDatabase"
-                )
+                ).addCallback(ListDatabaseCallback(context,scope))
                     .build()
                 INSTANCE = instance
                 // return instance

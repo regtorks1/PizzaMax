@@ -1,9 +1,7 @@
 package com.example.pizzamax
 
 import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -15,22 +13,19 @@ import androidx.core.view.MenuItemCompat.getActionView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pizzamax.model.ValuesDeals
+
 
 import com.example.pizzamax.databinding.ActivityMainBinding
-
 import com.example.pizzamax.di.App
-import com.example.pizzamax.model.ValuesDeals
 import com.example.pizzamax.viewmodel.ActivityViewModelFactory
 import com.example.pizzamax.viewmodel.ActivityViewmodel
 import com.example.pizzamax.views.CheckoutActivity
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
-import com.example.pizzamax.views.util.getBitmap
 import kotlinx.coroutines.launch
-import org.json.JSONArray
-import org.json.JSONObject
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateCheckout {
     private lateinit var binding: ActivityMainBinding
     private val activityViewmodel: ActivityViewmodel by viewModels {
         ActivityViewModelFactory((application as App).repository)
@@ -42,17 +37,21 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val recyclerAdapter: ValuesDealRecyclerAdapter by lazy { ValuesDealRecyclerAdapter() }  //initialize adapter
+        val recyclerAdapter: ValuesDealRecyclerAdapter by lazy { ValuesDealRecyclerAdapter(this, this) }  //initialize adapter
 
         //recycler setup
         val thisRecycler = binding.recyclerView
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(this)
 
+
         activityViewmodel.getList.observe(this, Observer {
             lifecycleScope.launch {
 
-                productList()
+                //activityViewmodel.deleteAll()
+               // productList()
+
+
                 recyclerAdapter.submitList(it)
             }
         })
@@ -95,26 +94,34 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    suspend fun productList() {
 
-        val bufferReader = application.assets.open("value_deala.json").bufferedReader()
-        val jsonString = bufferReader.use {
-            it.readText()
-        }
-        val jsonArray = JSONArray(jsonString)
-        for (i in 0 until jsonArray.length()) {
-            val jsonObject: JSONObject = jsonArray.getJSONObject(i)
-            val id = jsonObject.getString("id")
-            val size = jsonObject.getString("size")
-            val price = jsonObject.getString("price")
-            val imgUrl = jsonObject.getString("image")
-//            val image = Glide.with(this).asBitmap().load(imgUrl)
-                //getBitmap(this@MainActivity, imgUrl)
+    /*  suspend fun productList() {
 
-           // val deal = ValuesDeals(image = image, size = size, price = price, id = id.toInt())
-          //  activityViewmodel.insertIntoRoom(deal)
-            Log.d("readArrayOfJsonObject", "image: $imgUrl  name: $price || version : $size  \n")
-        }
+          val bufferReader = application.assets.open("value_deala.json").bufferedReader()
+          val jsonString = bufferReader.use {
+              it.readText()
+          }
+          val jsonArray = JSONArray(jsonString)
+          for (i in 0 until jsonArray.length()) {
+              val jsonObject: JSONObject = jsonArray.getJSONObject(i)
+              val id = jsonObject.getString("id")
+              val size = jsonObject.getString("size")
+              val price = jsonObject.getString("price")
+              val imgUrl = jsonObject.getString("image")
+              val deal = ValuesDeals(imgUrl = imgUrl, size = size, price = price, id = id.toInt())
+             activityViewmodel.insertIntoRoom(deal)
+              Log.d("readArrayOfJsonObject", "image: $imgUrl  name: $price || version : $size  \n")
+          }
+      }*/
+
+
+    override fun onAddCart(cart: ValuesDeals) {
+        val intent = Intent(this, CheckoutActivity::class.java)
+        intent.putExtra("type","cart")
+        intent.putExtra("size",cart.size)
+        intent.putExtra("price", cart.price)
+        startActivity(intent)
+        this.finish()
     }
 
 

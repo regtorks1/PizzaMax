@@ -25,23 +25,5 @@ import org.json.JSONArray
 
 }
 
- /*fun readArrayOfJsonObject(): Unit {
-
-    val bufferReader = application.assets.open("android_version.json").bufferedReader()
-    val json_string = bufferReader.use {
-        it.readText()
-    }
-    val jsonArray = JSONArray(json_string);
-
-    for (i in 0..jsonArray.length() - 1) {
-        val jsonObject: JSONObject = jsonArray.getJSONObject(i)
-
-        val name = jsonObject.getString("name")
-        val version = jsonObject.getString("version")
-
-        Log.d("readArrayOfJsonObject", "name: $name || version : $version  \n")
-    }
-}*/
-
 
 fun String.toInteger(string: String) = Integer.parseInt(string)
