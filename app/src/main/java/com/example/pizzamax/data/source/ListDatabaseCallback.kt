@@ -43,7 +43,7 @@ class ListDatabaseCallback(
 
                     //load the data into entity
                     val data = ValuesDeals(
-                        image = imgUrl,
+                        imgUrl = image,
                         size = size,
                         price = price
                     )

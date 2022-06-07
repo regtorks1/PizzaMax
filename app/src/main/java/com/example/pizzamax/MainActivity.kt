@@ -93,12 +93,12 @@ class MainActivity : AppCompatActivity() {
             val size = jsonObject.getString("size")
             val price = jsonObject.getString("price")
             val imgUrl = jsonObject.getString("image")
-            val image = Glide.with(this).asBitmap().load(imgUrl)
+//            val image = Glide.with(this).asBitmap().load(imgUrl)
                 //getBitmap(this@MainActivity, imgUrl)
 
            // val deal = ValuesDeals(image = image, size = size, price = price, id = id.toInt())
           //  activityViewmodel.insertIntoRoom(deal)
-            Log.d("readArrayOfJsonObject", "image: $image  name: $price || version : $size  \n")
+            Log.d("readArrayOfJsonObject", "image: $imgUrl  name: $price || version : $size  \n")
         }
     }
 
