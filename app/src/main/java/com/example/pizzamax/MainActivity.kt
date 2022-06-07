@@ -83,6 +83,10 @@ class MainActivity : AppCompatActivity() {
         activityViewmodel.insertIntoRoom(deal)
     }
 
+
+
+
+
     private fun adapterOnClick(){
         val intent = Intent(this, CheckoutActivity::class.java)
         startActivity(intent)
