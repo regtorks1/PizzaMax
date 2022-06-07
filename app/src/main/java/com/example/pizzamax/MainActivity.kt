@@ -49,9 +49,10 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(this)
 
+
         activityViewmodel.getList.observe(this, Observer {
             lifecycleScope.launch {
-               // activityViewmodel.deleteAll()
+                //activityViewmodel.deleteAll()
                 productList()
                 recyclerAdapter.submitList(it)
             }
@@ -95,8 +96,8 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
             val imgUrl = jsonObject.getString("image")
             val image = getBitmap(this@MainActivity, imgUrl)
                 //Glide.with(this).asBitmap().load(imgUrl)
-           //val deal = ValuesDeals(image = image, size = size, price = price, id = id.toInt())
-          // activityViewmodel.insertIntoRoom(deal)
+           val deal = ValuesDeals(image = image, size = size, price = price, id = id.toInt())
+           //activityViewmodel.insertIntoRoom(deal)
             Log.d("readArrayOfJsonObject", "image: $image  name: $price || version : $size  \n")
         }
     }

@@ -71,9 +71,12 @@ class CheckoutActivity : AppCompatActivity() {
         }
 
         binding.delete.setOnClickListener {
+            binding.subTotal.text = "0"
+            binding.grandTotal1.text = "0"
             Toast.makeText(applicationContext, "Deleting cart items", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
+
         }
     }
 
@@ -123,5 +126,11 @@ class CheckoutActivity : AppCompatActivity() {
         }
 
     }*/
+
+    override fun onBackPressed() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        super.onBackPressed()
+    }
 
 }
