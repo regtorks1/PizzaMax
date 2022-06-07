@@ -13,9 +13,9 @@ interface ValueDealsDao {
     @Update
     suspend fun updateList(valueDeals: ValuesDeals)
 
-    @Query("SELECT * FROM deals ORDER BY id ASC")
+    @Query("SELECT * FROM deals_table ORDER BY id ASC")
     fun getAll(): Flow<List<ValuesDeals>>
 
-    @Query("DELETE FROM deals")
+    @Query("DELETE FROM deals_table")
     suspend fun deleteAll()
 }
