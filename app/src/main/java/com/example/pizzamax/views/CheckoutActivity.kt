@@ -1,7 +1,9 @@
 package com.example.pizzamax.views
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
@@ -9,13 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.pizzamax.MainActivity
 import com.example.pizzamax.R
 import com.example.pizzamax.databinding.ActivityCheckoutBinding
-import kotlin.math.absoluteValue
 
 
 class CheckoutActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCheckoutBinding
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
@@ -43,15 +45,32 @@ class CheckoutActivity : AppCompatActivity() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             secondSpinner.adapter = adapter
         }
-       cartCalculator()
+
+        val type = intent.getStringExtra("type")
+        if (type.equals("cart")) {
+            val size = intent.getStringExtra("size")
+            val priceString = intent.getStringExtra("price")
+
+            with(binding) {
+                price.text = priceString.toString()
+                description.text = size.toString()
+                amount.text = "*Ghc " +priceString.toString()
+                subTotal.text = priceString.toString()
+                grandTotal1.text = priceString.toString()
+            }
 
 
-        binding.arrowBack.setOnClickListener{
+        }
+
+        cartCalculator()
+
+
+        binding.arrowBack.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
-        binding.delete.setOnClickListener{
+        binding.delete.setOnClickListener {
             Toast.makeText(applicationContext, "Deleting cart items", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -59,28 +78,33 @@ class CheckoutActivity : AppCompatActivity() {
     }
 
 
-  private  fun cartCalculator() {
+    private fun cartCalculator() {
         var incrementAmt = 1
         with(binding) {
-            val amt = Integer.parseInt(price.text.toString())
-            var incrementNum = Integer.parseInt(increment.text.toString())
-            addBtn.setOnClickListener {
-                incrementNum += 1
-                incrementAmt = amt * incrementNum
-                increment.text = incrementNum.toString()
-                price.text = incrementAmt.toString()
-                subTotal.text=price.text
-                grandTotal1.text=price.text
+            try {
+                val amt = Integer.parseInt(price.text.toString())
+                var incrementNum = Integer.parseInt(increment.text.toString())
+                addBtn.setOnClickListener {
+                    incrementNum += 1
+                    incrementAmt = amt * incrementNum
+                    increment.text = incrementNum.toString()
+                    price.text = incrementAmt.toString()
+                    subTotal.text = price.text
+                    grandTotal1.text = price.text
+                }
+                negBtn.setOnClickListener {
+                    incrementNum -= 1
+                    incrementAmt = amt * incrementNum
+                    increment.text = incrementNum.toString()
+                    price.text = incrementAmt.toString()
+                    subTotal.text = price.text
+                    grandTotal1.text = price.text
+                }
+            } catch (e: NumberFormatException) {
+                Log.d("NUMBER EXCEPTION", e.message.toString())
             }
 
-            negBtn.setOnClickListener {
-                incrementNum -= 1
-                incrementAmt = amt * incrementNum
-                increment.text = incrementNum.toString()
-                price.text = incrementAmt.toString()
-                subTotal.text=price.text
-                 grandTotal1.text=price.text
-            }
+
         }
 
     }
