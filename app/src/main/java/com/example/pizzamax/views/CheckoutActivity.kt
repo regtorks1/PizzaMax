@@ -80,6 +80,7 @@ class CheckoutActivity : AppCompatActivity() {
 
     private fun cartCalculator() {
         var incrementAmt = 1
+        val negNum = -1
         with(binding) {
             try {
                 val amt = Integer.parseInt(price.text.toString())
@@ -95,7 +96,10 @@ class CheckoutActivity : AppCompatActivity() {
                 negBtn.setOnClickListener {
                     incrementNum -= 1
                     incrementAmt = amt * incrementNum
-                    increment.text = incrementNum.toString()
+//                    if(incrementAmt <= 0) {
+//                        negBtn.isEnabled = false
+//                    }
+                        increment.text = incrementNum.toString()
                     price.text = incrementAmt.toString()
                     subTotal.text = price.text
                     grandTotal1.text = price.text
@@ -116,3 +120,5 @@ class CheckoutActivity : AppCompatActivity() {
     }
 
 }
+
+
