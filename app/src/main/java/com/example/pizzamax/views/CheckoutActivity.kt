@@ -69,6 +69,9 @@ class CheckoutActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
+
         binding.delete.setOnClickListener {
             binding.subTotal.text = "0"
             binding.grandTotal1.text = "0"
