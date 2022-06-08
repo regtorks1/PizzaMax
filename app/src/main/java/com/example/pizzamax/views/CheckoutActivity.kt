@@ -73,8 +73,6 @@ class CheckoutActivity : AppCompatActivity() {
             binding.subTotal.text = "0"
             binding.grandTotal1.text = "0"
             Toast.makeText(applicationContext, "Deleting cart items", Toast.LENGTH_SHORT).show()
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
 
         }
     }
@@ -110,21 +108,6 @@ class CheckoutActivity : AppCompatActivity() {
         }
 
     }
-
-    /*private fun subBtn() {
-        var incrementAmt = 1
-        with(binding) {
-            val amt = Integer.parseInt(price.text.toString())
-            var incrementNum = Integer.parseInt(increment.text.toString())
-            negBtn.setOnClickListener {
-                incrementNum -= 1
-                incrementAmt = amt * incrementNum.absoluteValue
-                increment.text = incrementNum.toString()
-                price.text = incrementAmt.toString()
-            }
-        }
-
-    }*/
 
     override fun onBackPressed() {
         val intent = Intent(this, MainActivity::class.java)

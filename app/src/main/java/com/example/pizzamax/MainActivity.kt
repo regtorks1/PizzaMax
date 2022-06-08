@@ -83,10 +83,6 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
 //        activityViewmodel.insertIntoRoom(deal)
 //    }
 
-
-
-
-
     private fun adapterOnClick() {
 
         val intent = Intent(this, CheckoutActivity::class.java)
