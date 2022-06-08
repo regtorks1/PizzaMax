@@ -18,11 +18,15 @@ import com.example.pizzamax.model.ValuesDeals
 
 import com.example.pizzamax.databinding.ActivityMainBinding
 import com.example.pizzamax.di.App
+import com.example.pizzamax.model.SliderData
 import com.example.pizzamax.viewmodel.ActivityViewModelFactory
 import com.example.pizzamax.viewmodel.ActivityViewmodel
 import com.example.pizzamax.views.CheckoutActivity
+import com.example.pizzamax.views.adapters.SliderAdapter
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
+import com.smarteist.autoimageslider.SliderView
 import kotlinx.coroutines.launch
+import java.util.ArrayList
 
 
 class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateCheckout {
@@ -30,6 +34,13 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
     private val activityViewmodel: ActivityViewmodel by viewModels {
         ActivityViewModelFactory((application as App).repository)
     }
+
+    private var sliderImg = intArrayOf(
+        R.drawable.pizza_max_poster,
+        R.drawable.pizza_max_poster1,
+        R.drawable.pizza_max_poster2,
+        R.drawable.pizza_max_poster3
+    )
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +66,21 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
                 recyclerAdapter.submitList(it)
             }
         })
+
+        val sliderDataArrayList = ArrayList<SliderData>()
+
+        val sliderView: SliderView = binding.slider
+        sliderDataArrayList.add(SliderData(sliderImg[0]))
+        sliderDataArrayList.add(SliderData(sliderImg[1]))
+        sliderDataArrayList.add(SliderData(sliderImg[2]))
+        sliderDataArrayList.add(SliderData(sliderImg[3]))
+
+        val adapter = SliderAdapter(this, sliderDataArrayList)
+        sliderView.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
+        sliderView.setSliderAdapter(adapter)
+        sliderView.scrollTimeInSec = 3
+        sliderView.isAutoCycle = true
+        sliderView.startAutoCycle()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

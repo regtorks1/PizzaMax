@@ -98,5 +98,9 @@ dependencies {
 
     implementation ("com.github.bumptech.glide:glide:4.13.2")
 
+    //Slider
+    implementation 'com.github.smarteist:Android-Image-Slider:1.4.0'
+    implementation 'com.github.Fuadafdhal:Auto-Image-Slider:1.0'
+
 
 }
