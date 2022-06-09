@@ -142,7 +142,7 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
 
     }
 
-     fun alertDialog_a(){
+    private fun alertDialog_a(){
         val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()
         val view1 = layoutInflater.inflate(R.layout.second_alertdialog, null)
         val cancelCrust = view1.findViewById<Button>(R.id.cancel1)
@@ -165,20 +165,17 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
     }
 
 
-    fun returnDialog1(){
-        val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()
-        val view = layoutInflater.inflate(R.layout.first_alertdialog, null)
-        Toast.makeText(applicationContext, "Clicked", Toast.LENGTH_SHORT).show()
-        builder.setView(view)
-        builder.setCanceledOnTouchOutside(true)
-        builder.show()
-    }
 
-
-    fun alertDialog_b(){
+   private fun alertDialog_b(){
         val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()
         val view2 = layoutInflater.inflate(R.layout.third_alertdialog, null)
         val cancelFlavors = view2.findViewById<Button>(R.id.cancel2)
+       val confirmFlavors = view2.findViewById<Button>(R.id.Confirm1)
+
+       confirmFlavors.setOnClickListener {
+           returnDialog2()
+           view2.isVisible = false
+       }
 
         cancelFlavors.setOnClickListener {
             builder.dismiss()
@@ -186,6 +183,24 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
         builder.setView(view2)
         builder.setCanceledOnTouchOutside(true)
         builder.show()
+    }
+
+
+    private fun returnDialog1(){
+        val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()
+        val view = layoutInflater.inflate(R.layout.first_alertdialog, null)
+        builder.setView(view)
+        builder.setCanceledOnTouchOutside(true)
+        builder.show()
+    }
+
+    private fun returnDialog2(){
+        val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()
+        val view = layoutInflater.inflate(R.layout.first_alertdialog, null)
+        builder.setView(view)
+        builder.setCanceledOnTouchOutside(true)
+        builder.show()
+
     }
 
 

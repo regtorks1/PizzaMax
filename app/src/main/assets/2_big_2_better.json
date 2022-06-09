@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "size": "Homemade Burger",
+    "price": "150",
+    "image": "https://img.freepik.com/free-photo/fresh-tasty-homemade-burger-wooden-table_147620-1307.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+
+  },
+  {
+    "id": "2",
+    "size": "Cheese Burger with grilled ",
+    "price": "100",
+    "image": "https://img.freepik.com/free-photo/side-view-double-cheeseburger-with-grilled-beef-patties-cheese-lettuce-leaf-burger-buns_141793-4883.jpg?t=st=1654786022~exp=1654786622~hmac=ad68686aac6dc42cc5d240505fd244620ebba339f9850320cd056492aac42957&w=996"
+  },
+  {
+    "id": "3",
+    "size": "Sandwich burger with beef and red onion",
+    "price": "150",
+    "image": "https://img.freepik.com/free-photo/big-sandwich-hamburger-burger-with-beef-red-onion-tomato-fried-bacon_2829-5398.jpg?t=st=1654786605~exp=1654787205~hmac=31c4e86f700bba1b4b23af8f9458aa55ef5a119ad2eab0d63906e9b67059697a&w=740"
+  },
+  {
+    "id": "4",
+    "size": "Hamburger with juicy beef burgers",
+    "price": "190",
+    "image": "https://img.freepik.com/free-photo/big-sandwich-hamburger-with-juicy-beef-burger-cheese-tomato-red-onion-wooden-table_2829-19631.jpg?t=st=1654786605~exp=1654787205~hmac=eb7398baabacb0118ae112643c181b603693c0d750fb6b09635629574ebe968f&w=996"
+  },
+  {
+    "id": "5",
+    "size": "Delicious grilled burgers",
+    "price": "250",
+    "image": "https://img.freepik.com/free-photo/delicious-grilled-burgers_62847-13.jpg?w=996"
+  },
+  {
+    "id": "6",
+    "size": "Fresh salad with sliced kingfish cucumber rice",
+    "price": "100",
+    "image": "https://img.freepik.com/free-photo/selective-focus-shot-fresh-salad-with-sliced-kingfish-cucumber-rice_181624-42764.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+  },
+
+  {
+    "id": "7",
+    "size": "Italian Burgers",
+    "price": "100",
+    "image": "https://img.freepik.com/free-photo/front-view-burgers-stand_141793-15545.jpg?t=st=1654786605~exp=1654787205~hmac=93a7d2dbbec724b0d09e83861f4fd88750fb808d82ff3d20231e954b60102660&w=996"
+  }
+]
