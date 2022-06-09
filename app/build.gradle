@@ -15,6 +15,14 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation":"$projectDir/schemas".toString()]
+            }
+        }
+
+
     }
 
     buildTypes {
@@ -37,12 +45,12 @@ android {
 }
 
 dependencies {
- implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     implementation "androidx.activity:activity-ktx:$rootProject.activityVersion"
 
     // Dependencies for working with Architecture components
     // You'll probably have to update the version numbers in build.gradle (Project)
-     implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.9.0'
 
     // Room components
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
@@ -78,8 +86,7 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
 
 
-
-  //  implementation 'com.github.joielechong:countrycodepicker:2.1.5'
+    //  implementation 'com.github.joielechong:countrycodepicker:2.1.5'
     implementation("io.coil-kt:coil:2.0.0-rc03")
 
 
@@ -98,7 +105,7 @@ dependencies {
     //implementation 'com.github.joielechong:countrycodepicker:2.1.5'
     implementation 'com.github.inpossoft:CountryCodePickerProject:2.0.0'
 
-    implementation ("com.github.bumptech.glide:glide:4.13.2")
+    implementation("com.github.bumptech.glide:glide:4.13.2")
 
     //Slider
     implementation 'com.github.smarteist:Android-Image-Slider:1.4.0'

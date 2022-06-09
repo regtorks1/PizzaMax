@@ -1,7 +1,6 @@
 package com.example.pizzamax.views.ui.fragments
 
 import android.content.Intent
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,16 +13,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.databinding.FragmentValueDealsBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.ValuesDeals
-import com.example.pizzamax.viewmodel.FragmentViewModel
-import com.example.pizzamax.viewmodel.FragmentViewModelFactory
-import com.example.pizzamax.viewmodel.ValueDealsViewModel
+import com.example.pizzamax.viewmodel.ProductViewModel
+import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import com.example.pizzamax.views.ui.CheckoutActivity
 import kotlinx.coroutines.launch
 
 class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout {
-    private val fragmentViewmodel: FragmentViewModel by viewModels {
-        FragmentViewModelFactory((activity?.application as App).repository)
+    private val productViewmodel: ProductViewModel by viewModels {
+        ProductViewModelFactory((activity?.application as App).productRepository)
     }
 
     companion object {
@@ -49,7 +47,7 @@ class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout 
         val thisRecycler = binding.recyclerView
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
-        fragmentViewmodel.getList.observe(viewLifecycleOwner, Observer {
+        productViewmodel.getList.observe(viewLifecycleOwner, Observer {
             lifecycleScope.launch {
                 recyclerAdapter.submitList(it)
             }

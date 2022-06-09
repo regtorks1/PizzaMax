@@ -10,20 +10,18 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.bumptech.glide.Glide
 import com.example.pizzamax.databinding.RecyclerListBinding
-import com.example.pizzamax.model.ValuesDeals
+import com.example.pizzamax.model.BigBetter
 
-
-class ValuesDealRecyclerAdapter(
-    context: Context,
-    private val updateCheckout: UpdateCheckout
+class BigBetterAdapter (
+    private  val updateCheckout: UpdateCheckout
 ) :
-    ListAdapter<ValuesDeals, ValuesDealRecyclerAdapter.RecyclerViewHolder>(ListComparator()) {
+    ListAdapter<BigBetter, BigBetterAdapter.RecyclerViewHolder>(ListComparator()) {
 
     //bind the recycler list items
     inner class RecyclerViewHolder(val binding: RecyclerListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(list: ValuesDeals?) {
+        fun bind(list: BigBetter?) {
             binding.deal.text = "Deal " + list?.id.toString()
             binding.price.text = "Ghc " + list?.price
             binding.description.text = list?.size.toString()
@@ -34,7 +32,7 @@ class ValuesDealRecyclerAdapter(
     //inflate the List
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
         return RecyclerViewHolder(
-            RecyclerListBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+            RecyclerListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -52,19 +50,20 @@ class ValuesDealRecyclerAdapter(
     }
 
 
-    class ListComparator : DiffUtil.ItemCallback<ValuesDeals>() {
-        override fun areItemsTheSame(oldItem: ValuesDeals, newItem: ValuesDeals): Boolean {
+    class ListComparator : DiffUtil.ItemCallback<BigBetter>() {
+        override fun areItemsTheSame(oldItem: BigBetter, newItem: BigBetter): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: ValuesDeals, newItem: ValuesDeals): Boolean {
+        override fun areContentsTheSame(oldItem: BigBetter, newItem: BigBetter): Boolean {
             return oldItem.id == newItem.id
         }
     }
 
     interface UpdateCheckout {
-        fun onAddCart(cart: ValuesDeals)
+        fun onAddCart(cart: BigBetter)
     }
 
-
 }
+
+
