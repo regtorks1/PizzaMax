@@ -1,4 +1,5 @@
 package com.example.pizzamax
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -13,15 +14,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.model.ValuesDeals
-
-
 import com.example.pizzamax.databinding.ActivityMainBinding
 import com.example.pizzamax.di.App
-<<<<<<< HEAD
-import com.example.pizzamax.model.ValuesDeals
-=======
 import com.example.pizzamax.model.SliderData
->>>>>>> a3982cf1341e41e4ee1cc391c45fc0447099586f
 import com.example.pizzamax.viewmodel.ActivityViewModelFactory
 import com.example.pizzamax.viewmodel.ActivityViewmodel
 import com.example.pizzamax.views.CheckoutActivity
@@ -50,7 +45,12 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val recyclerAdapter: ValuesDealRecyclerAdapter by lazy { ValuesDealRecyclerAdapter(this, this) }  //initialize adapter
+        val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
+            ValuesDealRecyclerAdapter(
+                this,
+                this
+            )
+        }  //initialize adapter
 
         //recycler setup
         val thisRecycler = binding.recyclerView
@@ -60,20 +60,47 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
 
         activityViewmodel.getList.observe(this, Observer {
             lifecycleScope.launch {
-<<<<<<< HEAD
-=======
-
                 //activityViewmodel.deleteAll()
-               // productList()
-
-
->>>>>>> a3982cf1341e41e4ee1cc391c45fc0447099586f
+                // productList()
                 recyclerAdapter.submitList(it)
             }
         })
 
-        val sliderDataArrayList = ArrayList<SliderData>()
+        imageSlider()
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.top_app_bar, menu)
+        val item: MenuItem = menu.findItem(R.id.spinner)
+        val spinner: Spinner = getActionView(item) as Spinner
+
+        val adapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
+            this,
+            R.array.spinner_list_item_array, android.R.layout.simple_spinner_item
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+        return true
+    }
+
+    private fun adapterOnClick() {
+        val intent = Intent(this, CheckoutActivity::class.java)
+        startActivity(intent)
+    }
+
+
+    override fun onAddCart(cart: ValuesDeals) {
+        val intent = Intent(this, CheckoutActivity::class.java)
+        intent.putExtra("type", "cart")
+        intent.putExtra("size", cart.size)
+        intent.putExtra("price", cart.price)
+        startActivity(intent)
+        this.finish()
+    }
+
+    private fun imageSlider() {
+        val sliderDataArrayList = ArrayList<SliderData>()
         val sliderView: SliderView = binding.slider
         sliderDataArrayList.add(SliderData(sliderImg[0]))
         sliderDataArrayList.add(SliderData(sliderImg[1]))
@@ -87,49 +114,5 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
         sliderView.isAutoCycle = true
         sliderView.startAutoCycle()
     }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.top_app_bar, menu)
-        val item: MenuItem = menu.findItem(R.id.spinner)
-        val spinner: Spinner = getActionView(item) as Spinner
-
-        val adapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
-            this,
-            R.array.spinner_list_item_array, android.R.layout.simple_spinner_item
-        )
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter
-        return true
-    }
-
-
-//    private fun addToRoom() = lifecycleScope.launch {
-//        val image = getBitmap(
-//            this@MainActivity,
-//            "https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
-//        )
-//        val deal = ValuesDeals(image = image, size = 1, price = "$100")
-//        activityViewmodel.insertIntoRoom(deal)
-//    }
-
-    private fun adapterOnClick() {
-
-        val intent = Intent(this, CheckoutActivity::class.java)
-        startActivity(intent)
-    }
-
-
-
-    override fun onAddCart(cart: ValuesDeals) {
-        val intent = Intent(this, CheckoutActivity::class.java)
-        intent.putExtra("type","cart")
-        intent.putExtra("size",cart.size)
-        intent.putExtra("price", cart.price)
-        startActivity(intent)
-        this.finish()
-    }
-
 
 }

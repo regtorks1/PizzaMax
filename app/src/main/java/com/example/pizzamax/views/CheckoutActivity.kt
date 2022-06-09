@@ -43,7 +43,6 @@ class CheckoutActivity : AppCompatActivity() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             secondSpinner.adapter = adapter
         }
-
         val type = intent.getStringExtra("type")
         if (type.equals("cart")) {
             val size = intent.getStringExtra("size")
@@ -56,31 +55,19 @@ class CheckoutActivity : AppCompatActivity() {
                 subTotal.text = priceString.toString()
                 grandTotal1.text = priceString.toString()
             }
-<<<<<<< HEAD
-=======
-
->>>>>>> a3982cf1341e41e4ee1cc391c45fc0447099586f
         }
 
         cartCalculator()
-
-
         binding.arrowBack.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
-
-
-
         binding.delete.setOnClickListener {
             binding.subTotal.text = "0"
             binding.grandTotal1.text = "0"
             Toast.makeText(applicationContext, "Deleting cart items", Toast.LENGTH_SHORT).show()
-
         }
     }
-
 
     private fun cartCalculator() {
         var incrementAmt = 1
@@ -106,22 +93,20 @@ class CheckoutActivity : AppCompatActivity() {
                         subTotal.text = price.text
                         grandTotal1.text = price.text
                     }
-                }
-<<<<<<< HEAD
-                else {
+                } else {
                     Log.d("Calculation Err", "No matching value")
-=======
-                negBtn.setOnClickListener {
-                    incrementNum -= 1
-                    incrementAmt = amt * incrementNum
+
+                    negBtn.setOnClickListener {
+                        incrementNum -= 1
+                        incrementAmt = amt * incrementNum
 //                    if(incrementAmt <= 0) {
 //                        negBtn.isEnabled = false
 //                    }
                         increment.text = incrementNum.toString()
-                    price.text = incrementAmt.toString()
-                    subTotal.text = price.text
-                    grandTotal1.text = price.text
->>>>>>> a3982cf1341e41e4ee1cc391c45fc0447099586f
+                        price.text = incrementAmt.toString()
+                        subTotal.text = price.text
+                        grandTotal1.text = price.text
+                    }
                 }
 
             } catch (e: NumberFormatException) {
@@ -135,7 +120,6 @@ class CheckoutActivity : AppCompatActivity() {
         startActivity(intent)
         super.onBackPressed()
     }
-
 }
 
 
