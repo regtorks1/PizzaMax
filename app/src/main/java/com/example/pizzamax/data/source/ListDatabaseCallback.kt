@@ -25,7 +25,6 @@ class ListDatabaseCallback(
         }
     }
 
-
     private suspend fun populateList(valueDealsDao: ValueDealsDao) {
         val bufferReader = application.assets.open("value_deala.json").bufferedReader()
         val jsonString = bufferReader.use {

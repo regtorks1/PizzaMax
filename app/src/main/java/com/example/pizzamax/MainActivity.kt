@@ -19,8 +19,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.model.ValuesDeals
-
-
 import com.example.pizzamax.databinding.ActivityMainBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.SliderData
@@ -52,11 +50,17 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+<<<<<<< HEAD
 
         val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
             ValuesDealRecyclerAdapter(
                 this,
                 this,
+=======
+        val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
+            ValuesDealRecyclerAdapter(
+                this,
+>>>>>>> d93624caac0d0409b09627d0f37ab14adceadcde
                 this
             )
         }  //initialize adapter
@@ -69,15 +73,18 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
 
         activityViewmodel.getList.observe(this, Observer {
             lifecycleScope.launch {
-
                 //activityViewmodel.deleteAll()
                 // productList()
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> d93624caac0d0409b09627d0f37ab14adceadcde
                 recyclerAdapter.submitList(it)
             }
         })
 
+<<<<<<< HEAD
 
         val sliderDataArrayList = ArrayList<SliderData>()
 
@@ -93,6 +100,9 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
         sliderView.scrollTimeInSec = 3
         sliderView.isAutoCycle = true
         sliderView.startAutoCycle()
+=======
+        imageSlider()
+>>>>>>> d93624caac0d0409b09627d0f37ab14adceadcde
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -105,12 +115,20 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
             this,
             R.array.spinner_list_item_array, android.R.layout.simple_spinner_item
         )
-
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
         return true
     }
 
+<<<<<<< HEAD
+=======
+    private fun adapterOnClick() {
+        val intent = Intent(this, CheckoutActivity::class.java)
+        startActivity(intent)
+    }
+
+
+>>>>>>> d93624caac0d0409b09627d0f37ab14adceadcde
     override fun onAddCart(cart: ValuesDeals) {
         val intent = Intent(this, CheckoutActivity::class.java)
         intent.putExtra("type", "cart")
@@ -120,6 +138,21 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
         this.finish()
     }
 
+    private fun imageSlider() {
+        val sliderDataArrayList = ArrayList<SliderData>()
+        val sliderView: SliderView = binding.slider
+        sliderDataArrayList.add(SliderData(sliderImg[0]))
+        sliderDataArrayList.add(SliderData(sliderImg[1]))
+        sliderDataArrayList.add(SliderData(sliderImg[2]))
+        sliderDataArrayList.add(SliderData(sliderImg[3]))
+
+        val adapter = SliderAdapter(this, sliderDataArrayList)
+        sliderView.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
+        sliderView.setSliderAdapter(adapter)
+        sliderView.scrollTimeInSec = 3
+        sliderView.isAutoCycle = true
+        sliderView.startAutoCycle()
+    }
 
     fun alertDialog() {
         val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()

@@ -39,20 +39,23 @@ class ValuesDealRecyclerAdapter(
         return RecyclerViewHolder(
             RecyclerListBinding.inflate(LayoutInflater.from(parent.context), parent, false),
              ActivityCheckoutBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-
         )
     }
 
     //bind the model list the recycler list
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        val postN = getItem(position)
-        holder.bind(postN)
-        Glide.with(holder.itemView.context).load(postN.imgUrl).into(holder.binding.posterBanner)
+        val getItemPosition = getItem(position)
+        holder.bind(getItemPosition)
+        Glide.with(holder.itemView.context).load(getItemPosition.imgUrl).into(holder.binding.posterBanner)
         holder.binding.addCart.setOnClickListener {
+<<<<<<< HEAD
            // updateCheckout.onAddCart(postN)
             main.alertDialog()
 
+=======
+            updateCheckout.onAddCart(getItemPosition)
+>>>>>>> d93624caac0d0409b09627d0f37ab14adceadcde
         }
 
     }
