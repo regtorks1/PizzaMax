@@ -1,13 +1,18 @@
 package com.example.pizzamax
 
+import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Spinner
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuItemCompat.getActionView
 import androidx.lifecycle.Observer
@@ -48,7 +53,13 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val recyclerAdapter: ValuesDealRecyclerAdapter by lazy { ValuesDealRecyclerAdapter(this, this) }  //initialize adapter
+        val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
+            ValuesDealRecyclerAdapter(
+                this,
+                this,
+                this
+            )
+        }  //initialize adapter
 
         //recycler setup
         val thisRecycler = binding.recyclerView
@@ -60,12 +71,13 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
             lifecycleScope.launch {
 
                 //activityViewmodel.deleteAll()
-               // productList()
+                // productList()
 
 
                 recyclerAdapter.submitList(it)
             }
         })
+
 
         val sliderDataArrayList = ArrayList<SliderData>()
 
@@ -99,52 +111,26 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
         return true
     }
 
-
-//    private fun addToRoom() = lifecycleScope.launch {
-//        val image = getBitmap(
-//            this@MainActivity,
-//            "https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
-//        )
-//        val deal = ValuesDeals(image = image, size = 1, price = "$100")
-//        activityViewmodel.insertIntoRoom(deal)
-//    }
-
-    private fun adapterOnClick() {
-
-        val intent = Intent(this, CheckoutActivity::class.java)
-        startActivity(intent)
-    }
-
-
-
-    /*  suspend fun productList() {
-
-          val bufferReader = application.assets.open("value_deala.json").bufferedReader()
-          val jsonString = bufferReader.use {
-              it.readText()
-          }
-          val jsonArray = JSONArray(jsonString)
-          for (i in 0 until jsonArray.length()) {
-              val jsonObject: JSONObject = jsonArray.getJSONObject(i)
-              val id = jsonObject.getString("id")
-              val size = jsonObject.getString("size")
-              val price = jsonObject.getString("price")
-              val imgUrl = jsonObject.getString("image")
-              val deal = ValuesDeals(imgUrl = imgUrl, size = size, price = price, id = id.toInt())
-             activityViewmodel.insertIntoRoom(deal)
-              Log.d("readArrayOfJsonObject", "image: $imgUrl  name: $price || version : $size  \n")
-          }
-      }*/
-
-
     override fun onAddCart(cart: ValuesDeals) {
         val intent = Intent(this, CheckoutActivity::class.java)
-        intent.putExtra("type","cart")
-        intent.putExtra("size",cart.size)
+        intent.putExtra("type", "cart")
+        intent.putExtra("size", cart.size)
         intent.putExtra("price", cart.price)
         startActivity(intent)
         this.finish()
     }
 
 
+    fun alertDialog() {
+        val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()
+        val view = layoutInflater.inflate(R.layout.first_alertdialog, null)
+        val button1 = view.findViewById<Button>(R.id.cancel)
+        builder.setView(view)
+        button1.setOnClickListener {
+            builder.dismiss()
+        }
+        builder.setCanceledOnTouchOutside(true)
+        builder.show()
+
+    }
 }

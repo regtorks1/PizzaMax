@@ -2,7 +2,6 @@ package com.example.pizzamax.views.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,15 +9,16 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.bumptech.glide.Glide
+import com.example.pizzamax.MainActivity
 import com.example.pizzamax.databinding.ActivityCheckoutBinding
 import com.example.pizzamax.databinding.RecyclerListBinding
 import com.example.pizzamax.model.ValuesDeals
-import com.example.pizzamax.views.CheckoutActivity
 
 
 class ValuesDealRecyclerAdapter(
     context: Context,
-    private  val updateCheckout: UpdateCheckout
+    private  val updateCheckout: UpdateCheckout,
+    private val main : MainActivity
 ) :
     ListAdapter<ValuesDeals, ValuesDealRecyclerAdapter.RecyclerViewHolder>(ListComparator()) {
 
@@ -50,7 +50,8 @@ class ValuesDealRecyclerAdapter(
         holder.bind(postN)
         Glide.with(holder.itemView.context).load(postN.imgUrl).into(holder.binding.posterBanner)
         holder.binding.addCart.setOnClickListener {
-            updateCheckout.onAddCart(postN)
+           // updateCheckout.onAddCart(postN)
+            main.alertDialog()
 
         }
 
