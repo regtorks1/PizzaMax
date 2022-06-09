@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PizzaMax"
         tools:targetApi="31">
-        <activity android:name=".views.CheckoutActivity"
+        <activity android:name=".views.ui.CheckoutActivity"
             android:exported="true"/>
         <activity
             android:name=".MainActivity"

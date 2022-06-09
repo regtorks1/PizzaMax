@@ -15,6 +15,14 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation":"$projectDir/schemas".toString()]
+            }
+        }
+
+
     }
 
     buildTypes {
@@ -37,16 +45,17 @@ android {
 }
 
 dependencies {
- implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     implementation "androidx.activity:activity-ktx:$rootProject.activityVersion"
 
     // Dependencies for working with Architecture components
     // You'll probably have to update the version numbers in build.gradle (Project)
-     implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.9.0'
 
     // Room components
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
     implementation 'com.google.android.gms:play-services-location:19.0.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     //  implementation "androidx.room:room-coroutines:$rootProject.roomCoroutines"
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
@@ -57,6 +66,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:$rootProject.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
+    implementation 'androidx.fragment:fragment-ktx:1.4.1'
 
     // Kotlin components
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$jdk7Version"
@@ -76,8 +86,7 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
 
 
-
-  //  implementation 'com.github.joielechong:countrycodepicker:2.1.5'
+    //  implementation 'com.github.joielechong:countrycodepicker:2.1.5'
     implementation("io.coil-kt:coil:2.0.0-rc03")
 
 
@@ -96,7 +105,7 @@ dependencies {
     //implementation 'com.github.joielechong:countrycodepicker:2.1.5'
     implementation 'com.github.inpossoft:CountryCodePickerProject:2.0.0'
 
-    implementation ("com.github.bumptech.glide:glide:4.13.2")
+    implementation("com.github.bumptech.glide:glide:4.13.2")
 
     //Slider
     implementation 'com.github.smarteist:Android-Image-Slider:1.4.0'

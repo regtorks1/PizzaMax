@@ -7,6 +7,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuItemCompat.getActionView
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -18,36 +22,22 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.model.ValuesDeals
 import com.example.pizzamax.databinding.ActivityMainBinding
-import com.example.pizzamax.di.App
 import com.example.pizzamax.model.SliderData
-import com.example.pizzamax.viewmodel.ActivityViewModelFactory
-import com.example.pizzamax.viewmodel.ActivityViewmodel
-import com.example.pizzamax.views.CheckoutActivity
 import com.example.pizzamax.views.adapters.SliderAdapter
-import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
+import com.example.pizzamax.views.adapters.ViewPagerAdapter
+import com.example.pizzamax.views.ui.CheckoutActivity
+import com.google.android.material.tabs.TabLayout
 import com.smarteist.autoimageslider.SliderView
-import kotlinx.coroutines.launch
-import java.util.ArrayList
 
 
-class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateCheckout {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val activityViewmodel: ActivityViewmodel by viewModels {
-        ActivityViewModelFactory((application as App).repository)
-    }
-
-    private var sliderImg = intArrayOf(
-        R.drawable.pizza_max_poster,
-        R.drawable.pizza_max_poster1,
-        R.drawable.pizza_max_poster2,
-        R.drawable.pizza_max_poster3
-    )
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
             ValuesDealRecyclerAdapter(
@@ -72,7 +62,10 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
             }
         })
 
+
         imageSlider()
+        setupTabLayout()
+        setupViewPager()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -90,17 +83,47 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
         return true
     }
 
+  
 
-    override fun onAddCart(cart: ValuesDeals) {
-        val intent = Intent(this, CheckoutActivity::class.java)
-        intent.putExtra("type", "cart")
-        intent.putExtra("size", cart.size)
-        intent.putExtra("price", cart.price)
-        startActivity(intent)
-        this.finish()
+    private fun setupViewPager() {
+        binding.viewPager.apply {
+            adapter = ViewPagerAdapter(supportFragmentManager, binding.tabLayout.tabCount)
+            addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(binding.tabLayout))
+        }
+    }
+
+
+    private fun setupTabLayout() {
+        binding.tabLayout.apply {
+            addTab(this.newTab().setText("Max Value Deals"))
+            addTab(this.newTab().setText("2 Big 2 Better"))
+            addTab(this.newTab().setText("Appetizers"))
+            addTab(this.newTab().setText("Signature Pizza"))
+            addTab(this.newTab().setText("Max Value Deals"))
+
+            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    tab?.position?.let {
+                        binding.viewPager.currentItem = it
+                    }
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+                }
+
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+                }
+            })
+        }
     }
 
     private fun imageSlider() {
+        val sliderImg = intArrayOf(
+            R.drawable.pizza_max_poster,
+            R.drawable.pizza_max_poster1,
+            R.drawable.pizza_max_poster2,
+            R.drawable.pizza_max_poster3
+        )
         val sliderDataArrayList = ArrayList<SliderData>()
         val sliderView: SliderView = binding.slider
         sliderDataArrayList.add(SliderData(sliderImg[0]))
