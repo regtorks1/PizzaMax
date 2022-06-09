@@ -49,13 +49,9 @@ class ValuesDealRecyclerAdapter(
         holder.bind(getItemPosition)
         Glide.with(holder.itemView.context).load(getItemPosition.imgUrl).into(holder.binding.posterBanner)
         holder.binding.addCart.setOnClickListener {
-<<<<<<< HEAD
            // updateCheckout.onAddCart(postN)
             main.alertDialog()
 
-=======
-            updateCheckout.onAddCart(getItemPosition)
->>>>>>> d93624caac0d0409b09627d0f37ab14adceadcde
         }
 
     }

@@ -7,14 +7,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.Spinner
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuItemCompat.getActionView
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,17 +48,11 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-<<<<<<< HEAD
 
         val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
             ValuesDealRecyclerAdapter(
                 this,
                 this,
-=======
-        val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
-            ValuesDealRecyclerAdapter(
-                this,
->>>>>>> d93624caac0d0409b09627d0f37ab14adceadcde
                 this
             )
         }  //initialize adapter
@@ -75,34 +67,12 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
             lifecycleScope.launch {
                 //activityViewmodel.deleteAll()
                 // productList()
-<<<<<<< HEAD
 
-
-=======
->>>>>>> d93624caac0d0409b09627d0f37ab14adceadcde
                 recyclerAdapter.submitList(it)
             }
         })
 
-<<<<<<< HEAD
-
-        val sliderDataArrayList = ArrayList<SliderData>()
-
-        val sliderView: SliderView = binding.slider
-        sliderDataArrayList.add(SliderData(sliderImg[0]))
-        sliderDataArrayList.add(SliderData(sliderImg[1]))
-        sliderDataArrayList.add(SliderData(sliderImg[2]))
-        sliderDataArrayList.add(SliderData(sliderImg[3]))
-
-        val adapter = SliderAdapter(this, sliderDataArrayList)
-        sliderView.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
-        sliderView.setSliderAdapter(adapter)
-        sliderView.scrollTimeInSec = 3
-        sliderView.isAutoCycle = true
-        sliderView.startAutoCycle()
-=======
         imageSlider()
->>>>>>> d93624caac0d0409b09627d0f37ab14adceadcde
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -120,15 +90,7 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
         return true
     }
 
-<<<<<<< HEAD
-=======
-    private fun adapterOnClick() {
-        val intent = Intent(this, CheckoutActivity::class.java)
-        startActivity(intent)
-    }
 
-
->>>>>>> d93624caac0d0409b09627d0f37ab14adceadcde
     override fun onAddCart(cart: ValuesDeals) {
         val intent = Intent(this, CheckoutActivity::class.java)
         intent.putExtra("type", "cart")
@@ -158,12 +120,73 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
         val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()
         val view = layoutInflater.inflate(R.layout.first_alertdialog, null)
         val button1 = view.findViewById<Button>(R.id.cancel)
+        val button2 = view.findViewById<Button>(R.id.choose1)
+        val button3 = view.findViewById<Button>(R.id.choose2)
+
         builder.setView(view)
         button1.setOnClickListener {
             builder.dismiss()
+        }
+
+        button2.setOnClickListener {
+            alertDialog_a()
+            view.isVisible = false
+        }
+
+        button3.setOnClickListener {
+            alertDialog_b()
+            view.isVisible = false
         }
         builder.setCanceledOnTouchOutside(true)
         builder.show()
 
     }
+
+     fun alertDialog_a(){
+        val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()
+        val view1 = layoutInflater.inflate(R.layout.second_alertdialog, null)
+        val cancelCrust = view1.findViewById<Button>(R.id.cancel1)
+        val confirmCrust = view1.findViewById<Button>(R.id.Confirm)
+
+        cancelCrust.setOnClickListener {
+            builder.dismiss()
+        }
+
+        builder.setView(view1)
+        builder.setCanceledOnTouchOutside(true)
+        builder.show()
+
+         confirmCrust.setOnClickListener {
+             returnDialog1()
+             view1.isVisible = false
+
+         }
+
+    }
+
+
+    fun returnDialog1(){
+        val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()
+        val view = layoutInflater.inflate(R.layout.first_alertdialog, null)
+        Toast.makeText(applicationContext, "Clicked", Toast.LENGTH_SHORT).show()
+        builder.setView(view)
+        builder.setCanceledOnTouchOutside(true)
+        builder.show()
+    }
+
+
+    fun alertDialog_b(){
+        val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()
+        val view2 = layoutInflater.inflate(R.layout.third_alertdialog, null)
+        val cancelFlavors = view2.findViewById<Button>(R.id.cancel2)
+
+        cancelFlavors.setOnClickListener {
+            builder.dismiss()
+        }
+        builder.setView(view2)
+        builder.setCanceledOnTouchOutside(true)
+        builder.show()
+    }
+
+
 }
