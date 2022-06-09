@@ -28,7 +28,9 @@ class ListDatabaseCallback(
         INSTANCE?.let { database ->
             scope.launch {
                 populateDeals(database.dealsDao())
-              //  populateBigBetter(database.bigBetterDao())
+                populateBigBetter(database.bigBetterDao())
+                populateAppetizers(database.appetizersDao())
+                populateSignature(database.signatureDao())
             }
         }
     }
@@ -52,7 +54,7 @@ class ListDatabaseCallback(
     }
 
      private suspend fun populateBigBetter(bigBetterDao: BigBetterDoa) {
-        val bufferReader = application.assets.open("value_deala.json").bufferedReader()
+        val bufferReader = application.assets.open("2_big_2_better.json").bufferedReader()
         val jsonString = bufferReader.use {
             it.readText()
         }
@@ -70,7 +72,7 @@ class ListDatabaseCallback(
     }
 
         private suspend fun populateAppetizers(appetizersDao: AppetizersDao) {
-        val bufferReader = application.assets.open("value_deala.json").bufferedReader()
+        val bufferReader = application.assets.open("appetizers.json").bufferedReader()
         val jsonString = bufferReader.use {
             it.readText()
         }
@@ -88,7 +90,7 @@ class ListDatabaseCallback(
     }
 
         private suspend fun populateSignature(signatureDao: SignatureDao) {
-        val bufferReader = application.assets.open("value_deala.json").bufferedReader()
+        val bufferReader = application.assets.open("signature.json").bufferedReader()
         val jsonString = bufferReader.use {
             it.readText()
         }

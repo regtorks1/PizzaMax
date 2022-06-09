@@ -13,11 +13,12 @@ import com.example.pizzamax.MainActivity
 import com.example.pizzamax.databinding.ActivityCheckoutBinding
 import com.example.pizzamax.databinding.RecyclerListBinding
 import com.example.pizzamax.model.ValuesDeals
+import com.example.pizzamax.views.ui.fragments.ValueDealsFragment
 
 
 class ValuesDealRecyclerAdapter(
     private  val updateCheckout: UpdateCheckout,
-    private val main : MainActivity
+    private val main : ValueDealsFragment
 ) :
     ListAdapter<ValuesDeals, ValuesDealRecyclerAdapter.RecyclerViewHolder>(ListComparator()) {
 

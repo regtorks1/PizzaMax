@@ -1,18 +1,10 @@
 package com.example.pizzamax
 
-import android.content.DialogInterface
-import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.MenuItemCompat.getActionView
 import android.widget.*
-import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuItemCompat.getActionView
@@ -20,17 +12,16 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pizzamax.model.ValuesDeals
 import com.example.pizzamax.databinding.ActivityMainBinding
 import com.example.pizzamax.model.SliderData
 import com.example.pizzamax.views.adapters.SliderAdapter
+import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import com.example.pizzamax.views.adapters.ViewPagerAdapter
-import com.example.pizzamax.views.ui.CheckoutActivity
 import com.google.android.material.tabs.TabLayout
 import com.smarteist.autoimageslider.SliderView
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,29 +29,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
-            ValuesDealRecyclerAdapter(
-                this,
-                this,
-                this
-            )
-        }  //initialize adapter
-
-        //recycler setup
-        val thisRecycler = binding.recyclerView
-        thisRecycler.adapter = recyclerAdapter
-        thisRecycler.layoutManager = LinearLayoutManager(this)
-
-
-        activityViewmodel.getList.observe(this, Observer {
-            lifecycleScope.launch {
-                //activityViewmodel.deleteAll()
-                // productList()
-
-                recyclerAdapter.submitList(it)
-            }
-        })
 
 
         imageSlider()
@@ -83,7 +51,6 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-  
 
     private fun setupViewPager() {
         binding.viewPager.apply {
@@ -139,6 +106,13 @@ class MainActivity : AppCompatActivity() {
         sliderView.startAutoCycle()
     }
 
+
+
+
+
+
+   /*
+
     fun alertDialog() {
         val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()
         val view = layoutInflater.inflate(R.layout.first_alertdialog, null)
@@ -165,7 +139,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun alertDialog_a(){
+    private fun alertDialog_a() {
         val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()
         val view1 = layoutInflater.inflate(R.layout.second_alertdialog, null)
         val cancelCrust = view1.findViewById<Button>(R.id.cancel1)
@@ -179,26 +153,25 @@ class MainActivity : AppCompatActivity() {
         builder.setCanceledOnTouchOutside(true)
         builder.show()
 
-         confirmCrust.setOnClickListener {
-             returnDialog1()
-             view1.isVisible = false
+        confirmCrust.setOnClickListener {
+            returnDialog1()
+            view1.isVisible = false
 
-         }
+        }
 
     }
 
 
-
-   private fun alertDialog_b(){
+    private fun alertDialog_b() {
         val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()
         val view2 = layoutInflater.inflate(R.layout.third_alertdialog, null)
         val cancelFlavors = view2.findViewById<Button>(R.id.cancel2)
-       val confirmFlavors = view2.findViewById<Button>(R.id.Confirm1)
+        val confirmFlavors = view2.findViewById<Button>(R.id.Confirm1)
 
-       confirmFlavors.setOnClickListener {
-           returnDialog2()
-           view2.isVisible = false
-       }
+        confirmFlavors.setOnClickListener {
+            returnDialog2()
+            view2.isVisible = false
+        }
 
         cancelFlavors.setOnClickListener {
             builder.dismiss()
@@ -209,7 +182,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun returnDialog1(){
+    private fun returnDialog1() {
         val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()
         val view = layoutInflater.inflate(R.layout.first_alertdialog, null)
         builder.setView(view)
@@ -217,14 +190,14 @@ class MainActivity : AppCompatActivity() {
         builder.show()
     }
 
-    private fun returnDialog2(){
+    private fun returnDialog2() {
         val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()
         val view = layoutInflater.inflate(R.layout.first_alertdialog, null)
         builder.setView(view)
         builder.setCanceledOnTouchOutside(true)
         builder.show()
 
-    }
+    }*/
 
 
 }

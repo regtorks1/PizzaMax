@@ -12,14 +12,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.databinding.FragmentBigBetterBinding
 import com.example.pizzamax.di.App
+import com.example.pizzamax.model.BigBetter
 import com.example.pizzamax.model.ValuesDeals
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
+import com.example.pizzamax.views.adapters.BigBetterAdapter
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import com.example.pizzamax.views.ui.CheckoutActivity
 import kotlinx.coroutines.launch
 
-class BigBetterFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout {
+class BigBetterFragment : Fragment(), BigBetterAdapter.UpdateCheckout {
 
     private val productViewmodel: ProductViewModel by viewModels {
         ProductViewModelFactory((activity?.application as App).productRepository)
@@ -36,9 +38,8 @@ class BigBetterFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentBigBetterBinding.inflate(layoutInflater)
-        val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
-            ValuesDealRecyclerAdapter(
-                requireContext(),
+        val recyclerAdapter: BigBetterAdapter by lazy {
+            BigBetterAdapter(
                 this
             )
         }  //initialize adapter
@@ -47,7 +48,7 @@ class BigBetterFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout {
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
-        productViewmodel.getList.observe(viewLifecycleOwner, Observer {
+        productViewmodel.getAllFromBigBetter.observe(viewLifecycleOwner, Observer {
             lifecycleScope.launch {
                 recyclerAdapter.submitList(it)
             }
@@ -55,7 +56,7 @@ class BigBetterFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout {
         return binding.root
     }
 
-    override fun onAddCart(cart: ValuesDeals) {
+    override fun onAddCart(cart: BigBetter) {
         val intent = Intent(requireContext(), CheckoutActivity::class.java)
         intent.putExtra("type", "cart")
         intent.putExtra("size", cart.size)

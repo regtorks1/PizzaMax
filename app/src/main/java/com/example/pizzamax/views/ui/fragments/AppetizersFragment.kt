@@ -12,14 +12,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.databinding.FragmentAppetizersBinding
 import com.example.pizzamax.di.App
+import com.example.pizzamax.model.Appetizers
 import com.example.pizzamax.model.ValuesDeals
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
+import com.example.pizzamax.views.adapters.AppetizersRecyclerAdapter
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import com.example.pizzamax.views.ui.CheckoutActivity
 import kotlinx.coroutines.launch
 
-class AppetizersFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout {
+class AppetizersFragment : Fragment(), AppetizersRecyclerAdapter.UpdateCheckout {
 
     private val productViewmodel: ProductViewModel by viewModels {
         ProductViewModelFactory((activity?.application as App).productRepository)
@@ -36,26 +38,23 @@ class AppetizersFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout 
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAppetizersBinding.inflate(layoutInflater)
-        val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
-            ValuesDealRecyclerAdapter(
-                requireContext(),
-                this
-            )
+        val recyclerAdapter: AppetizersRecyclerAdapter by lazy {
+            AppetizersRecyclerAdapter(this)
         }  //initialize adapter
         //recycler setup
         val thisRecycler = binding.recyclerView
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
-        productViewmodel.getList.observe(viewLifecycleOwner, Observer {
+        productViewmodel.getAllFromAppetizers.observe(viewLifecycleOwner, Observer { list ->
             lifecycleScope.launch {
-                recyclerAdapter.submitList(it)
+                recyclerAdapter.submitList(list)
             }
         })
         return binding.root
     }
 
-    override fun onAddCart(cart: ValuesDeals) {
+    override fun onAddCart(cart: Appetizers) {
         val intent = Intent(requireContext(), CheckoutActivity::class.java)
         intent.putExtra("type", "cart")
         intent.putExtra("size", cart.size)

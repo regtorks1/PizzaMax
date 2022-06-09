@@ -12,14 +12,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.databinding.FragmentSignaturePizzaBinding
 import com.example.pizzamax.di.App
+import com.example.pizzamax.model.SignaturePizza
 import com.example.pizzamax.model.ValuesDeals
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
+import com.example.pizzamax.views.adapters.SignatureRecyclerAdapter
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import com.example.pizzamax.views.ui.CheckoutActivity
 import kotlinx.coroutines.launch
 
-class SignaturePizzaFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout {
+class SignaturePizzaFragment : Fragment(), SignatureRecyclerAdapter.UpdateCheckout {
 
     private val productViewmodel: ProductViewModel by viewModels {
         ProductViewModelFactory((activity?.application as App).productRepository)
@@ -36,9 +38,8 @@ class SignaturePizzaFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheck
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSignaturePizzaBinding.inflate(layoutInflater)
-        val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
-            ValuesDealRecyclerAdapter(
-                requireContext(),
+        val recyclerAdapter: SignatureRecyclerAdapter by lazy {
+            SignatureRecyclerAdapter(
                 this
             )
         }  //initialize adapter
@@ -47,7 +48,7 @@ class SignaturePizzaFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheck
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
-        productViewmodel.getList.observe(viewLifecycleOwner, Observer {
+        productViewmodel.getAllFromSignature.observe(viewLifecycleOwner, Observer {
             lifecycleScope.launch {
                 recyclerAdapter.submitList(it)
             }
@@ -55,7 +56,7 @@ class SignaturePizzaFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheck
         return binding.root
     }
 
-    override fun onAddCart(cart: ValuesDeals) {
+    override fun onAddCart(cart: SignaturePizza) {
         val intent = Intent(requireContext(), CheckoutActivity::class.java)
         intent.putExtra("type", "cart")
         intent.putExtra("size", cart.size)
