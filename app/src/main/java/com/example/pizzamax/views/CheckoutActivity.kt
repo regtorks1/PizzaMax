@@ -56,6 +56,10 @@ class CheckoutActivity : AppCompatActivity() {
                 subTotal.text = priceString.toString()
                 grandTotal1.text = priceString.toString()
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a3982cf1341e41e4ee1cc391c45fc0447099586f
         }
 
         cartCalculator()
@@ -66,12 +70,13 @@ class CheckoutActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
+
         binding.delete.setOnClickListener {
             binding.subTotal.text = "0"
             binding.grandTotal1.text = "0"
             Toast.makeText(applicationContext, "Deleting cart items", Toast.LENGTH_SHORT).show()
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
 
         }
     }
@@ -79,6 +84,7 @@ class CheckoutActivity : AppCompatActivity() {
 
     private fun cartCalculator() {
         var incrementAmt = 1
+        val negNum = -1
         with(binding) {
             try {
                 val amt = Integer.parseInt(price.text.toString())
@@ -101,8 +107,21 @@ class CheckoutActivity : AppCompatActivity() {
                         grandTotal1.text = price.text
                     }
                 }
+<<<<<<< HEAD
                 else {
                     Log.d("Calculation Err", "No matching value")
+=======
+                negBtn.setOnClickListener {
+                    incrementNum -= 1
+                    incrementAmt = amt * incrementNum
+//                    if(incrementAmt <= 0) {
+//                        negBtn.isEnabled = false
+//                    }
+                        increment.text = incrementNum.toString()
+                    price.text = incrementAmt.toString()
+                    subTotal.text = price.text
+                    grandTotal1.text = price.text
+>>>>>>> a3982cf1341e41e4ee1cc391c45fc0447099586f
                 }
 
             } catch (e: NumberFormatException) {
@@ -118,3 +137,5 @@ class CheckoutActivity : AppCompatActivity() {
     }
 
 }
+
+

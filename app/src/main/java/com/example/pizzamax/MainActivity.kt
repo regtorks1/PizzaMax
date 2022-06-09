@@ -12,14 +12,24 @@ import androidx.core.view.MenuItemCompat.getActionView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pizzamax.model.ValuesDeals
+
+
 import com.example.pizzamax.databinding.ActivityMainBinding
 import com.example.pizzamax.di.App
+<<<<<<< HEAD
 import com.example.pizzamax.model.ValuesDeals
+=======
+import com.example.pizzamax.model.SliderData
+>>>>>>> a3982cf1341e41e4ee1cc391c45fc0447099586f
 import com.example.pizzamax.viewmodel.ActivityViewModelFactory
 import com.example.pizzamax.viewmodel.ActivityViewmodel
 import com.example.pizzamax.views.CheckoutActivity
+import com.example.pizzamax.views.adapters.SliderAdapter
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
+import com.smarteist.autoimageslider.SliderView
 import kotlinx.coroutines.launch
+import java.util.ArrayList
 
 
 class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateCheckout {
@@ -27,6 +37,13 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
     private val activityViewmodel: ActivityViewmodel by viewModels {
         ActivityViewModelFactory((application as App).repository)
     }
+
+    private var sliderImg = intArrayOf(
+        R.drawable.pizza_max_poster,
+        R.drawable.pizza_max_poster1,
+        R.drawable.pizza_max_poster2,
+        R.drawable.pizza_max_poster3
+    )
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,9 +60,32 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
 
         activityViewmodel.getList.observe(this, Observer {
             lifecycleScope.launch {
+<<<<<<< HEAD
+=======
+
+                //activityViewmodel.deleteAll()
+               // productList()
+
+
+>>>>>>> a3982cf1341e41e4ee1cc391c45fc0447099586f
                 recyclerAdapter.submitList(it)
             }
         })
+
+        val sliderDataArrayList = ArrayList<SliderData>()
+
+        val sliderView: SliderView = binding.slider
+        sliderDataArrayList.add(SliderData(sliderImg[0]))
+        sliderDataArrayList.add(SliderData(sliderImg[1]))
+        sliderDataArrayList.add(SliderData(sliderImg[2]))
+        sliderDataArrayList.add(SliderData(sliderImg[3]))
+
+        val adapter = SliderAdapter(this, sliderDataArrayList)
+        sliderView.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
+        sliderView.setSliderAdapter(adapter)
+        sliderView.scrollTimeInSec = 3
+        sliderView.isAutoCycle = true
+        sliderView.startAutoCycle()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -64,7 +104,18 @@ class MainActivity : AppCompatActivity(), ValuesDealRecyclerAdapter.UpdateChecko
         return true
     }
 
+
+//    private fun addToRoom() = lifecycleScope.launch {
+//        val image = getBitmap(
+//            this@MainActivity,
+//            "https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+//        )
+//        val deal = ValuesDeals(image = image, size = 1, price = "$100")
+//        activityViewmodel.insertIntoRoom(deal)
+//    }
+
     private fun adapterOnClick() {
+
         val intent = Intent(this, CheckoutActivity::class.java)
         startActivity(intent)
     }
