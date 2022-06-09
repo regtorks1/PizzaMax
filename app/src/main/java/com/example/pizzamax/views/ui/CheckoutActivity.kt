@@ -1,4 +1,4 @@
-package com.example.pizzamax.views
+package com.example.pizzamax.views.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
