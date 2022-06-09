@@ -9,13 +9,15 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.bumptech.glide.Glide
+import com.example.pizzamax.MainActivity
+import com.example.pizzamax.databinding.ActivityCheckoutBinding
 import com.example.pizzamax.databinding.RecyclerListBinding
 import com.example.pizzamax.model.ValuesDeals
 
 
 class ValuesDealRecyclerAdapter(
-    context: Context,
-    private val updateCheckout: UpdateCheckout
+    private  val updateCheckout: UpdateCheckout,
+    private val main : MainActivity
 ) :
     ListAdapter<ValuesDeals, ValuesDealRecyclerAdapter.RecyclerViewHolder>(ListComparator()) {
 
@@ -46,7 +48,9 @@ class ValuesDealRecyclerAdapter(
         Glide.with(holder.itemView.context).load(getItemPosition.imgUrl)
             .into(holder.binding.posterBanner)
         holder.binding.addCart.setOnClickListener {
-            updateCheckout.onAddCart(getItemPosition)
+           // updateCheckout.onAddCart(postN)
+            main.alertDialog()
+
         }
 
     }

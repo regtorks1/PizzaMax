@@ -21,4 +21,8 @@
     <style name = "SpinnerLook" parent="@android:style/Widget.TextView.SpinnerItem">
         <item name="android:textSize">12sp</item>
     </style>
+
+    <style name ="CustomAlertDialog" parent = "Theme.AppCompat.Light.Dialog.Alert">
+        <item name = "android:windowBackground">@drawable/rounded_corner</item>
+    </style>
 </resources>
