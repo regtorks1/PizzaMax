@@ -21,6 +21,8 @@ import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import com.example.pizzamax.views.ui.CheckoutActivity
+import com.example.pizzamax.views.util.alertDialog_b
+import com.example.pizzamax.views.util.returnDialog1
 import kotlinx.coroutines.launch
 
 class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout {
@@ -41,7 +43,7 @@ class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout 
         binding = FragmentValueDealsBinding.inflate(layoutInflater)
 
         val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
-            ValuesDealRecyclerAdapter(this,this)
+            ValuesDealRecyclerAdapter(requireContext(),this, this)
         }  //initialize adapter
 
         //recycler setup
@@ -64,95 +66,6 @@ class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout 
         intent.putExtra("size", cart.size)
         intent.putExtra("price", cart.price)
         startActivity(intent)
-    }
-
-
-
-
-    fun alertDialog() {
-        val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog).create()
-        val view = layoutInflater.inflate(R.layout.first_alertdialog, null)
-        val button1 = view.findViewById<Button>(R.id.cancel)
-        val button2 = view.findViewById<Button>(R.id.choose1)
-        val button3 = view.findViewById<Button>(R.id.choose2)
-
-        builder.setView(view)
-        button1.setOnClickListener {
-            builder.dismiss()
-        }
-
-        button2.setOnClickListener {
-            alertDialog_a()
-            view.isVisible = false
-        }
-
-        button3.setOnClickListener {
-            alertDialog_b()
-            view.isVisible = false
-        }
-        builder.setCanceledOnTouchOutside(true)
-        builder.show()
-
-    }
-
-    private fun alertDialog_a() {
-        val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog).create()
-        val view1 = layoutInflater.inflate(R.layout.second_alertdialog, null)
-        val cancelCrust = view1.findViewById<Button>(R.id.cancel1)
-        val confirmCrust = view1.findViewById<Button>(R.id.Confirm)
-
-        cancelCrust.setOnClickListener {
-            builder.dismiss()
-        }
-
-        builder.setView(view1)
-        builder.setCanceledOnTouchOutside(true)
-        builder.show()
-
-        confirmCrust.setOnClickListener {
-            returnDialog1()
-            view1.isVisible = false
-
-        }
-
-    }
-
-
-    private fun alertDialog_b() {
-        val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog).create()
-        val view2 = layoutInflater.inflate(R.layout.third_alertdialog, null)
-        val cancelFlavors = view2.findViewById<Button>(R.id.cancel2)
-        val confirmFlavors = view2.findViewById<Button>(R.id.Confirm1)
-
-        confirmFlavors.setOnClickListener {
-            returnDialog2()
-            view2.isVisible = false
-        }
-
-        cancelFlavors.setOnClickListener {
-            builder.dismiss()
-        }
-        builder.setView(view2)
-        builder.setCanceledOnTouchOutside(true)
-        builder.show()
-    }
-
-
-    private fun returnDialog1() {
-        val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog).create()
-        val view = layoutInflater.inflate(R.layout.first_alertdialog, null)
-        builder.setView(view)
-        builder.setCanceledOnTouchOutside(true)
-        builder.show()
-    }
-
-    private fun returnDialog2() {
-        val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog).create()
-        val view = layoutInflater.inflate(R.layout.first_alertdialog, null)
-        builder.setView(view)
-        builder.setCanceledOnTouchOutside(true)
-        builder.show()
-
     }
 
 }
