@@ -23,22 +23,20 @@ import com.example.pizzamax.views.adapters.FavoriteClickInterface
 import com.example.pizzamax.views.adapters.FavoritesAdapter
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import com.example.pizzamax.views.ui.CheckoutActivity
-<<<<<<< HEAD
+import com.example.pizzamax.views.ui.DetailsActivity
 import com.example.pizzamax.views.ui.FavoritesActivity
-=======
 import com.example.pizzamax.views.util.alertDialog_b
 import com.example.pizzamax.views.util.returnDialog1
->>>>>>> f29d83f800298ce357377459f542a272c20ea088
+
 import kotlinx.coroutines.launch
 
-class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout,  ValuesDealRecyclerAdapter.FavoriteClickInterface {
+
+class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout,  ValuesDealRecyclerAdapter.FavoriteClickInterface, ValuesDealRecyclerAdapter.ShowDetails {
+
     private val productViewmodel: ProductViewModel by viewModels {
         ProductViewModelFactory((activity?.application as App).productRepository)
     }
 
-    companion object {
-        fun newInstance() = ValueDealsFragment()
-    }
 
     private lateinit var binding: FragmentValueDealsBinding
 
@@ -49,11 +47,11 @@ class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout,
         binding = FragmentValueDealsBinding.inflate(layoutInflater)
 
         val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
-<<<<<<< HEAD
-            ValuesDealRecyclerAdapter(this,this,this)
-=======
-            ValuesDealRecyclerAdapter(requireContext(),this, this)
->>>>>>> f29d83f800298ce357377459f542a272c20ea088
+
+            ValuesDealRecyclerAdapter(this, this, this, this)
+
+
+
         }  //initialize adapter
 
         //setting up recycler for favorites
@@ -94,7 +92,17 @@ class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout,
         startActivity(intent)
     }
 
-<<<<<<< HEAD
+
+
+    override fun onDetailsOnItemClicked(cart: ValuesDeals) {
+        val intent = Intent(requireContext(), DetailsActivity::class.java)
+        intent.putExtra("type", "cart")
+        intent.putExtra("imgUrl",cart.imgUrl)
+        intent.putExtra("size", cart.size)
+        intent.putExtra("price", cart.price)
+        startActivity(intent)
+    }
+
 
 
 
@@ -196,8 +204,4 @@ class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout,
         startActivity(intent)
     }
 
-
-
-=======
->>>>>>> f29d83f800298ce357377459f542a272c20ea088
 }

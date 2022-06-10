@@ -2,6 +2,7 @@ package com.example.pizzamax
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -20,6 +21,7 @@ import com.example.pizzamax.views.adapters.SliderAdapter
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import com.example.pizzamax.views.adapters.ViewPagerAdapter
 import com.example.pizzamax.views.ui.CheckoutActivity
+import com.example.pizzamax.views.ui.fragments.CustomDialog
 import com.google.android.material.tabs.TabLayout
 import com.smarteist.autoimageslider.SliderView
 
@@ -41,6 +43,7 @@ class MainActivity : AppCompatActivity(){
         imageSlider()
         setupTabLayout()
         setupViewPager()
+        dialog()
 
     }
 
@@ -114,10 +117,10 @@ class MainActivity : AppCompatActivity(){
         sliderView.startAutoCycle()
     }
 
+    private fun dialog(){
+        binding.customView.AddToCart.setOnClickListener {
+            CustomDialog.newInstance("","","").show(supportFragmentManager, CustomDialog.TAG)
+        }
+    }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 51a85e86947a1f02eec5495c9040e9d995371d5d
 }

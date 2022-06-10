@@ -43,6 +43,7 @@ class CheckoutActivity : AppCompatActivity() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             secondSpinner.adapter = adapter
         }
+
         val type = intent.getStringExtra("type")
         if (type.equals("cart")) {
             val size = intent.getStringExtra("size")

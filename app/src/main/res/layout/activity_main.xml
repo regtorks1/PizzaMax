@@ -19,6 +19,7 @@
 
 
 
+
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/slider"
         android:layout_width="match_parent"
@@ -43,6 +44,8 @@
 
 
 
+
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
@@ -57,6 +60,13 @@
         app:tabMode="scrollable"
         app:tabTextColor="@color/black"
       />
+
+    <include
+       android:id="@+id/custom_view"
+       layout="@layout/first_alertdialog"
+        android:visibility="invisible"
+       tools:layout_editor_absoluteX="0dp"
+       tools:layout_editor_absoluteY="112dp" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
@@ -94,7 +104,8 @@
             android:text="@string/max_value_deals"/>-->
 
     <LinearLayout
-        android:id="@+id/linear_view"
+
+        android:id="@+id/linear_view_cart"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         app:layout_constraintStart_toStartOf="parent"

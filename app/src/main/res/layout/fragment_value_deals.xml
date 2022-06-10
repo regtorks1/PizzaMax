@@ -7,6 +7,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.ui.fragments.ValueDealsFragment">
 
+
+
    <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/recyclerView"
     android:layout_width="match_parent"

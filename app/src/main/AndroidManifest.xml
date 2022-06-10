@@ -18,6 +18,9 @@
         android:theme="@style/Theme.PizzaMax"
         tools:targetApi="31">
         <activity
+            android:name=".views.ui.DetailsActivity"
+            android:exported="false" />
+      <activity
             android:name=".views.ui.FavoritesActivity"
             android:exported="false" />
         <activity
