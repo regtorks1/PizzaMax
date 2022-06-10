@@ -68,4 +68,8 @@
     <string name="ghc_2_499">Ghc 2,499</string>
     <string name="plus_taxes">plus taxes</string>
     <string name="view_cart">View Cart</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="order_confirmation">Custom</string>
+    <string name="ok">ok</string>
 </resources>

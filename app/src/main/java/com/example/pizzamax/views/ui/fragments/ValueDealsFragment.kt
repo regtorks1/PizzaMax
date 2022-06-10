@@ -25,14 +25,11 @@ import com.example.pizzamax.views.util.alertDialog_b
 import com.example.pizzamax.views.util.returnDialog1
 import kotlinx.coroutines.launch
 
-class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout {
+class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout, ValuesDealRecyclerAdapter.ShowDetails {
     private val productViewmodel: ProductViewModel by viewModels {
         ProductViewModelFactory((activity?.application as App).productRepository)
     }
 
-    companion object {
-        fun newInstance() = ValueDealsFragment()
-    }
 
     private lateinit var binding: FragmentValueDealsBinding
 
@@ -43,7 +40,7 @@ class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout 
         binding = FragmentValueDealsBinding.inflate(layoutInflater)
 
         val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
-            ValuesDealRecyclerAdapter(requireContext(),this, this)
+            ValuesDealRecyclerAdapter(this, this, this)
         }  //initialize adapter
 
         //recycler setup
@@ -68,4 +65,12 @@ class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout 
         startActivity(intent)
     }
 
+
+    override fun onDetailsOnItemClicked(cart: ValuesDeals) {
+        val intent = Intent(requireContext(), CheckoutActivity::class.java)
+        intent.putExtra("type", "cart")
+        intent.putExtra("size", cart.size)
+        intent.putExtra("price", cart.price)
+        startActivity(intent)
+    }
 }
