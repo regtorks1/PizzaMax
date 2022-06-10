@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -25,18 +26,23 @@ import com.example.pizzamax.views.ui.fragments.MainAlertFragment
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment
 import com.example.pizzamax.views.util.mainAlertDialog
 
- class ValuesDealRecyclerAdapter(
+
+
+class ValuesDealRecyclerAdapter(
     private val updateCheckout: UpdateCheckout,
     private val main: ValueDealsFragment,
-    private val showDetails: ShowDetails
+    private val showDetails: ShowDetails,
+    private val favoriteClickInterface: FavoriteClickInterface
 ) :
     ListAdapter<ValuesDeals, ValuesDealRecyclerAdapter.RecyclerViewHolder>(ListComparator()) {
      private val alertFragment = MainAlertFragment()
+      private val getList = ArrayList<ValuesDeals>()
 
-     //bind the recycler list items
-    inner class RecyclerViewHolder(
-        val binding: RecyclerListBinding
-    ) :
+
+
+    //bind the recycler list items
+    inner class RecyclerViewHolder(val binding: RecyclerListBinding, var alertdialogBinding: FirstAlertdialogBinding) :
+
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(list: ValuesDeals?) {
@@ -62,15 +68,48 @@ import com.example.pizzamax.views.util.mainAlertDialog
 
         Glide.with(holder.itemView.context).load(getItemPosition.imgUrl)
             .into(holder.binding.posterBanner)
+
+        //holder.binding.deal.text= getList[position].id.toString()
+        holder.binding.description.text = getList[position].size
+        holder.binding.price.text = getList[position].price
+
         holder.binding.addCart.setOnClickListener {
+
            main.mainAlertDialog("Deal ${getItemPosition.id}",getItemPosition.price)
           //  CustomDialog()
+
+            // updateCheckout.onAddCart(postN)
+
+            main.alertDialog()
+
+        }
+        holder.binding.favoriteHeart.setOnClickListener {
+            favoriteClickInterface.onFavoriteClick(getList[position])
+        }
+
+    }
+
+    override fun getItemCount(): Int {
+        return getList.size
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateList(newList: List<ValuesDeals>) {
+        getList.clear()
+        getList.addAll(newList)
+        notifyDataSetChanged()
+    }
+
+    interface FavoriteClickInterface {
+        fun onFavoriteClick(valuesDeals: ValuesDeals)
+
 
         }
 
         holder.itemView.setOnClickListener {
             showDetails.onDetailsOnItemClicked(getItemPosition)
         }
+
     }
 
 

@@ -20,6 +20,9 @@
         <activity
             android:name=".views.ui.DetailsActivity"
             android:exported="false" />
+      <activity
+            android:name=".views.ui.FavoritesActivity"
+            android:exported="false" />
         <activity
             android:name=".views.ui.CheckoutActivity"
             android:exported="true" />
