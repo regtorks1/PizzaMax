@@ -23,7 +23,12 @@ import com.example.pizzamax.views.adapters.FavoriteClickInterface
 import com.example.pizzamax.views.adapters.FavoritesAdapter
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import com.example.pizzamax.views.ui.CheckoutActivity
+<<<<<<< HEAD
 import com.example.pizzamax.views.ui.FavoritesActivity
+=======
+import com.example.pizzamax.views.util.alertDialog_b
+import com.example.pizzamax.views.util.returnDialog1
+>>>>>>> f29d83f800298ce357377459f542a272c20ea088
 import kotlinx.coroutines.launch
 
 class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout,  ValuesDealRecyclerAdapter.FavoriteClickInterface {
@@ -44,7 +49,11 @@ class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout,
         binding = FragmentValueDealsBinding.inflate(layoutInflater)
 
         val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
+<<<<<<< HEAD
             ValuesDealRecyclerAdapter(this,this,this)
+=======
+            ValuesDealRecyclerAdapter(requireContext(),this, this)
+>>>>>>> f29d83f800298ce357377459f542a272c20ea088
         }  //initialize adapter
 
         //setting up recycler for favorites
@@ -85,6 +94,7 @@ class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout,
         startActivity(intent)
     }
 
+<<<<<<< HEAD
 
 
 
@@ -188,4 +198,6 @@ class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout,
 
 
 
+=======
+>>>>>>> f29d83f800298ce357377459f542a272c20ea088
 }
