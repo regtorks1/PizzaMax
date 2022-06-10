@@ -21,6 +21,7 @@ import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import com.example.pizzamax.views.ui.CheckoutActivity
+import com.example.pizzamax.views.ui.DetailsActivity
 import com.example.pizzamax.views.util.alertDialog_b
 import com.example.pizzamax.views.util.returnDialog1
 import kotlinx.coroutines.launch
@@ -67,7 +68,7 @@ class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout,
 
 
     override fun onDetailsOnItemClicked(cart: ValuesDeals) {
-        val intent = Intent(requireContext(), CheckoutActivity::class.java)
+        val intent = Intent(requireContext(), DetailsActivity::class.java)
         intent.putExtra("type", "cart")
         intent.putExtra("size", cart.size)
         intent.putExtra("price", cart.price)
