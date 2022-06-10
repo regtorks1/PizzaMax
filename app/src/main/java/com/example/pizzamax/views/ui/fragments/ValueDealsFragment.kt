@@ -70,6 +70,7 @@ class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout,
     override fun onDetailsOnItemClicked(cart: ValuesDeals) {
         val intent = Intent(requireContext(), DetailsActivity::class.java)
         intent.putExtra("type", "cart")
+        intent.putExtra("imgUrl",cart.imgUrl)
         intent.putExtra("size", cart.size)
         intent.putExtra("price", cart.price)
         startActivity(intent)
