@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity(){
         imageSlider()
         setupTabLayout()
         setupViewPager()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

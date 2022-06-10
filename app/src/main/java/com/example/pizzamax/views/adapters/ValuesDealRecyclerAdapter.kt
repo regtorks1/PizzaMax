@@ -2,8 +2,10 @@ package com.example.pizzamax.views.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -18,9 +20,12 @@ import com.example.pizzamax.views.ui.fragments.ValueDealsFragment
 
 class ValuesDealRecyclerAdapter(
     private  val updateCheckout: UpdateCheckout,
-    private val main : ValueDealsFragment
+    private val main : ValueDealsFragment,
+    private val favoriteClickInterface: FavoriteClickInterface
 ) :
     ListAdapter<ValuesDeals, ValuesDealRecyclerAdapter.RecyclerViewHolder>(ListComparator()) {
+
+    private val getList = ArrayList<ValuesDeals>()
 
     //bind the recycler list items
     inner class RecyclerViewHolder(val binding: RecyclerListBinding) :
@@ -48,12 +53,35 @@ class ValuesDealRecyclerAdapter(
         holder.bind(getItemPosition)
         Glide.with(holder.itemView.context).load(getItemPosition.imgUrl)
             .into(holder.binding.posterBanner)
+
+        //holder.binding.deal.text= getList[position].id.toString()
+        holder.binding.description.text = getList[position].size
+        holder.binding.price.text = getList[position].price
+
         holder.binding.addCart.setOnClickListener {
-           // updateCheckout.onAddCart(postN)
+            // updateCheckout.onAddCart(postN)
             main.alertDialog()
 
         }
+        holder.binding.favoriteHeart.setOnClickListener {
+            favoriteClickInterface.onFavoriteClick(getList[position])
+        }
 
+    }
+
+    override fun getItemCount(): Int {
+        return getList.size
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateList(newList: List<ValuesDeals>) {
+        getList.clear()
+        getList.addAll(newList)
+        notifyDataSetChanged()
+    }
+
+    interface FavoriteClickInterface {
+        fun onFavoriteClick(valuesDeals: ValuesDeals)
     }
 
 

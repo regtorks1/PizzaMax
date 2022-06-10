@@ -19,11 +19,14 @@ import com.example.pizzamax.di.App
 import com.example.pizzamax.model.ValuesDeals
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
+import com.example.pizzamax.views.adapters.FavoriteClickInterface
+import com.example.pizzamax.views.adapters.FavoritesAdapter
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import com.example.pizzamax.views.ui.CheckoutActivity
+import com.example.pizzamax.views.ui.FavoritesActivity
 import kotlinx.coroutines.launch
 
-class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout {
+class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout,  ValuesDealRecyclerAdapter.FavoriteClickInterface {
     private val productViewmodel: ProductViewModel by viewModels {
         ProductViewModelFactory((activity?.application as App).productRepository)
     }
@@ -41,8 +44,23 @@ class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout 
         binding = FragmentValueDealsBinding.inflate(layoutInflater)
 
         val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
-            ValuesDealRecyclerAdapter(this,this)
+            ValuesDealRecyclerAdapter(this,this,this)
         }  //initialize adapter
+
+        //setting up recycler for favorites
+//        val favoriteRv = binding.recyclerView
+//        favoriteRv.layoutManager = LinearLayoutManager(requireContext())
+//
+//        val favoriteAdapter = FavoritesAdapter(requireContext(),this)
+//        favoriteRv.adapter = favoriteAdapter
+
+        //observing changes
+        productViewmodel.getList.observe(viewLifecycleOwner) { list ->
+            list.let {
+                recyclerAdapter.updateList(it)
+            }
+
+        }
 
         //recycler setup
         val thisRecycler = binding.recyclerView
@@ -55,6 +73,7 @@ class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout 
         })
 
         return binding.root
+
     }
 
 
@@ -154,5 +173,19 @@ class ValueDealsFragment : Fragment(), ValuesDealRecyclerAdapter.UpdateCheckout 
         builder.show()
 
     }
+
+
+
+    override fun onFavoriteClick(valuesDeals: ValuesDeals) {
+        val intent = Intent(requireContext(), FavoritesActivity::class.java)
+        intent.putExtra("favoriteType", "Edit")
+        intent.putExtra("favoriteTitle", valuesDeals.id)
+        intent.putExtra("favoriteDescription", valuesDeals.size)
+        intent.putExtra("favoriteImg", valuesDeals.imgUrl)
+        intent.putExtra("favoritePrice", valuesDeals.price)
+        startActivity(intent)
+    }
+
+
 
 }
