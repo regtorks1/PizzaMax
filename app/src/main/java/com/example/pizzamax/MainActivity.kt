@@ -1,5 +1,6 @@
 package com.example.pizzamax
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -17,6 +18,7 @@ import com.example.pizzamax.model.SliderData
 import com.example.pizzamax.views.adapters.SliderAdapter
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import com.example.pizzamax.views.adapters.ViewPagerAdapter
+import com.example.pizzamax.views.ui.CheckoutActivity
 import com.google.android.material.tabs.TabLayout
 import com.smarteist.autoimageslider.SliderView
 
@@ -29,6 +31,10 @@ class MainActivity : AppCompatActivity(){
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.nextView.setOnClickListener{
+            val intent = Intent(this, CheckoutActivity::class.java)
+            startActivity(intent)
+        }
 
 
         imageSlider()
@@ -107,6 +113,9 @@ class MainActivity : AppCompatActivity(){
     }
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 51a85e86947a1f02eec5495c9040e9d995371d5d
 }

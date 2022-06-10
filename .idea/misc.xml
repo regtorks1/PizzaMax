@@ -5,18 +5,38 @@
       <map>
         <entry key="..\:/Users/PeacemakerNanaKwesiO/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/activity_checkout.xml" value="0.2" />
         <entry key="..\:/Users/PeacemakerNanaKwesiO/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/activity_main.xml" value="0.2" />
+<<<<<<< HEAD
         <entry key="..\:/Users/PeacemakerNanaKwesiO/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/first_alertdialog.xml" value="0.264" />
         <entry key="..\:/Users/PeacemakerNanaKwesiO/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/fragment_appetizers.xml" value="0.2953125" />
         <entry key="..\:/Users/PeacemakerNanaKwesiO/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/fragment_big_better.xml" value="0.28072916666666664" />
         <entry key="..\:/Users/PeacemakerNanaKwesiO/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/fragment_signature_pizza.xml" value="0.28072916666666664" />
         <entry key="..\:/Users/PeacemakerNanaKwesiO/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/fragment_value_deals.xml" value="0.28072916666666664" />
+=======
+>>>>>>> 51a85e86947a1f02eec5495c9040e9d995371d5d
         <entry key="..\:/Users/PeacemakerNanaKwesiO/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/recycler_list.xml" value="0.136" />
         <entry key="..\:/Users/PeacemakerNanaKwesiO/AndroidStudioProjects/PizzaMax/app/src/main/res/menu/top_app_bar.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/drawable/expand_more_24.xml" value="0.1525" />
         <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/drawable/favorite_border.xml" value="0.3025" />
         <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/drawable/person_outline.xml" value="0.1525" />
+<<<<<<< HEAD
         <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+=======
+        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/drawable/rounded_corner.xml" value="0.264" />
+        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/drawable/shopping_cart_24.xml" value="0.1105" />
+        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/activity_checkout.xml" value="0.264" />
+        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/activity_main.xml" value="0.33585858585858586" />
+        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/first_alertdialog.xml" value="0.264" />
+        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/fragment_appetizers.xml" value="0.24814814814814815" />
+        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/fragment_big_better.xml" value="0.24814814814814815" />
+        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/fragment_signature_pizza.xml" value="0.24814814814814815" />
+        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/fragment_value_deals.xml" value="0.24814814814814815" />
+        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/recycler_list.xml" value="0.264" />
+        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/second_alertdialog.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/slider_layout.xml" value="0.3367088607594937" />
+        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/layout/third_alertdialog.xml" value="0.4" />
+>>>>>>> 51a85e86947a1f02eec5495c9040e9d995371d5d
         <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/menu/top_app_bar.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ReginaldTorkonoo/AndroidStudioProjects/PizzaMax/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1105" />
       </map>
     </option>
   </component>

@@ -64,4 +64,8 @@
     <string name="cheese_max">Cheese Max</string>
     <string name="veggie_max">Veggie Max</string>
     <string name="bbq_max">BBQ Max</string>
+    <string name="_4_items">4 items</string>
+    <string name="ghc_2_499">Ghc 2,499</string>
+    <string name="plus_taxes">plus taxes</string>
+    <string name="view_cart">View Cart</string>
 </resources>
