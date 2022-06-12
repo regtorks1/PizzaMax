@@ -32,7 +32,7 @@
             android:textColor="@color/black"/>
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/pizza_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_7_inch_papan_pizza"

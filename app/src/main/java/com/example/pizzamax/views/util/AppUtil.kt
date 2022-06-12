@@ -1,24 +1,27 @@
 package com.example.pizzamax.views.util
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import android.view.View
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.room.RoomDatabase
 import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
 import com.example.pizzamax.R
+import com.example.pizzamax.di.App
+import com.example.pizzamax.model.Cart
+import com.example.pizzamax.viewmodel.ProductViewModel
+import com.example.pizzamax.viewmodel.ProductViewModelFactory
 
 /**
  * This method convert image url to bitmap
@@ -37,14 +40,17 @@ suspend fun getBitmap(context: Context, imageUrl: String): Bitmap {
 
 }
 
-
-fun String.toInteger(string: String) = Integer.parseInt(string)
-
 @SuppressLint("SetTextI18n")
-fun Fragment.mainAlertDialog(title: String, price: String) {
+fun Fragment.mainAlertDialog(
+    title: String, price: String,
+    itemClickListener: () -> Unit
+){
+        val productViewmodel: ProductViewModel by viewModels {
+        ProductViewModelFactory((activity?.application as App).productRepository)
+    }
+
     val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog).create()
     val view = layoutInflater.inflate(R.layout.fragment_main_alert, null)
-    val cartView = layoutInflater.inflate(R.layout.activity_main, null)
 
     //initializing the custom views
     val button1 = view.findViewById<Button>(R.id.cancel)
@@ -59,12 +65,6 @@ fun Fragment.mainAlertDialog(title: String, price: String) {
     val desc = view.findViewById<TextView>(R.id.deal_description)
 
 
-    //initializing cart bottom items
-    val items = cartView.findViewById<TextView>(R.id.item_number)
-    val totalCartAmt = cartView.findViewById<TextView>(R.id.amount)
-
-
-
 
     //Calculation
     desc.text = title
@@ -74,39 +74,38 @@ fun Fragment.mainAlertDialog(title: String, price: String) {
     val amt = Integer.parseInt(priceAlert.text.toString())
 
     plusBtn.setOnClickListener {
-        adder +=1
+        adder += 1
         val totalAmt = adder.times(amt)
         increment.text = adder.toString()
         total.text = totalAmt.toString()
 
-        items.text = "$adder items"
-        totalCartAmt.text = "Ghc $totalAmt"
     }
 
     negBtn.setOnClickListener {
-        adder -=1
+        adder -= 1
         val totalAmt = adder.times(amt)
         increment.text = adder.toString()
         total.text = totalAmt.toString()
     }
 
     addToCartBtn.setOnClickListener {
-        val openCart = cartView.findViewById<LinearLayout>(R.id.linear_view_cart)
-         builder.dismiss()
-         openCart.visibility = View.VISIBLE
+             val list = listOf(Cart(
+                 itemName = title,
+                 price = price,
+                 quantity = adder.toString(),
+                 pizzaSize = title,
+                 crust = "",
+                 flavors = ""
+             )
+             )
+
+            Log.d("CART",":::::::::::::${list}")
+
+
+        Log.d("DATABASE","::::::::${productViewmodel.insertIntoCart(list)}")
+        itemClickListener()
+        builder.dismiss()
     }
-
-
-
-
-
-
-
-
-
-   /* val passIntent = Intent()
-    passIntent.putExtra("price", price)
-    activity?.setResult(Activity.RESULT_OK, passIntent)*/
 
 
 
@@ -129,7 +128,7 @@ fun Fragment.mainAlertDialog(title: String, price: String) {
 
 }
 
- fun Fragment.crustAlertDialog() {
+fun Fragment.crustAlertDialog() {
     val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog).create()
     val view1 = layoutInflater.inflate(R.layout.second_alertdialog, null)
     val cancelCrust = view1.findViewById<Button>(R.id.cancel1)

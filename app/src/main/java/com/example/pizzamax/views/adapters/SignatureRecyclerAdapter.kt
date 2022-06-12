@@ -22,7 +22,7 @@ class SignatureRecyclerAdapter(
         fun bind(list: SignaturePizza?) {
             binding.deal.text = "Deal " + list?.id.toString()
             binding.price.text = "Ghc " + list?.price
-            binding.description.text = list?.size.toString()
+            binding.pizzaSize.text = list?.size.toString()
             binding.posterBanner.load(list?.imgUrl)
         }
     }

@@ -45,7 +45,7 @@
     <string name="price">Price</string>
     <string name="ghc_200">Ghc 200</string>
     <string name="please_select">PLEASE SELECT</string>
-    <string name="choose_your_crust">Choose Your Crust</string>
+    <string name="choose_your_crust">Choose Your Crust: </string>
     <string name="required">Required</string>
     <string name="choose">Choose</string>
     <string name="pizza_flavors">Pizza flavors</string>
@@ -73,4 +73,5 @@
     <string name="order_confirmation">Custom</string>
     <string name="ok">ok</string>
     <string name="ghc_200_">Ghc 200</string>
+    <string name="neg">neg</string>
 </resources>

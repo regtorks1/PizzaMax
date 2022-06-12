@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.ui.DetailsActivity">
+    tools:context=".views.ui.activity.DetailsActivity">
 
     <LinearLayout
         android:id="@+id/cardView"
@@ -35,7 +35,7 @@
             android:textColor="@color/black"/>
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/pizza_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_7_inch_papan_pizza"

@@ -18,11 +18,16 @@
         android:theme="@style/Theme.PizzaMax"
         tools:targetApi="31">
         <activity
-            android:name=".views.ui.DetailsActivity"
+            android:name=".views.ui.activity.FavoritesActivity"
             android:exported="false" />
         <activity
-            android:name=".views.ui.CheckoutActivity"
+            android:name=".views.ui.activity.DetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.ui.activity.CheckoutActivity"
             android:exported="true" />
+        <activity android:name=".views.ui.activity.CartActivity"
+            android:exported="true"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

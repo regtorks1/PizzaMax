@@ -1,27 +1,27 @@
 package com.example.pizzamax.data.source
 
 import android.content.Context
-import androidx.room.*
-import com.example.pizzamax.data.dao.AppetizersDao
-import com.example.pizzamax.data.dao.BigBetterDoa
-import com.example.pizzamax.data.dao.SignatureDao
-import com.example.pizzamax.data.dao.ValueDealsDao
-import com.example.pizzamax.model.Appetizers
-import com.example.pizzamax.model.BigBetter
-import com.example.pizzamax.model.SignaturePizza
-import com.example.pizzamax.model.ValuesDeals
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.pizzamax.data.dao.*
+import com.example.pizzamax.model.*
 import kotlinx.coroutines.CoroutineScope
 
 @Database(
-    entities = [ValuesDeals::class, BigBetter::class, Appetizers::class, SignaturePizza::class],
+    entities = [ValuesDeals::class, BigBetter::class, Appetizers::class, SignaturePizza::class, Cart::class, Favorites::class],
     version = 1,
-    exportSchema = true)
+    exportSchema = true
+)
 @TypeConverters(Converters::class)
 abstract class RoomDb : RoomDatabase() {
     abstract fun dealsDao(): ValueDealsDao
     abstract fun bigBetterDao(): BigBetterDoa
     abstract fun signatureDao(): SignatureDao
-    abstract  fun appetizersDao(): AppetizersDao
+    abstract fun appetizersDao(): AppetizersDao
+    abstract fun favoritesDao(): FavoritesDao
+    abstract fun cartDao(): CartDao
 
     companion object {
         @Volatile// Singleton prevents multiple instances of database opening at the same time
@@ -33,8 +33,8 @@ abstract class RoomDb : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     RoomDb::class.java,
-                    "PizzaMaxDatabase"
-                ).addCallback(ListDatabaseCallback(context,scope))
+                    "PizzaDatabase"
+                ).addCallback(ListDatabaseCallback(context, scope))
                     .build()
                 INSTANCE = instance
                 // return instance
