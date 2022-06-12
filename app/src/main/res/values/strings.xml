@@ -73,5 +73,10 @@
     <string name="order_confirmation">Custom</string>
     <string name="ok">ok</string>
     <string name="ghc_200_">Ghc 200</string>
+<<<<<<< HEAD
     <string name="neg">neg</string>
+=======
+    <string name="favorites">Favorites</string>
+
+>>>>>>> ca30c47b45643607646ef7d8be4b2093188026ac
 </resources>
