@@ -12,6 +12,7 @@ import com.example.pizzamax.databinding.RecyclerListBinding
 import com.example.pizzamax.model.Favorites
 
 class FavoritesAdapter(
+    private val listeners: OnFavoriteDetailPage,
     private val itemClick: (title: String, price: String) -> Unit
 ) :
     ListAdapter<Favorites, FavoritesAdapter.RecyclerViewHolder>(ListComparator()) {
@@ -43,6 +44,14 @@ class FavoritesAdapter(
         holder.binding.addCart.setOnClickListener {
             itemClick("Deal ${getItemPosition.id}", getItemPosition.price)
         }
+
+        holder.itemView.setOnClickListener {
+            listeners.viewDetail(getItemPosition)
+        }
+
+        holder.binding.favoriteHeart.setOnClickListener {
+           listeners.onItemRemoveClick(getItemPosition.id)
+        }
     }
 
 
@@ -54,6 +63,11 @@ class FavoritesAdapter(
         override fun areContentsTheSame(oldItem: Favorites, newItem: Favorites): Boolean {
             return oldItem.id == newItem.id
         }
+    }
+
+    interface OnFavoriteDetailPage{
+        fun viewDetail(favorites: Favorites)
+        fun onItemRemoveClick(position: Int)
     }
 
 }

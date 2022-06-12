@@ -18,4 +18,7 @@ interface AppetizersDao {
 
     @Query("DELETE FROM appetizers")
     suspend fun deleteAllFromAppetizers()
+
+    @Delete
+    suspend fun deleteItem(appetizers: Appetizers)//single item
 }

@@ -18,4 +18,7 @@ interface SignatureDao {
 
     @Query("DELETE FROM signature")
     suspend fun deleteAllFromSignature()
+
+     @Delete
+    suspend fun deleteItem(signaturePizza: SignaturePizza)//single item
 }

@@ -17,5 +17,8 @@ interface CartDao {
     fun getAllFromCart(): Flow<List<Cart>>
 
     @Query("DELETE FROM cart")
-    suspend fun deleteFromCart()
+    suspend fun deleteFromCart()//all item
+
+    @Delete
+    suspend fun deleteItem(cart: Cart)//single item
 }

@@ -30,6 +30,10 @@ class ProductRepository(
         return bigBetterDoa.deleteFromBigBetter()
     }
 
+    override suspend fun deleteItem(bigBetter: BigBetter) {
+        TODO("Not yet implemented")
+    }
+
 
     //VALUE DEALS REPOSITORY
     override suspend fun insertToRoom(valueDeals: ValuesDeals) {
@@ -46,6 +50,10 @@ class ProductRepository(
 
     override suspend fun deleteAll() {
         return valueDealsDao.deleteAll()
+    }
+
+    override suspend fun deleteItem(valueDeals: ValuesDeals) {
+        return valueDealsDao.deleteItem(valueDeals)
     }
 
 
@@ -66,6 +74,10 @@ class ProductRepository(
         return appetizersDao.deleteAllFromAppetizers()
     }
 
+    override suspend fun deleteItem(appetizers: Appetizers) {
+       return appetizersDao.deleteItem(appetizers)
+    }
+
 
     //SIGNATURE REPOSITORY
     override suspend fun insertToRoom(signaturePizza: SignaturePizza) {
@@ -84,7 +96,9 @@ class ProductRepository(
         return signatureDao.deleteAllFromSignature()
     }
 
-
+    override suspend fun deleteItem(signaturePizza: SignaturePizza) {
+        return signatureDao.deleteItem(signaturePizza)
+    }
 
 
     //FAVORITES REPOSITORY
@@ -104,6 +118,10 @@ class ProductRepository(
         return favoritesDao.deleteFromFavorites()
     }
 
+    override suspend fun deleteItem(favorites: MutableList<Favorites>) {
+        return favoritesDao.deleteItem(favorites)
+    }
+
 
     //CART REPOSITORY
     override suspend fun insertToRoom(cart: List<Cart>) {
@@ -120,6 +138,10 @@ class ProductRepository(
 
     override suspend fun deleteFromCart() {
         return carDao.deleteFromCart()
+    }
+
+    override suspend fun deleteItem(cart: Cart) {
+        return carDao.deleteItem(cart)
     }
 
 }

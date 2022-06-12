@@ -18,4 +18,7 @@ interface FavoritesDao {
 
     @Query("DELETE FROM favorites")
     suspend fun deleteFromFavorites()
+
+     @Delete
+    suspend fun deleteItem(favorites: MutableList<Favorites>)//single item
 }

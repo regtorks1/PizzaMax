@@ -99,9 +99,7 @@ fun Fragment.mainAlertDialog(
              )
              )
 
-            Log.d("CART",":::::::::::::${list}")
-
-
+        Log.d("CART",":::::::::::::${list}")
         Log.d("DATABASE","::::::::${productViewmodel.insertIntoCart(list)}")
         itemClickListener()
         builder.dismiss()

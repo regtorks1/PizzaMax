@@ -2,10 +2,10 @@ package com.example.pizzamax.views.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -38,10 +38,10 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
 
 
         val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
-            ValuesDealRecyclerAdapter( this){ title, price ->
-                 mainAlertDialog(title, price){
-                     (activity as MainActivity).binding.linearViewCart.visibility = View.VISIBLE
-                 }
+            ValuesDealRecyclerAdapter(this) { title, price ->
+                mainAlertDialog(title, price) {
+                    (activity as MainActivity).binding.linearViewCart.visibility = View.VISIBLE
+                }
             }
         }  //initialize adapter
 
@@ -79,7 +79,13 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
     }
 
     override fun addToFavorites(favorites: ValuesDeals) {
-        val list = listOf(Favorites(imgUrl=favorites.imgUrl, price = favorites.price, size = favorites.size))
+        val list = listOf(
+            Favorites(
+                imgUrl = favorites.imgUrl,
+                price = favorites.price,
+                size = favorites.size
+            )
+        )
         productViewmodel.insertIntoFavorites(list)
         startActivity(Intent(requireContext(), FavoritesActivity::class.java))
     }
@@ -100,14 +106,14 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
     override fun onDetailsOnItemClicked(details: ValuesDeals) {
         val intent = Intent(requireContext(), DetailsActivity::class.java)
         intent.putExtra(type, "details")
-        intent.putExtra(imgUrl,details.imgUrl)
+        intent.putExtra(imgUrl, details.imgUrl)
         intent.putExtra(size, details.size)
         intent.putExtra(price, details.price)
         startActivity(intent)
     }
 
-    companion object{
-       private const val price = "price"
+    companion object {
+        private const val price = "price"
         private const val size = "size"
         private const val imgUrl = "imgUrl"
         private const val type = "type"
