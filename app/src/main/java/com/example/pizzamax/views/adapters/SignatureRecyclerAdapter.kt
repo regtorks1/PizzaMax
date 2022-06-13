@@ -20,7 +20,7 @@ class SignatureRecyclerAdapter(
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(list: SignaturePizza?) {
-            binding.deal.text = "Deal " + list?.id.toString()
+            binding.deal.text = "Signature " + list?.id.toString()
             binding.price.text = "Ghc " + list?.price
             binding.pizzaSize.text = list?.size.toString()
             binding.posterBanner.load(list?.imgUrl)

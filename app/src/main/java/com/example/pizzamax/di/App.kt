@@ -21,7 +21,8 @@ class App : Application() {
             roomDatabaseInstance.appetizersDao(),
             roomDatabaseInstance.signatureDao(),
             roomDatabaseInstance.favoritesDao(),
-            roomDatabaseInstance.cartDao()
+            roomDatabaseInstance.cartDao(),
+            roomDatabaseInstance.expensesDao()
         )
     }
 }

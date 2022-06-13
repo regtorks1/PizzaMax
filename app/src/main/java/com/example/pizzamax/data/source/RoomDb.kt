@@ -10,7 +10,7 @@ import com.example.pizzamax.model.*
 import kotlinx.coroutines.CoroutineScope
 
 @Database(
-    entities = [ValuesDeals::class, BigBetter::class, Appetizers::class, SignaturePizza::class, Cart::class, Favorites::class],
+    entities = [ValuesDeals::class, BigBetter::class, Appetizers::class, SignaturePizza::class, Cart::class, Favorites::class, Expenses::class],
     version = 1,
     exportSchema = true
 )
@@ -22,6 +22,7 @@ abstract class RoomDb : RoomDatabase() {
     abstract fun appetizersDao(): AppetizersDao
     abstract fun favoritesDao(): FavoritesDao
     abstract fun cartDao(): CartDao
+    abstract fun expensesDao(): ExpensesDao
 
     companion object {
         @Volatile// Singleton prevents multiple instances of database opening at the same time

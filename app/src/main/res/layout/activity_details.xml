@@ -64,7 +64,10 @@
             android:drawableEnd="@drawable/shopping_cart_24"
             android:text="@string/add"
             android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:drawablePadding="4dp"
+            android:paddingEnd="95dp"
+            android:paddingStart="90dp"/>
 
 
     </LinearLayout>

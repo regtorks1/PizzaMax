@@ -22,7 +22,7 @@ class BigBetterAdapter (
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(list: BigBetter?) {
-            binding.deal.text = "Deal " + list?.id.toString()
+            binding.deal.text = "Big Better " + list?.id.toString()
             binding.price.text = "Ghc " + list?.price
             binding.pizzaSize.text = list?.size.toString()
             binding.posterBanner.load(list?.imgUrl)
