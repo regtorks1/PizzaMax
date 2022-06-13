@@ -13,12 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.databinding.FragmentAppetizersBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.Appetizers
-import com.example.pizzamax.model.ValuesDeals
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AppetizersRecyclerAdapter
-import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
-import com.example.pizzamax.views.ui.CheckoutActivity
+import com.example.pizzamax.views.ui.activity.CheckoutActivity
 import kotlinx.coroutines.launch
 
 class AppetizersFragment : Fragment(), AppetizersRecyclerAdapter.UpdateCheckout {

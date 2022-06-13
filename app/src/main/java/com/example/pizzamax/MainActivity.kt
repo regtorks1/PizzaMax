@@ -2,38 +2,38 @@ package com.example.pizzamax
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+<<<<<<< HEAD
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+=======
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+>>>>>>> ca30c47b45643607646ef7d8be4b2093188026ac
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuItemCompat.getActionView
-import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.databinding.ActivityMainBinding
 import com.example.pizzamax.model.SliderData
 import com.example.pizzamax.views.adapters.SliderAdapter
-import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import com.example.pizzamax.views.adapters.ViewPagerAdapter
-import com.example.pizzamax.views.ui.CheckoutActivity
-import com.example.pizzamax.views.ui.fragments.CustomDialog
+import com.example.pizzamax.views.ui.activity.CheckoutActivity
+import com.example.pizzamax.views.ui.activity.FavoritesActivity
 import com.google.android.material.tabs.TabLayout
 import com.smarteist.autoimageslider.SliderView
 
 
-class MainActivity : AppCompatActivity(){
-    private lateinit var binding: ActivityMainBinding
+class MainActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.nextView.setOnClickListener{
+        binding.linearViewCart.setOnClickListener {
             val intent = Intent(this, CheckoutActivity::class.java)
             startActivity(intent)
         }
@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity(){
         imageSlider()
         setupTabLayout()
         setupViewPager()
-        dialog()
 
     }
 
@@ -58,6 +57,17 @@ class MainActivity : AppCompatActivity(){
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.favorite_heart -> {
+                this.startActivity(Intent(this, FavoritesActivity::class.java))
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
         return true
     }
 
@@ -114,12 +124,6 @@ class MainActivity : AppCompatActivity(){
         sliderView.scrollTimeInSec = 3
         sliderView.isAutoCycle = true
         sliderView.startAutoCycle()
-    }
-
-    private fun dialog(){
-        binding.customView.AddToCart.setOnClickListener {
-            CustomDialog.newInstance("","","").show(supportFragmentManager, CustomDialog.TAG)
-        }
     }
 
 }

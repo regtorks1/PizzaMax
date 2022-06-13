@@ -18,4 +18,7 @@ interface ValueDealsDao {
 
     @Query("DELETE FROM deals_table")
     suspend fun deleteAll()
+
+     @Delete
+    suspend fun deleteItem(valueDeals: ValuesDeals)//single item
 }

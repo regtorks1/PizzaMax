@@ -1,21 +1,17 @@
 package com.example.pizzamax.data.repository
 
-import com.example.pizzamax.data.dao.AppetizersDao
-import com.example.pizzamax.data.dao.BigBetterDoa
-import com.example.pizzamax.data.dao.SignatureDao
-import com.example.pizzamax.data.dao.ValueDealsDao
-import com.example.pizzamax.model.Appetizers
-import com.example.pizzamax.model.BigBetter
-import com.example.pizzamax.model.SignaturePizza
-import com.example.pizzamax.model.ValuesDeals
+import com.example.pizzamax.data.dao.*
+import com.example.pizzamax.model.*
 import kotlinx.coroutines.flow.Flow
 
 class ProductRepository(
     private val bigBetterDoa: BigBetterDoa,
     private val valueDealsDao: ValueDealsDao,
     private val appetizersDao: AppetizersDao,
-    private val signatureDao: SignatureDao
-) : ValueDealsDao, BigBetterDoa, AppetizersDao, SignatureDao {
+    private val signatureDao: SignatureDao,
+    private val favoritesDao: FavoritesDao,
+    private val carDao: CartDao
+) : ValueDealsDao, BigBetterDoa, AppetizersDao, SignatureDao, FavoritesDao, CartDao {
 
     //BIG BETTER REPOSITORY
     override suspend fun insertToRoom(bigBetter: BigBetter) {
@@ -32,6 +28,10 @@ class ProductRepository(
 
     override suspend fun deleteFromBigBetter() {
         return bigBetterDoa.deleteFromBigBetter()
+    }
+
+    override suspend fun deleteItem(bigBetter: BigBetter) {
+        TODO("Not yet implemented")
     }
 
 
@@ -52,6 +52,10 @@ class ProductRepository(
         return valueDealsDao.deleteAll()
     }
 
+    override suspend fun deleteItem(valueDeals: ValuesDeals) {
+        return valueDealsDao.deleteItem(valueDeals)
+    }
+
 
     //APPETIZERS REPOSITORY
     override suspend fun insertToRoom(appetizers: Appetizers) {
@@ -70,10 +74,14 @@ class ProductRepository(
         return appetizersDao.deleteAllFromAppetizers()
     }
 
+    override suspend fun deleteItem(appetizers: Appetizers) {
+       return appetizersDao.deleteItem(appetizers)
+    }
+
 
     //SIGNATURE REPOSITORY
     override suspend fun insertToRoom(signaturePizza: SignaturePizza) {
-       signatureDao.insertToRoom(signaturePizza)
+        signatureDao.insertToRoom(signaturePizza)
     }
 
     override suspend fun updateList(signaturePizza: SignaturePizza) {
@@ -86,6 +94,54 @@ class ProductRepository(
 
     override suspend fun deleteAllFromSignature() {
         return signatureDao.deleteAllFromSignature()
+    }
+
+    override suspend fun deleteItem(signaturePizza: SignaturePizza) {
+        return signatureDao.deleteItem(signaturePizza)
+    }
+
+
+    //FAVORITES REPOSITORY
+   override suspend fun insertToFavorites(favorites: List<Favorites>) {
+        favoritesDao.insertToFavorites(favorites)
+    }
+
+    override suspend fun updateList(favorites: Favorites) {
+        return favoritesDao.updateList(favorites)
+    }
+
+    override fun getAllFromFavorites(): Flow<List<Favorites>> {
+        return favoritesDao.getAllFromFavorites()
+    }
+
+    override suspend fun deleteFromFavorites() {
+        return favoritesDao.deleteFromFavorites()
+    }
+
+    override suspend fun deleteItem(favorites: MutableList<Favorites>) {
+        return favoritesDao.deleteItem(favorites)
+    }
+
+
+    //CART REPOSITORY
+    override suspend fun insertToRoom(cart: List<Cart>) {
+        return carDao.insertToRoom(cart)
+    }
+
+    override suspend fun updateList(cart: Cart) {
+        return carDao.updateList(cart)
+    }
+
+    override fun getAllFromCart(): Flow<List<Cart>> {
+        return carDao.getAllFromCart()
+    }
+
+    override suspend fun deleteFromCart() {
+        return carDao.deleteFromCart()
+    }
+
+    override suspend fun deleteItem(cart: Cart) {
+        return carDao.deleteItem(cart)
     }
 
 }

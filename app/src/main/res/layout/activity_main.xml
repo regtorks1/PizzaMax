@@ -104,6 +104,7 @@
             android:text="@string/max_value_deals"/>-->
 
     <LinearLayout
+
         android:id="@+id/linear_view_cart"
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -114,7 +115,7 @@
         android:layout_marginTop="640dp"
         android:background="@color/red"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="invisible">
         <TextView
             android:id="@+id/item_number"
             android:layout_width="wrap_content"
