@@ -3,6 +3,10 @@ package com.example.pizzamax.views.adapters
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -17,8 +21,10 @@ class ValuesDealRecyclerAdapter(
     private val itemClick: (title: String, price: String) -> Unit
 ) : ListAdapter<ValuesDeals, ValuesDealRecyclerAdapter.RecyclerViewHolder>(ListComparator()) {
     //bind the recycler list items
+  
     inner class RecyclerViewHolder(val binding: RecyclerListBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         @SuppressLint("SetTextI18n")
         fun bind(list: ValuesDeals?) {
             binding.deal.text = "Deal " + list?.id.toString()
@@ -43,7 +49,6 @@ class ValuesDealRecyclerAdapter(
 
         Glide.with(holder.itemView.context).load(getItemPosition.imgUrl)
             .into(holder.binding.posterBanner)
-
 
 
         holder.binding.addCart.setOnClickListener {

@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.view.View
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuItemCompat.getActionView
 import com.example.pizzamax.databinding.ActivityMainBinding
@@ -32,7 +34,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, CheckoutActivity::class.java)
             startActivity(intent)
         }
-
 
         imageSlider()
         setupTabLayout()
