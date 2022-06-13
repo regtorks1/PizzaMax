@@ -117,7 +117,7 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
 
     override fun onDetailsOnItemClicked(details: ValuesDeals) {
         val intent = Intent(requireContext(), DetailsActivity::class.java)
-        intent.putExtra(type, "details")
+        intent.putExtra(type, "cart")
         intent.putExtra(imgUrl, details.imgUrl)
         intent.putExtra(size, details.size)
         intent.putExtra(price, details.price)
