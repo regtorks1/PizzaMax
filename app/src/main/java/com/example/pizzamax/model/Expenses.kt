@@ -11,3 +11,4 @@ data class Expenses(
     @ColumnInfo(name = "quantity") val quantity: String,
     @ColumnInfo(name = "amount") val amount: String
 )
+

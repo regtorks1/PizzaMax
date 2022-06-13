@@ -1,6 +1,7 @@
 package com.example.pizzamax.viewmodel
 
 import androidx.lifecycle.*
+import com.example.pizzamax.data.dao.Expenses
 import com.example.pizzamax.data.repository.ProductRepository
 import com.example.pizzamax.model.*
 import kotlinx.coroutines.Dispatchers
@@ -124,7 +125,5 @@ class ProductViewModel(
      }
 
     val getFromExpenses: LiveData<List<Expenses>> = repository.getAllExpenses().asLiveData()
-
-
 
 }

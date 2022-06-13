@@ -72,7 +72,6 @@ class FavoritesAdapter(
 
 }
 
-
 /*
 class FavoritesAdapter(val context: Context,
                        private val favoriteClickInterface: FavoriteClickInterface
@@ -128,3 +127,4 @@ class FavoritesAdapter(val context: Context,
 interface FavoriteClickInterface {
     fun onFavoriteClick(valuesDeals: ValuesDeals)
 }*/
+

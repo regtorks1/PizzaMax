@@ -42,6 +42,7 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
             ValuesDealRecyclerAdapter(this) { title, price ->
                 mainAlertDialog(title, price) {
                     productViewmodel.getFromExpenses.observe(viewLifecycleOwner, Observer { list->
+
                        //bindingMainActivity.itemNumber.text =
                         bindingMainActivity.amount.text = "Ghc $price"
                     })
@@ -135,6 +136,17 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
     }
 
 
+<<<<<<< HEAD
+=======
+    override fun onDetailsOnItemClicked(details: ValuesDeals) {
+        val intent = Intent(requireContext(), DetailsActivity::class.java)
+        intent.putExtra(type, "cart")
+        intent.putExtra(imgUrl, details.imgUrl)
+        intent.putExtra(size, details.size)
+        intent.putExtra(price, details.price)
+        startActivity(intent)
+    }
+>>>>>>> afd5f4443eda94d60493d27bcecbdd1806d3d398
 
 
     companion object {
