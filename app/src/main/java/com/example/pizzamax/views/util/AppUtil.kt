@@ -20,8 +20,10 @@ import coil.request.SuccessResult
 import com.example.pizzamax.R
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.Cart
+import com.example.pizzamax.model.Expenses
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
+import kotlinx.coroutines.launch
 
 /**
  * This method convert image url to bitmap
@@ -91,8 +93,8 @@ fun Fragment.mainAlertDialog(
     addToCartBtn.setOnClickListener {
              val list = listOf(Cart(
                  itemName = title,
-                 price = price,
-                 quantity = adder.toString(),
+                 price = total.text.toString(),
+                 quantity = increment.text.toString(),
                  pizzaSize = title,
                  crust = "",
                  flavors = ""
@@ -100,7 +102,13 @@ fun Fragment.mainAlertDialog(
              )
 
         Log.d("CART",":::::::::::::${list}")
-        Log.d("DATABASE","::::::::${productViewmodel.insertIntoCart(list)}")
+
+        lifecycleScope.launch {
+            Log.d("DATABASE","::::::::${productViewmodel.insertIntoCart(list)}")
+            productViewmodel.updateExpenses(mutableListOf(
+                Expenses(quantity = increment.text.toString(), amount = total.text.toString())
+            ))
+        }
         itemClickListener()
         builder.dismiss()
     }

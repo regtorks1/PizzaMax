@@ -16,7 +16,6 @@ import com.example.pizzamax.di.App
 import com.example.pizzamax.model.*
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
-
 import com.example.pizzamax.views.adapters.AdapterListImpl
 import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
 import com.example.pizzamax.views.ui.activity.CheckoutActivity
@@ -44,7 +43,8 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
             ValuesDealRecyclerAdapter(this) { title, price ->
                 mainAlertDialog(title, price) {
                     productViewmodel.getFromExpenses.observe(viewLifecycleOwner, Observer { list->
-                        //bindingMainActivity.itemNumber.text =
+
+                       //bindingMainActivity.itemNumber.text =
                         bindingMainActivity.amount.text = "Ghc $price"
                     })
                     bindingMainActivity.linearViewCart.visibility = View.VISIBLE
@@ -131,4 +131,5 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         private const val imgUrl = "imgUrl"
         private const val type = "type"
     }
+
 }

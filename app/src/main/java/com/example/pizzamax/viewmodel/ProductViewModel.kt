@@ -5,6 +5,7 @@ import com.example.pizzamax.data.dao.Expenses
 import com.example.pizzamax.data.repository.ProductRepository
 import com.example.pizzamax.model.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class ProductViewModel(
@@ -106,22 +107,22 @@ class ProductViewModel(
         repository.deleteFromFavorites()
     }
     val getAllFavorites: LiveData<List<Favorites>> = repository.getAllFromFavorites().asLiveData()
-    fun deleteFavorite(favorites: MutableList<Favorites>){
-        viewModelScope.launch(Dispatchers.IO){
+    fun deleteFavorite(favorites: MutableList<Favorites>) {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.deleteItem(favorites)
         }
+    }
 
-}
 
     //EXPENSES
-    fun addToExpenses(expenses: Expenses) = viewModelScope.launch {
-        repository.insertToRoom(expenses)
-    }
-    fun updateExpenses(expenses: MutableList<Expenses>) {
-        viewModelScope.launch(Dispatchers.Main) {
-            repository.updateList(expenses)
+        fun addToExpenses(expenses: Expenses) = viewModelScope.launch {
+            repository.insertToRoom(expenses)
         }
-    }
+     fun updateExpenses(expenses: MutableList<Expenses>) {
+         viewModelScope.launch(Dispatchers.Main) {
+             repository.updateList(expenses)
+         }
+     }
 
     val getFromExpenses: LiveData<List<Expenses>> = repository.getAllExpenses().asLiveData()
 

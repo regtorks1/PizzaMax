@@ -145,13 +145,13 @@ class ProductRepository(
         return carDao.deleteItem(cart)
     }
 
-    // Expenses
+
     override suspend fun insertToRoom(expenses: Expenses) {
         return expensesDao.insertToRoom(expenses)
     }
 
     override suspend fun updateList(expenses: MutableList<Expenses>) {
-        return expensesDao.updateList(expenses)
+       return expensesDao.updateList(expenses)
     }
 
     override fun getAllExpenses(): Flow<List<Expenses>> {

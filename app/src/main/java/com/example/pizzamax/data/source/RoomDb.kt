@@ -34,7 +34,7 @@ abstract class RoomDb : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     RoomDb::class.java,
-                    "PizzaDatabase"
+                    "PizzaMaxDatabase"
                 ).addCallback(ListDatabaseCallback(context, scope))
                     .build()
                 INSTANCE = instance

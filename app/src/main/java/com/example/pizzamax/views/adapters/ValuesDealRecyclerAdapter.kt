@@ -19,13 +19,12 @@ import com.example.pizzamax.model.ValuesDeals
 class ValuesDealRecyclerAdapter(
     private val adapterImpl: AdapterListImpl,
     private val itemClick: (title: String, price: String) -> Unit
-) :
-    ListAdapter<ValuesDeals, ValuesDealRecyclerAdapter.RecyclerViewHolder>(ListComparator()) {
+) : ListAdapter<ValuesDeals, ValuesDealRecyclerAdapter.RecyclerViewHolder>(ListComparator()) {
     //bind the recycler list items
-    inner class RecyclerViewHolder(
-        val binding: RecyclerListBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
-        //bind the recycler list items
+  
+    inner class RecyclerViewHolder(val binding: RecyclerListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
         @SuppressLint("SetTextI18n")
         fun bind(list: ValuesDeals?) {
             binding.deal.text = "Deal " + list?.id.toString()
@@ -51,20 +50,18 @@ class ValuesDealRecyclerAdapter(
         Glide.with(holder.itemView.context).load(getItemPosition.imgUrl)
             .into(holder.binding.posterBanner)
 
-        //holder.binding.deal.text= getList[position].id.toString()
-//        holder.binding.description.text = getList[position].size
-//        holder.binding.price.text = getList[position].price
 
         holder.binding.addCart.setOnClickListener {
             itemClick("Deal ${getItemPosition.id}", getItemPosition.price)
         }
-            holder.itemView.setOnClickListener {
-                adapterImpl.onDetailsOnItemClicked(getItemPosition)
-            }
 
-            holder.binding.favoriteHeart.setOnClickListener {
-                adapterImpl.addToFavorites(getItemPosition)
-            }
+        holder.itemView.setOnClickListener {
+            adapterImpl.onDetailsOnItemClicked(getItemPosition)
+        }
+
+        holder.binding.favoriteHeart.setOnClickListener {
+            adapterImpl.addToFavorites(getItemPosition)
+        }
 
     }
 

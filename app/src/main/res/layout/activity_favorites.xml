@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -46,41 +47,6 @@
         android:id="@+id/poster_banner"
         android:layout_width="170dp"
         android:layout_height="170dp"/>
-
-    <TextView
-        android:id="@+id/deal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/deal_1"
-        android:layout_marginStart="175dp"
-        android:textColor="@color/black"/>
-
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/_7_inch_papan_pizza"
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="20dp"/>
-
-    <ImageView
-        android:id="@+id/price_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_tag"
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="108dp"/>
-
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="188dp"
-        android:textColor="@color/black"
-        android:layout_marginTop="110dp"
-        android:textSize="12sp"/>
-    </androidx.cardview.widget.CardView>
-
 
 
     <androidx.recyclerview.widget.RecyclerView

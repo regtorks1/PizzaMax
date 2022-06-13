@@ -62,11 +62,10 @@ class FavoritesActivity : AppCompatActivity(), FavoritesAdapter.OnFavoriteDetail
 
     override fun onItemRemoveClick(position: Int) {
         val list = favoritesAdapter.currentList.toMutableList()
-        val id = list[position].id
+        /*val id = list[position].id
         val size = list[position].size
         val price = list[position].price
-        val imgUrl = list[position].imgUrl
-      //  val removeItem = Favorites(list)
+        val imgUrl = list[position].imgUrl*/
         lifecycleScope.launch {
             productViewmodel.deleteFavorite(list)
         }

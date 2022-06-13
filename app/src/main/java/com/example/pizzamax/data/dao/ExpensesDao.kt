@@ -1,6 +1,7 @@
 package com.example.pizzamax.data.dao
 
 import androidx.room.*
+import com.example.pizzamax.model.Expenses
 import kotlinx.coroutines.flow.Flow
 
 @Dao
