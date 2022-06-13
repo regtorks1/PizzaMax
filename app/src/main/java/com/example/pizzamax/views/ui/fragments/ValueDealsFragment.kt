@@ -38,7 +38,6 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         binding = FragmentValueDealsBinding.inflate(layoutInflater)
         val bindingMainActivity = (activity as MainActivity).binding
 
-
         val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
             ValuesDealRecyclerAdapter(this) { title, price ->
                 mainAlertDialog(title, price) {
@@ -101,6 +100,28 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         startActivity(Intent(requireContext(), FavoritesActivity::class.java))
     }
 
+
+    override fun onDetailsOnItemClicked(details: ValuesDeals) {
+        val intent = Intent(requireContext(), DetailsActivity::class.java)
+        intent.putExtra(type, "details")
+        intent.putExtra(imgUrl, details.imgUrl)
+        intent.putExtra(size, details.size)
+        intent.putExtra(price, details.price)
+        startActivity(intent)
+    }
+
+    override fun onDetailsOnItemClicked(details: BigBetter) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDetailsOnItemClicked(details: Appetizers) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDetailsOnItemClicked(details: SignaturePizza) {
+        TODO("Not yet implemented")
+    }
+
     override fun addToFavorites(favorites: BigBetter) {
         TODO("Not yet implemented")
     }
@@ -114,21 +135,13 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
     }
 
 
-    override fun onDetailsOnItemClicked(details: ValuesDeals) {
-        val intent = Intent(requireContext(), DetailsActivity::class.java)
-        intent.putExtra(type, "details")
-        intent.putExtra(imgUrl, details.imgUrl)
-        intent.putExtra(size, details.size)
-        intent.putExtra(price, details.price)
-        startActivity(intent)
-    }
 
 
     companion object {
-        private const val price = "price"
-        private const val size = "size"
-        private const val imgUrl = "imgUrl"
-        private const val type = "type"
+         const val price = "price"
+         const val size = "size"
+         const val imgUrl = "imgUrl"
+         const val type = "type"
     }
 
 }

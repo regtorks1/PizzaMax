@@ -13,7 +13,8 @@ import com.example.pizzamax.databinding.RecyclerListBinding
 import com.example.pizzamax.model.BigBetter
 
 class BigBetterAdapter (
-    private  val updateCheckout: UpdateCheckout
+     private val adapterImpl: AdapterListImpl,
+     private val itemClick: (title: String, price: String) -> Unit
 ) :
     ListAdapter<BigBetter, BigBetterAdapter.RecyclerViewHolder>(ListComparator()) {
 
@@ -43,8 +44,17 @@ class BigBetterAdapter (
         holder.bind(getItemPosition)
         Glide.with(holder.itemView.context).load(getItemPosition.imgUrl)
             .into(holder.binding.posterBanner)
+
         holder.binding.addCart.setOnClickListener {
-            updateCheckout.onAddCart(getItemPosition)
+            itemClick("Deal ${getItemPosition.id}", getItemPosition.price)
+        }
+
+        holder.itemView.setOnClickListener {
+            adapterImpl.onDetailsOnItemClicked(getItemPosition)
+        }
+
+        holder.binding.favoriteHeart.setOnClickListener {
+            adapterImpl.addToFavorites(getItemPosition)
         }
 
     }
@@ -58,10 +68,6 @@ class BigBetterAdapter (
         override fun areContentsTheSame(oldItem: BigBetter, newItem: BigBetter): Boolean {
             return oldItem.id == newItem.id
         }
-    }
-
-    interface UpdateCheckout {
-        fun onAddCart(cart: BigBetter)
     }
 
 }

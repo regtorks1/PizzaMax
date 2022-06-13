@@ -14,7 +14,8 @@ import com.example.pizzamax.model.Appetizers
 
 
 class AppetizersRecyclerAdapter(
-    private  val updateCheckout: UpdateCheckout
+     private val adapterImpl: AdapterListImpl,
+     private val itemClick: (title: String, price: String) -> Unit
 ) :
     ListAdapter<Appetizers, AppetizersRecyclerAdapter.RecyclerViewHolder>(ListComparator()) {
 
@@ -44,7 +45,15 @@ class AppetizersRecyclerAdapter(
         holder.bind(getItemPosition)
         Glide.with(holder.itemView.context).load(getItemPosition.imgUrl).into(holder.binding.posterBanner)
         holder.binding.addCart.setOnClickListener {
-            updateCheckout.onAddCart(getItemPosition)
+            itemClick("Deal ${getItemPosition.id}", getItemPosition.price)
+        }
+
+        holder.itemView.setOnClickListener {
+            adapterImpl.onDetailsOnItemClicked(getItemPosition)
+        }
+
+        holder.binding.favoriteHeart.setOnClickListener {
+            adapterImpl.addToFavorites(getItemPosition)
         }
 
     }
@@ -58,10 +67,6 @@ class AppetizersRecyclerAdapter(
         override fun areContentsTheSame(oldItem: Appetizers, newItem: Appetizers): Boolean {
             return oldItem.id == newItem.id
         }
-    }
-
-    interface UpdateCheckout{
-        fun onAddCart(cart: Appetizers)
     }
 
 

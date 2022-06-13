@@ -17,7 +17,7 @@ class DetailsActivity : AppCompatActivity() {
     private val productViewmodel: ActivityViewmodel by viewModels {
         ActivityViewModelFactory((application as App).productRepository)
     }
-    private lateinit var activity: AppCompatActivity
+    private  var activity: AppCompatActivity?=null
     private lateinit var binding: ActivityDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val type = intent.getStringExtra("type")
-        if (type.equals("cart")) {
+        if (type.equals("details")) {
             val size = intent.getStringExtra("size")
             val priceString = intent.getStringExtra("price")
             val imgUrl = intent.getStringExtra("imgUrl")

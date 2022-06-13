@@ -17,4 +17,7 @@ interface AdapterListImpl {
 
 
     fun onDetailsOnItemClicked(details: ValuesDeals)
+    fun onDetailsOnItemClicked(details: BigBetter)
+    fun onDetailsOnItemClicked(details: Appetizers)
+    fun onDetailsOnItemClicked(details: SignaturePizza)
 }
