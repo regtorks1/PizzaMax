@@ -10,8 +10,9 @@ class ProductRepository(
     private val appetizersDao: AppetizersDao,
     private val signatureDao: SignatureDao,
     private val favoritesDao: FavoritesDao,
-    private val carDao: CartDao
-) : ValueDealsDao, BigBetterDoa, AppetizersDao, SignatureDao, FavoritesDao, CartDao {
+    private val carDao: CartDao,
+    private val expensesDao: ExpensesDao
+) : ValueDealsDao, BigBetterDoa, AppetizersDao, SignatureDao, FavoritesDao, CartDao, ExpensesDao {
 
     //BIG BETTER REPOSITORY
     override suspend fun insertToRoom(bigBetter: BigBetter) {
@@ -142,6 +143,26 @@ class ProductRepository(
 
     override suspend fun deleteItem(cart: Cart) {
         return carDao.deleteItem(cart)
+    }
+
+    override suspend fun insertToRoom(expenses: Expenses) {
+        return expensesDao.insertToRoom(expenses)
+    }
+
+    override suspend fun updateList(expenses: MutableList<Expenses>) {
+       return expensesDao.updateList(expenses)
+    }
+
+    override fun getAllExpenses(): Flow<List<Expenses>> {
+        return expensesDao.getAllExpenses()
+    }
+
+    override suspend fun deleteFromExpenses() {
+        return expensesDao.deleteFromExpenses()
+    }
+
+    override suspend fun deleteItem(expenses: Expenses) {
+        return expensesDao.deleteItem(expenses)
     }
 
 }

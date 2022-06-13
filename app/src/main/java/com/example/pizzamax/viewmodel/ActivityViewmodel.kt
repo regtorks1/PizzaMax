@@ -3,8 +3,10 @@ package com.example.pizzamax.viewmodel
 import androidx.lifecycle.*
 import com.example.pizzamax.data.repository.ProductRepository
 import com.example.pizzamax.model.Cart
+import com.example.pizzamax.model.Expenses
 import com.example.pizzamax.model.Favorites
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class ActivityViewmodel(private val repository: ProductRepository) : ViewModel() {
@@ -41,6 +43,12 @@ class ActivityViewmodel(private val repository: ProductRepository) : ViewModel()
     fun deleteFavorite(favorites: MutableList<Favorites>){
         viewModelScope.launch(Dispatchers.IO){
             repository.deleteItem(favorites)
+        }
+    }
+
+    fun updateExpenses(expenses: MutableList<Expenses>){
+        viewModelScope.launch(Dispatchers.Main) {
+            repository.updateList(expenses)
         }
     }
 

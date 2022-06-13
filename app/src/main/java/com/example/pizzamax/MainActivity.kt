@@ -5,14 +5,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-<<<<<<< HEAD
+
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-=======
-import android.view.View
-import android.widget.*
-import androidx.appcompat.app.AlertDialog
->>>>>>> ca30c47b45643607646ef7d8be4b2093188026ac
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuItemCompat.getActionView
 import com.example.pizzamax.databinding.ActivityMainBinding
