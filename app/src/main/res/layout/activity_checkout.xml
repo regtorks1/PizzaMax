@@ -395,6 +395,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/access_time"
             tools:listitem="@layout/cart_list" />
@@ -492,7 +493,7 @@
             android:layout_height="41dp"
             android:layout_marginStart="225dp"
             android:layout_marginTop="5dp"
-            android:backgroundTint="@color/grey"
+            android:backgroundTint="@color/real_grey"
             android:text="@string/apply"
             android:textAllCaps="false"
             android:textColor="@color/white"
