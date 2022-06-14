@@ -2,6 +2,7 @@ package com.example.pizzamax
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -9,11 +10,19 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.view.View
 import android.widget.*
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.MenuItemCompat.getActionView
+import androidx.fragment.app.viewModels
 import com.example.pizzamax.databinding.ActivityMainBinding
+import com.example.pizzamax.di.App
+import com.example.pizzamax.model.Favorites
 import com.example.pizzamax.model.SliderData
+import com.example.pizzamax.model.ValuesDeals
+import com.example.pizzamax.viewmodel.ProductViewModel
+import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.SliderAdapter
 import com.example.pizzamax.views.adapters.ViewPagerAdapter
 import com.example.pizzamax.views.ui.activity.CheckoutActivity
@@ -25,15 +34,22 @@ import com.smarteist.autoimageslider.SliderView
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
+//    private val productViewmodel: ProductViewModel by viewModels {
+//        ProductViewModelFactory((activity?.application as App).productRepository)
+//    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         setContentView(binding.root)
 
         binding.linearViewCart.setOnClickListener {
             val intent = Intent(this, CheckoutActivity::class.java)
             startActivity(intent)
         }
+
+
 
         imageSlider()
         setupTabLayout()
@@ -57,14 +73,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.favorite_heart -> {
+        return when (item.itemId) {
+            R.id.favorite -> {
                 this.startActivity(Intent(this, FavoritesActivity::class.java))
-                return true
+                true
             }
             else -> super.onOptionsItemSelected(item)
         }
-        return true
+
     }
 
 
@@ -107,6 +123,9 @@ class MainActivity : AppCompatActivity() {
             R.drawable.pizza_max_poster2,
             R.drawable.pizza_max_poster3
         )
+        val imageView : SliderView = binding.slider
+        imageView.fitsSystemWindows = true
+
         val sliderDataArrayList = ArrayList<SliderData>()
         val sliderView: SliderView = binding.slider
         sliderDataArrayList.add(SliderData(sliderImg[0]))
@@ -121,5 +140,17 @@ class MainActivity : AppCompatActivity() {
         sliderView.isAutoCycle = true
         sliderView.startAutoCycle()
     }
+
+//     fun addToFavorites(favorites: ValuesDeals) {
+//        val list = listOf(
+//            Favorites(
+//                imgUrl = favorites.imgUrl,
+//                price = favorites.price,
+//                size = favorites.size
+//            )
+//        )
+//        productViewmodel.insertIntoFavorites(list)
+//        startActivity(Intent(this, FavoritesActivity::class.java))
+//    }
 
 }

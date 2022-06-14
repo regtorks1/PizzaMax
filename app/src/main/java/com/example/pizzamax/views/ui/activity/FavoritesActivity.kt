@@ -49,6 +49,7 @@ class FavoritesActivity : AppCompatActivity(), FavoritesAdapter.OnFavoriteDetail
             favoritesAdapter.submitList(it)
         })
 
+
     }
 
     override fun viewDetail(favorites: Favorites) {

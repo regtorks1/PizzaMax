@@ -32,7 +32,8 @@
             android:layout_height="wrap_content"
             android:text="@string/deal_1"
             android:layout_marginStart="15dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="25sp"/>
 
         <TextView
             android:id="@+id/pizza_size"
@@ -40,7 +41,8 @@
             android:layout_height="wrap_content"
             android:text="@string/_7_inch_papan_pizza"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"/>
 
 
 
@@ -52,22 +54,21 @@
             android:layout_marginStart="15dp"
             android:textColor="@color/black"
             android:text="@string/ghc_200_"
-            android:textSize="12sp"/>
+            android:textSize="18sp"/>
 
         <Button
             android:id="@+id/add_cart"
-            android:layout_width="255dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="85dp"
+            android:layout_width="400dp"
+            android:layout_height="55dp"
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/deep_orange"
             android:drawableEnd="@drawable/shopping_cart_24"
             android:text="@string/add"
             android:textColor="@color/white"
-            android:textSize="12sp"
+            android:textSize="20sp"
             android:drawablePadding="4dp"
-            android:paddingEnd="95dp"
-            android:paddingStart="90dp"/>
+            android:paddingEnd="155dp"
+            android:paddingStart="155dp"/>
 
 
     </LinearLayout>
@@ -77,7 +78,7 @@
         android:id="@+id/favorite_heart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/deep_orange"
+        android:backgroundTint="@color/real_red"
         android:layout_marginStart="345dp"
         android:layout_marginTop="450dp"
         android:background="@drawable/favorite_border"
