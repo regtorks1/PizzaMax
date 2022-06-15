@@ -119,7 +119,7 @@ class ProductRepository(
         return favoritesDao.deleteFromFavorites()
     }
 
-    override suspend fun deleteItem(favorites: MutableList<Favorites>) {
+    override suspend fun deleteItem(favorites: Favorites) {
         return favoritesDao.deleteItem(favorites)
     }
 
@@ -139,6 +139,10 @@ class ProductRepository(
 
     override suspend fun deleteFromCart() {
         return carDao.deleteFromCart()
+    }
+
+    override fun searchAmount(amount: String): Flow<List<Cart>> {
+        return carDao.searchAmount(amount)
     }
 
     override suspend fun deleteItem(cart: Cart) {

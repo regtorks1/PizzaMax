@@ -1,7 +1,6 @@
 package com.example.pizzamax.views.adapters
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,6 +12,9 @@ import com.example.pizzamax.model.Cart
 
 class CartAdapter(private val impl: CartImpl) :
     ListAdapter<Cart, CartAdapter.RecyclerViewHolder>(ListComparator()) {
+    private var incrementAmt = 1
+    val negNum = -1
+
     //bind the recycler list items
     inner class RecyclerViewHolder(val binding: CartListBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -44,14 +46,27 @@ class CartAdapter(private val impl: CartImpl) :
         val getItemPosition = getItem(position)
         holder.bind(getItemPosition)
 
-        holder.binding.addBtn.setOnClickListener {
+        with(holder.binding) {
+            val amt = Integer.parseInt(price.text.toString())
+            var incrementNum = Integer.parseInt(quantity.text.toString())
+            addBtn.setOnClickListener {
+                incrementNum += 1
+                incrementAmt = amt * incrementNum
+                quantity.text = incrementNum.toString()
+                amount.text = incrementAmt.toString()
 
-            Log.d("ITEM CLICKED", "::::::::::::::::::YOU CLICK")
+            }
 
+            negBtn.setOnClickListener {
+                    incrementNum -= 1
+                if (incrementNum >=0){
+                incrementAmt = amt * incrementNum
+                quantity.text = incrementNum.toString()
+                amount.text = incrementAmt.toString()
+                }
+            }
         }
-        holder.binding.negBtn.setOnClickListener {
-            Log.d("ITEM CLICKED", "::::::::::::::::::YOU CLICK")
-        }
+
 
         holder.itemView.setOnClickListener {
             impl.viewAllCartList(getItemPosition)
@@ -71,7 +86,7 @@ class CartAdapter(private val impl: CartImpl) :
         }
     }
 
-    interface CartImpl{
+    interface CartImpl {
         fun viewAllCartList(cart: Cart)
     }
 

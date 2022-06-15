@@ -20,5 +20,5 @@ interface FavoritesDao {
     suspend fun deleteFromFavorites()
 
      @Delete
-    suspend fun deleteItem(favorites: MutableList<Favorites>)//single item
+    suspend fun deleteItem(favorites: Favorites)//single item
 }

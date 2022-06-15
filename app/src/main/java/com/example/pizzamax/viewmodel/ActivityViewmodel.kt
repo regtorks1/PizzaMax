@@ -40,7 +40,7 @@ class ActivityViewmodel(private val repository: ProductRepository) : ViewModel()
     }
     val getAllFavorites: LiveData<List<Favorites>> = repository.getAllFromFavorites().asLiveData()
 
-    fun deleteFavorite(favorites: MutableList<Favorites>){
+    fun deleteFavorite(favorites: Favorites){
         viewModelScope.launch(Dispatchers.IO){
             repository.deleteItem(favorites)
         }

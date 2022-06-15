@@ -2,7 +2,6 @@ package com.example.pizzamax
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -140,17 +139,5 @@ class MainActivity : AppCompatActivity() {
         sliderView.isAutoCycle = true
         sliderView.startAutoCycle()
     }
-
-//     fun addToFavorites(favorites: ValuesDeals) {
-//        val list = listOf(
-//            Favorites(
-//                imgUrl = favorites.imgUrl,
-//                price = favorites.price,
-//                size = favorites.size
-//            )
-//        )
-//        productViewmodel.insertIntoFavorites(list)
-//        startActivity(Intent(this, FavoritesActivity::class.java))
-//    }
 
 }

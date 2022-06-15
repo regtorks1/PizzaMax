@@ -28,7 +28,7 @@ import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.type
 import com.example.pizzamax.views.util.mainAlertDialog
 import kotlinx.coroutines.launch
 
-class BigBetterFragment : Fragment(), AdapterListImpl {
+ class BigBetterFragment : Fragment(), AdapterListImpl {
 
     private val productViewmodel: ProductViewModel by viewModels {
         ProductViewModelFactory((activity?.application as App).productRepository)

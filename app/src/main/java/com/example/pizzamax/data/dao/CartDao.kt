@@ -19,6 +19,9 @@ interface CartDao {
     @Query("DELETE FROM cart")
     suspend fun deleteFromCart()//all item
 
+    @Query("SELECT* FROM cart WHERE price LIKE :amount")
+    fun searchAmount(amount: String) : Flow<List<Cart>>
+
     @Delete
     suspend fun deleteItem(cart: Cart)//single item
 }
