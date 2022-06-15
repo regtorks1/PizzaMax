@@ -67,7 +67,6 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         }  //initialize adapter
 
 
-
         //recycler setup
         val thisRecycler = binding.recyclerView
         thisRecycler.adapter = recyclerAdapter
@@ -151,7 +150,10 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
     }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a8c68b0c7476c7a96bfde119b8f415ca8617d90f
     companion object {
         const val price = "price"
         const val size = "size"
