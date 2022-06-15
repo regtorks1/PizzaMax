@@ -16,6 +16,7 @@ class FavoritesAdapter(
     private val itemClick: (title: String, price: String) -> Unit
 ) :
     ListAdapter<Favorites, FavoritesAdapter.RecyclerViewHolder>(ListComparator()) {
+    private  val allList = ArrayList<Favorites>()
     //bind the recycler list items
   inner class RecyclerViewHolder(val binding: RecyclerListBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -50,7 +51,8 @@ class FavoritesAdapter(
         }
 
         holder.binding.favoriteHeart.setOnClickListener {
-           listeners.onItemRemoveClick(getItemPosition.id)
+          // listeners.onItemRemoveClick(allList[position])
+            listeners.onDeleteAllClick(getItemPosition.id)
         }
     }
 
@@ -67,64 +69,8 @@ class FavoritesAdapter(
 
     interface OnFavoriteDetailPage{
         fun viewDetail(favorites: Favorites)
-        fun onItemRemoveClick(position: Int)
+        fun onItemRemoveClick(item: Favorites)
+        fun onDeleteAllClick(position: Int)
     }
 
 }
-
-/*
-class FavoritesAdapter(val context: Context,
-                       private val favoriteClickInterface: FavoriteClickInterface
-): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
-
-    private val getList = ArrayList<ValuesDeals>()
-
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val posterBanner: ImageView = itemView.findViewById(R.id.poster_banner)
-        val deal: TextView = itemView.findViewById(R.id.deal)
-        val description: TextView = itemView.findViewById(R.id.description)
-        val priceBack: ImageView = itemView.findViewById(R.id.price_back)
-        val priceVal: TextView = itemView.findViewById(R.id.price)
-        val favoriteHeart: ImageView = itemView.findViewById(R.id.favorite_heart)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesAdapter.ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.recycler_list,
-            parent,false
-        )
-        return ViewHolder(itemView)
-    }
-
-    override fun onBindViewHolder(holder: FavoritesAdapter.ViewHolder, position: Int) {
-//        val getItemPosition = getItem(position)
-//        holder.bind(getItemPosition)
-        holder.deal.setText(getList.get(position).id)
-        holder.description.setText(getList.get(position).size)
-        holder.priceVal.setText(getList.get(position).price)
-//        Glide.with(holder.itemView.context).load(getItem(position).imgUrl)
-//            .into(holder.posterBanner)
-
-        holder.favoriteHeart.setOnClickListener{
-            favoriteClickInterface.onFavoriteClick(getList.get(position))
-        }
-    }
-
-    override fun getItemCount(): Int {
-        return getList.size
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateList(newList: List<ValuesDeals>) {
-        getList.clear()
-        getList.addAll(newList)
-        notifyDataSetChanged()
-    }
-
-
-}
-
-interface FavoriteClickInterface {
-    fun onFavoriteClick(valuesDeals: ValuesDeals)
-}*/
-

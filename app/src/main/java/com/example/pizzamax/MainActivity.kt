@@ -122,4 +122,8 @@ class MainActivity : AppCompatActivity() {
         sliderView.startAutoCycle()
     }
 
+    fun setUp(){
+        Toast.makeText(this, "SOMETHING", Toast.LENGTH_SHORT)
+    }
+
 }

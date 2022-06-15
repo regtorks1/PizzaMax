@@ -29,7 +29,7 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
+ <!--   <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="380dp"
         android:layout_height="170dp"
@@ -41,12 +41,12 @@
         android:layout_marginTop="40dp"
         app:cardElevation="5dp"
         android:layout_marginStart="25dp"
-        android:visibility="invisible">
+        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/poster_banner"
         android:layout_width="170dp"
-        android:layout_height="170dp"/>
+        android:layout_height="170dp"/>-->
 
 
     <androidx.recyclerview.widget.RecyclerView

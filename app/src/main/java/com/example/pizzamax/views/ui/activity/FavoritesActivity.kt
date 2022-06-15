@@ -60,14 +60,18 @@ class FavoritesActivity : AppCompatActivity(), FavoritesAdapter.OnFavoriteDetail
         startActivity(intent)
     }
 
-    override fun onItemRemoveClick(position: Int) {
-        val list = favoritesAdapter.currentList.toMutableList()
-        /*val id = list[position].id
+    override fun onItemRemoveClick(item: Favorites) {
+        productViewmodel.deleteFavorite(item)
+    }
+
+    override fun onDeleteAllClick(position: Int) {
+         val list = favoritesAdapter.currentList.toMutableList()
+         val id = list[position].id
         val size = list[position].size
         val price = list[position].price
-        val imgUrl = list[position].imgUrl*/
+        val imgUrl = list[position].imgUrl
         lifecycleScope.launch {
-            productViewmodel.deleteFavorite(list)
+          //  productViewmodel.deleteFavorite()
         }
 
     }

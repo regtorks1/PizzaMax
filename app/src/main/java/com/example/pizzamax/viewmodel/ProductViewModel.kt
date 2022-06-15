@@ -1,7 +1,6 @@
 package com.example.pizzamax.viewmodel
 
 import androidx.lifecycle.*
-import com.example.pizzamax.data.dao.Expenses
 import com.example.pizzamax.data.repository.ProductRepository
 import com.example.pizzamax.model.*
 import kotlinx.coroutines.Dispatchers
@@ -107,7 +106,7 @@ class ProductViewModel(
         repository.deleteFromFavorites()
     }
     val getAllFavorites: LiveData<List<Favorites>> = repository.getAllFromFavorites().asLiveData()
-    fun deleteFavorite(favorites: MutableList<Favorites>) {
+    fun deleteFavorite(favorites: Favorites) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteItem(favorites)
         }
