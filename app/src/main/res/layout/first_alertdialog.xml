@@ -273,10 +273,10 @@
         android:id="@+id/cancel"
         android:layout_width="205dp"
         android:layout_height="match_parent"
-        android:backgroundTint="@color/real_grey"
+        android:backgroundTint="@color/grey"
         android:text="@string/cancel"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="14sp"
         />
 
