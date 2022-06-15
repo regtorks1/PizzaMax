@@ -1,5 +1,6 @@
 package com.example.pizzamax.views.ui.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -20,6 +21,7 @@ class DetailsActivity : AppCompatActivity() {
     private  var activity: AppCompatActivity?=null
     private lateinit var binding: ActivityDetailsBinding
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
@@ -38,7 +40,7 @@ class DetailsActivity : AppCompatActivity() {
             }
 
             with(binding) {
-                price.text = priceString.toString()
+                price.text = "Ghc " + priceString.toString()
                 pizzaSize.text = size.toString()
                 posterBanner.load(imgUrl)
             }
