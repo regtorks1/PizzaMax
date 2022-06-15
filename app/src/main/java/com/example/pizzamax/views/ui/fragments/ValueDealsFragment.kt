@@ -56,6 +56,8 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
                         Log.d("Total Amt", ":::::::::::::::::::::::${(amount)}")
                     })
                     bindingMainActivity.linearViewCart.visibility = View.VISIBLE
+                    bindingMainActivity.viewCart.visibility = View.VISIBLE
+                    bindingMainActivity.nextView.visibility = View.VISIBLE
                 }
             }
         }  //initialize adapter
