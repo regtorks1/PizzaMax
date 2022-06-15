@@ -2,6 +2,7 @@ package com.example.pizzamax.views.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,20 +38,33 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
     ): View {
         binding = FragmentValueDealsBinding.inflate(layoutInflater)
         val bindingMainActivity = (activity as MainActivity).binding
+       // (activity as MainActivity).setUp()
+
+        var item = 0
+        var amount = 0
+        var iterator = 0
+        var total = 0
 
         val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
             ValuesDealRecyclerAdapter(this) { title, price ->
                 mainAlertDialog(title, price) {
-                    productViewmodel.getFromExpenses.observe(viewLifecycleOwner, Observer { list->
+                    productViewmodel.getAllFromCart.observe(viewLifecycleOwner, Observer { list ->
+                        list.forEach {
+                            item = it.quantity.toInt()
+                            amount += it.price.toInt()
+                            bindingMainActivity.itemNumber.text = "${it.quantity} Items"
+                            bindingMainActivity.amount.text = "Ghc ${it.price}"
+                        }
 
-                       //bindingMainActivity.itemNumber.text =
-                        bindingMainActivity.amount.text = "Ghc $price"
+                        iterator += item
+                        total += amount
+                        Log.d("TOTAL ITEM", "::::::::::::::::::::::$iterator")
+                        Log.d("Total Amt", ":::::::::::::::::::::::${(amount)}")
                     })
                     bindingMainActivity.linearViewCart.visibility = View.VISIBLE
                 }
             }
         }  //initialize adapter
-
 
 
         //recycler setup
@@ -136,12 +150,15 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
     }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a8c68b0c7476c7a96bfde119b8f415ca8617d90f
     companion object {
-         const val price = "price"
-         const val size = "size"
-         const val imgUrl = "imgUrl"
-         const val type = "type"
+        const val price = "price"
+        const val size = "size"
+        const val imgUrl = "imgUrl"
+        const val type = "type"
     }
 
 }
