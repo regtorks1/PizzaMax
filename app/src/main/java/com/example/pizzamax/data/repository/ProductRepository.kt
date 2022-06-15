@@ -15,11 +15,11 @@ class ProductRepository(
 ) : ValueDealsDao, BigBetterDoa, AppetizersDao, SignatureDao, FavoritesDao, CartDao, ExpensesDao {
 
     //BIG BETTER REPOSITORY
-    override suspend fun insertToRoom(bigBetter: BigBetter) {
+    override  fun insertToRoom(bigBetter: BigBetter) {
         bigBetterDoa.insertToRoom(bigBetter)
     }
 
-    override suspend fun updateList(bigBetter: BigBetter) {
+    override  fun updateList(bigBetter: BigBetter) {
         return bigBetterDoa.updateList(bigBetter)
     }
 
@@ -27,21 +27,21 @@ class ProductRepository(
         return bigBetterDoa.getAllFromBigBetter()
     }
 
-    override suspend fun deleteFromBigBetter() {
+    override  fun deleteFromBigBetter() {
         return bigBetterDoa.deleteFromBigBetter()
     }
 
-    override suspend fun deleteItem(bigBetter: BigBetter) {
+    override  fun deleteItem(bigBetter: BigBetter) {
         TODO("Not yet implemented")
     }
 
 
     //VALUE DEALS REPOSITORY
-    override suspend fun insertToRoom(valueDeals: ValuesDeals) {
+    override  fun insertToRoom(valueDeals: ValuesDeals) {
         valueDealsDao.insertToRoom(valueDeals)
     }
 
-    override suspend fun updateList(valueDeals: ValuesDeals) {
+    override  fun updateList(valueDeals: ValuesDeals) {
         return valueDealsDao.updateList(valueDeals)
     }
 
@@ -49,21 +49,21 @@ class ProductRepository(
         return valueDealsDao.getAll()
     }
 
-    override suspend fun deleteAll() {
+    override  fun deleteAll(): Int {
         return valueDealsDao.deleteAll()
     }
 
-    override suspend fun deleteItem(valueDeals: ValuesDeals) {
+    override  fun deleteItem(valueDeals: ValuesDeals) {
         return valueDealsDao.deleteItem(valueDeals)
     }
 
 
     //APPETIZERS REPOSITORY
-    override suspend fun insertToRoom(appetizers: Appetizers) {
+    override  fun insertToRoom(appetizers: Appetizers) {
         appetizersDao.insertToRoom(appetizers)
     }
 
-    override suspend fun updateList(appetizers: Appetizers) {
+    override  fun updateList(appetizers: Appetizers) {
         return appetizersDao.updateList(appetizers)
     }
 
@@ -71,21 +71,21 @@ class ProductRepository(
         return appetizersDao.getAllFromAppetizers()
     }
 
-    override suspend fun deleteAllFromAppetizers() {
+    override  fun deleteAllFromAppetizers() {
         return appetizersDao.deleteAllFromAppetizers()
     }
 
-    override suspend fun deleteItem(appetizers: Appetizers) {
+    override  fun deleteItem(appetizers: Appetizers) {
        return appetizersDao.deleteItem(appetizers)
     }
 
 
     //SIGNATURE REPOSITORY
-    override suspend fun insertToRoom(signaturePizza: SignaturePizza) {
+    override  fun insertToRoom(signaturePizza: SignaturePizza) {
         signatureDao.insertToRoom(signaturePizza)
     }
 
-    override suspend fun updateList(signaturePizza: SignaturePizza) {
+    override  fun updateList(signaturePizza: SignaturePizza) {
         return signatureDao.updateList(signaturePizza)
     }
 
@@ -93,21 +93,21 @@ class ProductRepository(
         return signatureDao.getAllFromSignature()
     }
 
-    override suspend fun deleteAllFromSignature() {
+    override  fun deleteAllFromSignature() {
         return signatureDao.deleteAllFromSignature()
     }
 
-    override suspend fun deleteItem(signaturePizza: SignaturePizza) {
+    override  fun deleteItem(signaturePizza: SignaturePizza) {
         return signatureDao.deleteItem(signaturePizza)
     }
 
 
     //FAVORITES REPOSITORY
-   override suspend fun insertToFavorites(favorites: List<Favorites>) {
+   override  fun insertToFavorites(favorites: List<Favorites>) {
         favoritesDao.insertToFavorites(favorites)
     }
 
-    override suspend fun updateList(favorites: Favorites) {
+    override  fun updateList(favorites: Favorites) {
         return favoritesDao.updateList(favorites)
     }
 
@@ -115,21 +115,21 @@ class ProductRepository(
         return favoritesDao.getAllFromFavorites()
     }
 
-    override suspend fun deleteFromFavorites() {
+    override  fun deleteFromFavorites() {
         return favoritesDao.deleteFromFavorites()
     }
 
-    override suspend fun deleteItem(favorites: MutableList<Favorites>) {
+    override  fun deleteItem(favorites: MutableList<Favorites>) {
         return favoritesDao.deleteItem(favorites)
     }
 
 
     //CART REPOSITORY
-    override suspend fun insertToRoom(cart: List<Cart>) {
+    override  fun insertToRoom(cart: List<Cart>) {
         return carDao.insertToRoom(cart)
     }
 
-    override suspend fun updateList(cart: Cart) {
+    override  fun updateList(cart: Cart) {
         return carDao.updateList(cart)
     }
 
@@ -137,20 +137,20 @@ class ProductRepository(
         return carDao.getAllFromCart()
     }
 
-    override suspend fun deleteFromCart() {
+    override  fun deleteFromCart() {
         return carDao.deleteFromCart()
     }
 
-    override suspend fun deleteItem(cart: Cart) {
+    override  fun deleteItem(cart: Cart) {
         return carDao.deleteItem(cart)
     }
 
 
-    override suspend fun insertToRoom(expenses: Expenses) {
+    override  fun insertToRoom(expenses: Expenses) {
         return expensesDao.insertToRoom(expenses)
     }
 
-    override suspend fun updateList(expenses: MutableList<Expenses>) {
+    override  fun updateList(expenses: MutableList<Expenses>) {
        return expensesDao.updateList(expenses)
     }
 
@@ -158,11 +158,11 @@ class ProductRepository(
         return expensesDao.getAllExpenses()
     }
 
-    override suspend fun deleteFromExpenses() {
+    override  fun deleteFromExpenses() {
         return expensesDao.deleteFromExpenses()
     }
 
-    override suspend fun deleteItem(expenses: Expenses) {
+    override fun deleteItem(expenses: Expenses) {
         return expensesDao.deleteItem(expenses)
     }
 

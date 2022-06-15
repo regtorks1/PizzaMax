@@ -102,9 +102,9 @@ class AppetizersFragment : Fragment(), AdapterListImpl {
     override fun addToFavorites(favorites: Appetizers) {
          val list = listOf(
             Favorites(
-                imgUrl = favorites.imgUrl,
-                price = favorites.price,
-                size = favorites.size
+                imgUrl = favorites.imgUrl!!,
+                price = favorites.price!!,
+                size = favorites.size!!
             )
         )
         productViewmodel.insertIntoFavorites(list)

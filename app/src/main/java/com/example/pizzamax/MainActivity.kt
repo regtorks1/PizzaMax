@@ -34,10 +34,6 @@ import com.smarteist.autoimageslider.SliderView
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
-//    private val productViewmodel: ProductViewModel by viewModels {
-//        ProductViewModelFactory((activity?.application as App).productRepository)
-//    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -45,15 +41,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.linearViewCart.setOnClickListener {
-            val intent = Intent(this, CheckoutActivity::class.java)
-            startActivity(intent)
+          /*  val intent = Intent(this, CheckoutActivity::class.java)
+            startActivity(intent)*/
         }
-
-
-
-        imageSlider()
-        setupTabLayout()
-        setupViewPager()
 
     }
 
@@ -82,75 +72,5 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-
-    private fun setupViewPager() {
-        binding.viewPager.apply {
-            adapter = ViewPagerAdapter(supportFragmentManager, binding.tabLayout.tabCount)
-            addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(binding.tabLayout))
-        }
-    }
-
-
-    private fun setupTabLayout() {
-        binding.tabLayout.apply {
-            addTab(this.newTab().setText("Max Value Deals"))
-            addTab(this.newTab().setText("2 Big 2 Better"))
-            addTab(this.newTab().setText("Appetizers"))
-            addTab(this.newTab().setText("Signature Pizza"))
-            addTab(this.newTab().setText("Max Value Deals"))
-
-            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                override fun onTabSelected(tab: TabLayout.Tab?) {
-                    tab?.position?.let {
-                        binding.viewPager.currentItem = it
-                    }
-                }
-
-                override fun onTabUnselected(tab: TabLayout.Tab?) {
-                }
-
-                override fun onTabReselected(tab: TabLayout.Tab?) {
-                }
-            })
-        }
-    }
-
-    private fun imageSlider() {
-        val sliderImg = intArrayOf(
-            R.drawable.pizza_max_poster,
-            R.drawable.pizza_max_poster1,
-            R.drawable.pizza_max_poster2,
-            R.drawable.pizza_max_poster3
-        )
-        val imageView : SliderView = binding.slider
-        imageView.fitsSystemWindows = true
-
-        val sliderDataArrayList = ArrayList<SliderData>()
-        val sliderView: SliderView = binding.slider
-        sliderDataArrayList.add(SliderData(sliderImg[0]))
-        sliderDataArrayList.add(SliderData(sliderImg[1]))
-        sliderDataArrayList.add(SliderData(sliderImg[2]))
-        sliderDataArrayList.add(SliderData(sliderImg[3]))
-
-        val adapter = SliderAdapter(this, sliderDataArrayList)
-        sliderView.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
-        sliderView.setSliderAdapter(adapter)
-        sliderView.scrollTimeInSec = 3
-        sliderView.isAutoCycle = true
-        sliderView.startAutoCycle()
-    }
-
-//     fun addToFavorites(favorites: ValuesDeals) {
-//        val list = listOf(
-//            Favorites(
-//                imgUrl = favorites.imgUrl,
-//                price = favorites.price,
-//                size = favorites.size
-//            )
-//        )
-//        productViewmodel.insertIntoFavorites(list)
-//        startActivity(Intent(this, FavoritesActivity::class.java))
-//    }
 
 }

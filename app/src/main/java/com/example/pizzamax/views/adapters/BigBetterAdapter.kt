@@ -46,7 +46,7 @@ class BigBetterAdapter (
             .into(holder.binding.posterBanner)
 
         holder.binding.addCart.setOnClickListener {
-            itemClick("Deal ${getItemPosition.id}", getItemPosition.price)
+            getItemPosition.price?.let { it1 -> itemClick("Deal ${getItemPosition.id}", it1) }
         }
 
         holder.itemView.setOnClickListener {

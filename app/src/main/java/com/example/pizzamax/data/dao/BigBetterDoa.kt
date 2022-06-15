@@ -7,17 +7,17 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface BigBetterDoa {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertToRoom(bigBetter: BigBetter)
+    fun insertToRoom(bigBetter: BigBetter)
 
     @Update
-    suspend fun updateList(bigBetter: BigBetter)
+     fun updateList(bigBetter: BigBetter)
 
     @Query("SELECT * FROM big_better ORDER BY id ASC")
     fun getAllFromBigBetter(): Flow<List<BigBetter>>
 
     @Query("DELETE FROM big_better")
-    suspend fun deleteFromBigBetter()
+     fun deleteFromBigBetter()
 
      @Delete
-    suspend fun deleteItem(bigBetter: BigBetter)//single item
+     fun deleteItem(bigBetter: BigBetter)//single item
 }

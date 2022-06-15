@@ -34,8 +34,9 @@ abstract class RoomDb : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     RoomDb::class.java,
-                    "MaxDatabase"
-                ).addCallback(ListDatabaseCallback(context, scope))
+                    "MaxPDatabase"
+                ).allowMainThreadQueries()
+                    .addCallback(ListDatabaseCallback(context, scope))
                     .build()
                 INSTANCE = instance
                 // return instance

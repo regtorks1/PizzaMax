@@ -24,21 +24,6 @@ class FavoritesActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        /* deal1 = binding.deal
-         desc = binding.description
-         priceAmt = binding.price
-
-      val favoriteType = intent.getStringExtra("favoriteType")
-      if(favoriteType == "Edit"){
-            val favoriteTitle = intent.getStringExtra("favoriteTitle")
-            val favoriteDescription = intent.getStringExtra("favoriteDescription")
-            val favoritePrice = intent.getStringExtra("favoritePrice")
-           favoriteID = intent.getIntExtra("noteId", -1)
-          deal1.setText(favoriteTitle)
-          desc.setText(favoriteDescription)
-          priceAmt.setText(favoritePrice)*/
-
-
     }
 
 }

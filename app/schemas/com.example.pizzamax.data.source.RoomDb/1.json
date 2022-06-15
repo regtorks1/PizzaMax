@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "487941cfc3d8d17c71848d5a62b89cae",
+    "identityHash": "47cceddf12ef31ce72a4674ecd7067c0",
     "entities": [
       {
         "tableName": "deals_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `image` TEXT NOT NULL, `size` TEXT NOT NULL, `price` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `image` TEXT, `size` TEXT, `price` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -18,19 +18,19 @@
             "fieldPath": "imgUrl",
             "columnName": "image",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "size",
             "columnName": "size",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "price",
             "columnName": "price",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -44,7 +44,7 @@
       },
       {
         "tableName": "big_better",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `image` TEXT NOT NULL, `size` TEXT NOT NULL, `price` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `image` TEXT, `size` TEXT, `price` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -56,19 +56,19 @@
             "fieldPath": "imgUrl",
             "columnName": "image",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "size",
             "columnName": "size",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "price",
             "columnName": "price",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -82,7 +82,7 @@
       },
       {
         "tableName": "appetizers",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `image` TEXT NOT NULL, `size` TEXT NOT NULL, `price` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `image` TEXT, `size` TEXT, `price` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -94,19 +94,19 @@
             "fieldPath": "imgUrl",
             "columnName": "image",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "size",
             "columnName": "size",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "price",
             "columnName": "price",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -286,7 +286,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '487941cfc3d8d17c71848d5a62b89cae')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '47cceddf12ef31ce72a4674ecd7067c0')"
     ]
   }
 }

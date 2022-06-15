@@ -95,9 +95,9 @@ class BigBetterFragment : Fragment(), AdapterListImpl {
     override fun addToFavorites(favorites: BigBetter) {
         val list = listOf(
             Favorites(
-                imgUrl = favorites.imgUrl,
-                price = favorites.price,
-                size = favorites.size
+                imgUrl = favorites.imgUrl!!,
+                price = favorites.price!!,
+                size = favorites.size!!
             )
         )
         productViewmodel.insertIntoFavorites(list)

@@ -52,7 +52,7 @@ class ValuesDealRecyclerAdapter(
 
 
         holder.binding.addCart.setOnClickListener {
-            itemClick("Deal ${getItemPosition.id}", getItemPosition.price)
+            itemClick("Deal ${getItemPosition.id}", getItemPosition.price!!)
         }
 
         holder.itemView.setOnClickListener {

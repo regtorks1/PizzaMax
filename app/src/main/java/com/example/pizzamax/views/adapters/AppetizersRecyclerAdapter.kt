@@ -45,7 +45,7 @@ class AppetizersRecyclerAdapter(
         holder.bind(getItemPosition)
         Glide.with(holder.itemView.context).load(getItemPosition.imgUrl).into(holder.binding.posterBanner)
         holder.binding.addCart.setOnClickListener {
-            itemClick("Deal ${getItemPosition.id}", getItemPosition.price)
+            itemClick("Deal ${getItemPosition.id}", getItemPosition.price!!)
         }
 
         holder.itemView.setOnClickListener {

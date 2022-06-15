@@ -4,7 +4,6 @@ import androidx.lifecycle.*
 import com.example.pizzamax.data.repository.ProductRepository
 import com.example.pizzamax.model.*
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class ProductViewModel(
@@ -118,7 +117,7 @@ class ProductViewModel(
             repository.insertToRoom(expenses)
         }
      fun updateExpenses(expenses: MutableList<Expenses>) {
-         viewModelScope.launch(Dispatchers.Main) {
+         viewModelScope.launch(Dispatchers.IO) {
              repository.updateList(expenses)
          }
      }

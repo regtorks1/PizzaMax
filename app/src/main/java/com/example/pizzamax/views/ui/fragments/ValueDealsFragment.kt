@@ -10,8 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.MainActivity
+import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentValueDealsBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.*
@@ -55,7 +57,6 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
                         Log.d("TOTAL ITEM", "::::::::::::::::::::::$iterator")
                         Log.d("Total Amt", ":::::::::::::::::::::::${(amount)}")
                     })
-                    bindingMainActivity.linearViewCart.visibility = View.VISIBLE
                     bindingMainActivity.viewCart.visibility = View.VISIBLE
                     bindingMainActivity.nextView.visibility = View.VISIBLE
                 }
@@ -102,23 +103,25 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
     override fun addToFavorites(favorites: ValuesDeals) {
         val list = listOf(
             Favorites(
-                imgUrl = favorites.imgUrl,
-                price = favorites.price,
-                size = favorites.size
+                imgUrl = favorites.imgUrl!!,
+                price = favorites.price!!,
+                size = favorites.size!!
             )
         )
         productViewmodel.insertIntoFavorites(list)
-        startActivity(Intent(requireContext(), FavoritesActivity::class.java))
+        findNavController().navigate(R.id.action_homeFragment_to_favoritesFragment)
+//        startActivity(Intent(requireContext(), FavoritesActivity::class.java))
     }
 
 
     override fun onDetailsOnItemClicked(details: ValuesDeals) {
-        val intent = Intent(requireContext(), DetailsActivity::class.java)
+        findNavController().navigate(R.id.action_homeFragment_to_detailsFragment)
+        /*val intent = Intent(requireContext(), DetailsActivity::class.java)
         intent.putExtra(type, "details")
         intent.putExtra(imgUrl, details.imgUrl)
         intent.putExtra(size, details.size)
         intent.putExtra(price, details.price)
-        startActivity(intent)
+        startActivity(intent)*/
     }
 
     override fun onDetailsOnItemClicked(details: BigBetter) {

@@ -8,17 +8,17 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface SignatureDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertToRoom(signaturePizza: SignaturePizza)
+    fun insertToRoom(signaturePizza: SignaturePizza)
 
     @Update
-    suspend fun updateList(signaturePizza: SignaturePizza)
+     fun updateList(signaturePizza: SignaturePizza)
 
     @Query("SELECT * FROM signature ORDER BY id ASC")
     fun getAllFromSignature(): Flow<List<SignaturePizza>>
 
     @Query("DELETE FROM signature")
-    suspend fun deleteAllFromSignature()
+    fun deleteAllFromSignature()
 
      @Delete
-    suspend fun deleteItem(signaturePizza: SignaturePizza)//single item
+     fun deleteItem(signaturePizza: SignaturePizza)//single item
 }

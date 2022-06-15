@@ -8,17 +8,17 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface FavoritesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertToFavorites(favorites: List<Favorites>)
+     fun insertToFavorites(favorites: List<Favorites>)
 
     @Update
-    suspend fun updateList(favorites: Favorites)
+     fun updateList(favorites: Favorites)
 
     @Query("SELECT * FROM favorites ORDER BY id ASC")
     fun getAllFromFavorites(): Flow<List<Favorites>>
 
     @Query("DELETE FROM favorites")
-    suspend fun deleteFromFavorites()
+    fun deleteFromFavorites()
 
      @Delete
-    suspend fun deleteItem(favorites: MutableList<Favorites>)//single item
+    fun deleteItem(favorites: MutableList<Favorites>)//single item
 }

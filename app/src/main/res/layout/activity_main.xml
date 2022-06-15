@@ -9,101 +9,17 @@
     android:background="@color/grey">
 
 
-<!--<ImageView-->
-<!--    android:id="@+id/poster"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="240dp"-->
-<!--    app:layout_constraintTop_toTopOf="parent"-->
-<!--    app:layout_constraintStart_toStartOf="parent"-->
-<!--    app:layout_constraintEnd_toEndOf="parent"-->
-<!--    android:background="@drawable/pizza_max_poster"/>-->
-
-
-
-
-    <com.smarteist.autoimageslider.SliderView
-        android:id="@+id/slider"
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:sliderAnimationDuration="600"
-        app:sliderAutoCycleDirection="back_and_forth"
-        app:sliderIndicatorAnimationDuration="600"
-        app:sliderIndicatorEnabled="true"
-        app:sliderIndicatorGravity="center_horizontal|bottom"
-        app:sliderIndicatorMargin="5dp"
-        app:sliderIndicatorOrientation="horizontal"
-        app:sliderIndicatorPadding="5dp"
-        app:sliderIndicatorRadius="2dp"
-        app:sliderIndicatorSelectedColor="#FFF"
-        app:sliderIndicatorUnselectedColor="@color/grey"
-        app:sliderScrollTimeInSec="1"
-        >
-    </com.smarteist.autoimageslider.SliderView>
-
-
-
-
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/slider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-        app:tabGravity="center"
-        app:tabIndicatorColor="@color/red"
-        app:tabIndicatorHeight="2dp"
-        app:tabMode="scrollable"
-        app:tabTextColor="@color/black"
-      />
-
-    <include
-       android:id="@+id/custom_view"
-       layout="@layout/first_alertdialog"
-        android:visibility="invisible"
-       tools:layout_editor_absoluteX="0dp"
-       tools:layout_editor_absoluteY="112dp" />
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
-
-        <!--<com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/max_value_deals"
-            />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/_2_big_2_better"/>
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/appetizers"/>
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/signature_pizza"/>
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/max_value_deals"/>-->
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/mobile_navigation" />
     <LinearLayout
 
         android:id="@+id/linear_view_cart"
@@ -155,6 +71,7 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         android:layout_marginTop="630dp"
+         android:visibility="invisible"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -169,6 +86,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"
         android:src="@drawable/keyboard_arrow_"
         android:layout_marginTop="630dp"
         android:clickable="true"
