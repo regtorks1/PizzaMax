@@ -50,8 +50,10 @@ class BigBetterFragment : Fragment(), AdapterListImpl {
         val recyclerAdapter: BigBetterAdapter by lazy {
             BigBetterAdapter(
                 this
-            ){title, price -> mainAlertDialog(title, price){
+            ) {title, price -> mainAlertDialog(title, price){
                 bindingMainActivity.linearViewCart.visibility = View.VISIBLE
+                bindingMainActivity.nextView.visibility = View.VISIBLE
+                bindingMainActivity.viewCart.visibility = View.VISIBLE
             }
 
             }

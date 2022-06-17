@@ -58,7 +58,6 @@ class AppetizersRecyclerAdapter(
 
     }
 
-
      class ListComparator : DiffUtil.ItemCallback<Appetizers>() {
         override fun areItemsTheSame(oldItem: Appetizers, newItem: Appetizers): Boolean {
             return oldItem == newItem

@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pizzamax.MainActivity
 import com.example.pizzamax.databinding.FragmentSignaturePizzaBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.*
@@ -44,11 +45,15 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSignaturePizzaBinding.inflate(layoutInflater)
+        val bindingMainActivity = (activity as MainActivity).binding
         val recyclerAdapter: SignatureRecyclerAdapter by lazy {
             SignatureRecyclerAdapter(
                 this
             ){title, price ->
                 mainAlertDialog(title, price){
+                    bindingMainActivity.linearViewCart.visibility = View.VISIBLE
+                    bindingMainActivity.nextView.visibility = View.VISIBLE
+                    bindingMainActivity.viewCart.visibility = View.VISIBLE
                 }
             }
         }  //initialize adapter

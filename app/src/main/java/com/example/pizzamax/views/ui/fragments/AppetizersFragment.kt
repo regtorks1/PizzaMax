@@ -51,6 +51,8 @@ class AppetizersFragment : Fragment(), AdapterListImpl {
             AppetizersRecyclerAdapter(this){title, price ->
                 mainAlertDialog(title, price){
                     bindingMainActivity.linearViewCart.visibility = View.VISIBLE
+                    bindingMainActivity.nextView.visibility = View.VISIBLE
+                    bindingMainActivity.viewCart.visibility = View.VISIBLE
                 }
             }
         }  //initialize adapter
