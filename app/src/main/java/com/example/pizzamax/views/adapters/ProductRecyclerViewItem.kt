@@ -1,4 +1,4 @@
-package com.example.pizzamax.model
+package com.example.pizzamax.views.adapters
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

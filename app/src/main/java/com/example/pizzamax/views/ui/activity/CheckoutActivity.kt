@@ -25,9 +25,9 @@ import kotlinx.coroutines.launch
 class CheckoutActivity : AppCompatActivity(), CartAdapter.CartImpl{
     private lateinit var binding: ActivityCheckoutBinding
 
-    private val productViewmodel: ActivityViewmodel by viewModels {
+   /* private val productViewmodel: ActivityViewmodel by viewModels {
         ActivityViewModelFactory((application as App).productRepository)
-    }
+    }*/
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,11 +39,11 @@ class CheckoutActivity : AppCompatActivity(), CartAdapter.CartImpl{
         val thisRecycler = binding.recyclerView
         thisRecycler.adapter = cartAdapter
         thisRecycler.layoutManager = LinearLayoutManager(this)
-        productViewmodel.getAllFromCart.observe(this, Observer {
+     /*   productViewmodel.getAllFromCart.observe(this, Observer {
             lifecycleScope.launch {
                 cartAdapter.submitList(it)
             }
-        })
+        })*/
 
 
         //Spinner

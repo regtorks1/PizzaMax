@@ -13,16 +13,14 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.room.RoomDatabase
 import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
 import com.example.pizzamax.R
 import com.example.pizzamax.di.App
-import com.example.pizzamax.model.Cart
-import com.example.pizzamax.model.Expenses
-import com.example.pizzamax.viewmodel.ProductViewModel
-import com.example.pizzamax.viewmodel.ProductViewModelFactory
+import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
+import com.example.pizzamax.viewmodel.ProductListViewModel
+import com.example.pizzamax.viewmodel.ProductListViewModelFactory
 import kotlinx.coroutines.launch
 
 /**
@@ -47,8 +45,8 @@ fun Fragment.mainAlertDialog(
     title: String, price: String,
     itemClickListener: () -> Unit
 ){
-        val productViewmodel: ProductViewModel by viewModels {
-        ProductViewModelFactory((activity?.application as App).productRepository)
+         val productViewmodel: ProductListViewModel by viewModels {
+        ProductListViewModelFactory((activity?.application as App).productRepository)
     }
 
     val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog).create()
@@ -91,7 +89,8 @@ fun Fragment.mainAlertDialog(
     }
 
     addToCartBtn.setOnClickListener {
-             val list = listOf(Cart(
+             val list = listOf(
+                 ProductRecyclerViewItem.Cart(
                  itemName = title,
                  price = total.text.toString(),
                  quantity = increment.text.toString(),
@@ -106,7 +105,7 @@ fun Fragment.mainAlertDialog(
         lifecycleScope.launch {
             Log.d("DATABASE","::::::::${productViewmodel.insertIntoCart(list)}")
             productViewmodel.updateExpenses(mutableListOf(
-                Expenses(quantity = increment.text.toString(), amount = total.text.toString())
+                ProductRecyclerViewItem.Expenses(quantity = increment.text.toString(), amount = total.text.toString())
             ))
         }
         itemClickListener()

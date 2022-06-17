@@ -17,20 +17,19 @@ import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentValueDealsBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.*
-import com.example.pizzamax.viewmodel.ProductViewModel
-import com.example.pizzamax.viewmodel.ProductViewModelFactory
+import com.example.pizzamax.viewmodel.ProductListViewModel
+import com.example.pizzamax.viewmodel.ProductListViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
-import com.example.pizzamax.views.adapters.ValuesDealRecyclerAdapter
+import com.example.pizzamax.views.adapters.ProductRecyclerViewAdapter
+import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
 import com.example.pizzamax.views.ui.activity.CheckoutActivity
-import com.example.pizzamax.views.ui.activity.DetailsActivity
-import com.example.pizzamax.views.ui.activity.FavoritesActivity
 import com.example.pizzamax.views.util.mainAlertDialog
 import kotlinx.coroutines.launch
 
 class ValueDealsFragment : Fragment(), AdapterListImpl {
 
-    private val productViewmodel: ProductViewModel by viewModels {
-        ProductViewModelFactory((activity?.application as App).productRepository)
+    private val productViewmodel: ProductListViewModel by viewModels {
+        ProductListViewModelFactory((activity?.application as App).productRepository)
     }
     private lateinit var binding: FragmentValueDealsBinding
 
@@ -41,8 +40,8 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         binding = FragmentValueDealsBinding.inflate(layoutInflater)
         val bindingMainActivity = (activity as MainActivity).binding
 
-          val recyclerAdapter: ValuesDealRecyclerAdapter by lazy {
-            ValuesDealRecyclerAdapter(this) { title, price ->
+        val recyclerAdapter: ProductRecyclerViewAdapter by lazy {
+            ProductRecyclerViewAdapter(this) { title, price ->
                 mainAlertDialog(title, price) {
                     productViewmodel.getAllFromCart.observe(viewLifecycleOwner, Observer { list ->
                         list.forEach {
@@ -71,7 +70,7 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         productViewmodel.getList.observe(viewLifecycleOwner, Observer {
             lifecycleScope.launch {
                 it.size
-                recyclerAdapter.submitList(it)
+                recyclerAdapter.items = it
             }
         })
 
@@ -102,26 +101,23 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
 
     override fun addToFavorites(favorites: ValuesDeals) {
         val list = listOf(
-            Favorites(
+            ProductRecyclerViewItem.Favorites(
                 imgUrl = favorites.imgUrl!!,
                 price = favorites.price!!,
                 size = favorites.size!!
             )
         )
         productViewmodel.insertIntoFavorites(list)
-        findNavController().navigate(R.id.action_homeFragment_to_favoritesFragment)
-//        startActivity(Intent(requireContext(), FavoritesActivity::class.java))
     }
 
 
     override fun onDetailsOnItemClicked(details: ValuesDeals) {
-        findNavController().navigate(R.id.action_homeFragment_to_detailsFragment)
-        /*val intent = Intent(requireContext(), DetailsActivity::class.java)
-        intent.putExtra(type, "details")
-        intent.putExtra(imgUrl, details.imgUrl)
-        intent.putExtra(size, details.size)
-        intent.putExtra(price, details.price)
-        startActivity(intent)*/
+        val bundle = Bundle()
+        bundle.putString(type, "details")
+        bundle.putString(imgUrl, details.imgUrl)
+        bundle.putString(size, details.size)
+        bundle.putString(price, details.price)
+        findNavController().navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
     }
 
     override fun onDetailsOnItemClicked(details: BigBetter) {

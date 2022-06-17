@@ -1,25 +1,41 @@
 package com.example.pizzamax.viewmodel
 
 import androidx.lifecycle.*
-import com.example.pizzamax.data.repository.ProductRepository
-import com.example.pizzamax.model.*
+import com.example.pizzamax.data.repository.ProductListRepository
+import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
+import com.example.pizzamax.views.util.Resource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-class ProductViewModel(
-    private val repository: ProductRepository
+class ProductListViewModel(
+    private val repository: ProductListRepository
 ) : ViewModel() {
-    private val _details: MutableLiveData<ValuesDeals> = MutableLiveData()
-    val details: LiveData<ValuesDeals> get() = _details
+    private val _productItems: MutableLiveData<Resource<List<ProductRecyclerViewItem>>> =
+        MutableLiveData()
+    val productItems: LiveData<Resource<List<ProductRecyclerViewItem>>> get() = _productItems
+
+
+     private val _productDeals: MutableLiveData<Resource<ProductRecyclerViewItem.ValuesDeals>> =
+        MutableLiveData()
+    val productDeals: LiveData<Resource<ProductRecyclerViewItem.ValuesDeals>> get() = _productDeals
+
 
     //VALUE DEALS
-    fun insertIntoRoom(valueDeals: ValuesDeals) = viewModelScope.launch {
-        _details.postValue(valueDeals)
-        repository.insertToRoom(valueDeals)
+
+    fun addToDealTable(valueDeals: ProductRecyclerViewItem.ValuesDeals) = viewModelScope.launch {
+        _productItems.postValue(Resource.Loading)
+        val deferredDeal = async{ repository.insertToRoom(valueDeals) }
+        if (deferredDeal.isCompleted){
+            _productDeals.value = Resource.Success(valueDeals)
+        }else{
+            Resource.Failure(false, "Insert err")
+        }
+
     }
 
-    fun updateList(valueDeals: ValuesDeals) = viewModelScope.launch {
-        _details.postValue(valueDeals)
+    fun updateList(valueDeals: ProductRecyclerViewItem.ValuesDeals) = viewModelScope.launch {
+        //_productItems.postValue(valueDeals)
         repository.updateList(valueDeals)
     }
 
@@ -27,15 +43,15 @@ class ProductViewModel(
         repository.deleteAll()
     }
 
-    val getList: LiveData<List<ValuesDeals>> = repository.getAll().asLiveData()
+    val getList: LiveData<List<ProductRecyclerViewItem.ValuesDeals>> = repository.getAll().asLiveData()
 
 
     //BIG BETTER
-    fun insertIntoRoom(bigBetter: BigBetter) = viewModelScope.launch {
+    fun insertIntoRoom(bigBetter: ProductRecyclerViewItem.BigBetter) = viewModelScope.launch {
         repository.insertToRoom(bigBetter)
     }
 
-    fun updateList(bigBetter: BigBetter) = viewModelScope.launch {
+    fun updateList(bigBetter: ProductRecyclerViewItem.BigBetter) = viewModelScope.launch {
         repository.updateList(bigBetter)
     }
 
@@ -43,69 +59,75 @@ class ProductViewModel(
         repository.deleteFromBigBetter()
     }
 
-    val getAllFromBigBetter: LiveData<List<BigBetter>> = repository.getAllFromBigBetter()
+    val getAllFromBigBetter: LiveData<List<ProductRecyclerViewItem.BigBetter>> = repository.getAllFromBigBetter()
         .asLiveData()
 
 
     //APPETIZERS
-    fun insertIntoRoom(appetizers: Appetizers) = viewModelScope.launch {
+    fun insertIntoRoom(appetizers: ProductRecyclerViewItem.Appetizers) = viewModelScope.launch {
         repository.insertToRoom(appetizers)
     }
 
-    fun updateList(appetizers: Appetizers) = viewModelScope.launch {
+    fun updateList(appetizers: ProductRecyclerViewItem.Appetizers) = viewModelScope.launch {
         repository.updateList(appetizers)
     }
 
-    fun deleteAllFromAppetizers()= viewModelScope.launch {
+    fun deleteAllFromAppetizers() = viewModelScope.launch {
         repository.deleteAllFromAppetizers()
     }
 
-    val getAllFromAppetizers: LiveData<List<Appetizers>> = repository.getAllFromAppetizers().asLiveData()
+    val getAllFromAppetizers: LiveData<List<ProductRecyclerViewItem.Appetizers>> =
+        repository.getAllFromAppetizers().asLiveData()
 
 
-
-     //SIGNATURE PIZZA
-    fun insertIntoRoom(signaturePizza: SignaturePizza) = viewModelScope.launch {
+    //SIGNATURE PIZZA
+    fun insertIntoRoom(signaturePizza: ProductRecyclerViewItem.SignaturePizza) = viewModelScope.launch {
         repository.insertToRoom(signaturePizza)
     }
 
-    fun updateList(signaturePizza: SignaturePizza) = viewModelScope.launch {
+    fun updateList(signaturePizza: ProductRecyclerViewItem.SignaturePizza) = viewModelScope.launch {
         repository.updateList(signaturePizza)
     }
 
-    fun deleteAllFromPizza()= viewModelScope.launch {
+    fun deleteAllFromPizza() = viewModelScope.launch {
         repository.deleteAllFromSignature()
     }
 
-    val getAllFromSignature: LiveData<List<SignaturePizza>> = repository.getAllFromSignature().asLiveData()
+    val getAllFromSignature: LiveData<List<ProductRecyclerViewItem.SignaturePizza>> =
+        repository.getAllFromSignature().asLiveData()
 
-     //CART
-    fun insertIntoCart(cart: List<Cart>) = viewModelScope.launch {
+    //CART
+    fun insertIntoCart(cart: List<ProductRecyclerViewItem.Cart>) = viewModelScope.launch {
         //_details.postValue(cart)
         repository.insertToRoom(cart)
     }
-    fun updateCart(cart: Cart) = viewModelScope.launch {
+
+    fun updateCart(cart: ProductRecyclerViewItem.Cart) = viewModelScope.launch {
         repository.updateList(cart)
     }
+
     fun deleteAllFromCart() = viewModelScope.launch {
         repository.deleteFromCart()
     }
-    val getAllFromCart: LiveData<List<Cart>> = repository.getAllFromCart().asLiveData()
 
+    val getAllFromCart: LiveData<List<ProductRecyclerViewItem.Cart>> = repository.getAllFromCart().asLiveData()
 
 
     //FAVORITES
-    fun insertIntoFavorites(favorites: List<Favorites>) = viewModelScope.launch {
+    fun insertIntoFavorites(favorites: List<ProductRecyclerViewItem.Favorites>) = viewModelScope.launch {
         repository.insertToFavorites(favorites)
     }
-    fun updateFavorites(favorites: Favorites) = viewModelScope.launch {
+
+    fun updateFavorites(favorites: ProductRecyclerViewItem.Favorites) = viewModelScope.launch {
         repository.updateList(favorites)
     }
+
     fun deleteAllFromFavorites() = viewModelScope.launch {
         repository.deleteFromFavorites()
     }
-    val getAllFavorites: LiveData<List<Favorites>> = repository.getAllFromFavorites().asLiveData()
-    fun deleteFavorite(favorites: MutableList<Favorites>) {
+
+    val getAllFavorites: LiveData<List<ProductRecyclerViewItem.Favorites>> = repository.getAllFromFavorites().asLiveData()
+    fun deleteFavorite(favorites: MutableList<ProductRecyclerViewItem.Favorites>) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteItem(favorites)
         }
@@ -113,15 +135,21 @@ class ProductViewModel(
 
 
     //EXPENSES
-        fun addToExpenses(expenses: Expenses) = viewModelScope.launch {
-            repository.insertToRoom(expenses)
-        }
-     fun updateExpenses(expenses: MutableList<Expenses>) {
-         viewModelScope.launch(Dispatchers.IO) {
-             repository.updateList(expenses)
-         }
-     }
+    fun addToExpenses(expenses: ProductRecyclerViewItem.Expenses) = viewModelScope.launch {
+        repository.insertToRoom(expenses)
+    }
 
-    val getFromExpenses: LiveData<List<Expenses>> = repository.getAllExpenses().asLiveData()
+    fun updateExpenses(expenses: MutableList<ProductRecyclerViewItem.Expenses>) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateList(expenses)
+        }
+    }
+
+    val getFromExpenses: LiveData<List<ProductRecyclerViewItem.Expenses>> = repository.getAllExpenses().asLiveData()
+
+
+    private fun callBack(callback: () -> Unit) = viewModelScope.launch(Dispatchers.IO) {
+        callback()
+    }
 
 }

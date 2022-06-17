@@ -2,13 +2,14 @@ package com.example.pizzamax.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.pizzamax.data.repository.ProductListRepository
 import com.example.pizzamax.data.repository.ProductRepository
 
-class ActivityViewModelFactory (private val repository: ProductRepository):ViewModelProvider.Factory{
+class ProductListViewModelFactory (private val repository: ProductListRepository):ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-       if (modelClass.isAssignableFrom(ActivityViewmodel::class.java)) {
+       if (modelClass.isAssignableFrom(ProductListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return ActivityViewmodel(repository) as T
+            return ProductListViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModelFactory Class")
     }

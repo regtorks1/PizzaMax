@@ -14,19 +14,19 @@ import com.example.pizzamax.MainActivity
 import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentFavoritesBinding
 import com.example.pizzamax.di.App
-import com.example.pizzamax.model.Favorites
-import com.example.pizzamax.viewmodel.ActivityViewModelFactory
-import com.example.pizzamax.viewmodel.ProductViewModel
-import com.example.pizzamax.viewmodel.ProductViewModelFactory
+import com.example.pizzamax.model.*
+import com.example.pizzamax.viewmodel.*
+import com.example.pizzamax.views.adapters.AdapterListImpl
 import com.example.pizzamax.views.adapters.FavoritesAdapter
+import com.example.pizzamax.views.adapters.ProductRecyclerViewAdapter
 import com.example.pizzamax.views.util.mainAlertDialog
 import kotlinx.coroutines.launch
 
-class FavoritesFragment : Fragment(), FavoritesAdapter.OnFavoriteDetailPage {
+class FavoritesFragment : Fragment(), AdapterListImpl {
     private lateinit var binding: FragmentFavoritesBinding
 
-    private val productViewmodel: ProductViewModel by viewModels {
-        ProductViewModelFactory((activity?.application as App).productRepository)
+    private val productViewmodel: ProductListViewModel by viewModels {
+        ProductListViewModelFactory((activity?.application as App).productRepository)
     }
 
     override fun onCreateView(
@@ -35,50 +35,73 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.OnFavoriteDetailPage {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentFavoritesBinding.inflate(layoutInflater)
+         val bindingMainActivity = (activity as MainActivity).binding
 
-      /*  fun visibility() = (activity as MainActivity).binding.apply {
-            linearViewCart.visibility = View.VISIBLE
-            nextView.visibility = View.VISIBLE
-            viewCart.visibility = View.VISIBLE
-
-        }*/
-
-
-        val favoritesAdapter: FavoritesAdapter by lazy {
-            FavoritesAdapter(this) { title, price ->
-                mainAlertDialog(title, price) {
-                   // visibility()
-                  (activity as MainActivity).binding.linearViewCart.visibility = View.VISIBLE
+       val recyclerAdapter: ProductRecyclerViewAdapter by lazy {
+            ProductRecyclerViewAdapter(this){ title, price ->
+                mainAlertDialog(title, price){
+                    bindingMainActivity.linearViewCart.visibility = View.VISIBLE
                 }
             }
         }
-
-
          //recycler setup
         val thisRecycler = binding.recyclerView
-        thisRecycler.adapter = favoritesAdapter
+        thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(requireContext())
         productViewmodel.getAllFavorites.observe(requireActivity(), Observer {
-            favoritesAdapter.submitList(it)
+            recyclerAdapter.items = it
         })
 
         return binding.root
     }
 
-    override fun viewDetail(favorites: Favorites) {
-        //TODO will pass safeArgs here
-        findNavController().navigate(R.id.action_favoritesFragment_to_detailsFragment)
+    override fun onAddCart(cart: ValuesDeals) {
+        TODO("Not yet implemented")
     }
 
-    override fun onItemRemoveClick(position: Int) {
-        /*val list = favoritesAdapter.currentList.toMutableList()
-        *//*val id = list[position].id
-        val size = list[position].size
-        val price = list[position].price
-        val imgUrl = list[position].imgUrl*//*
-        lifecycleScope.launch {
-            productViewmodel.deleteFavorite(list)
-        }*/
+    override fun onAddCart(cart: Favorites) {
+        TODO("Not yet implemented")
     }
+
+    override fun onAddCart(cart: Appetizers) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onAddCart(cart: BigBetter) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addToFavorites(favorites: ValuesDeals) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addToFavorites(favorites: BigBetter) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addToFavorites(favorites: SignaturePizza) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addToFavorites(favorites: Appetizers) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDetailsOnItemClicked(details: ValuesDeals) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDetailsOnItemClicked(details: BigBetter) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDetailsOnItemClicked(details: Appetizers) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDetailsOnItemClicked(details: SignaturePizza) {
+        TODO("Not yet implemented")
+    }
+
 
 }

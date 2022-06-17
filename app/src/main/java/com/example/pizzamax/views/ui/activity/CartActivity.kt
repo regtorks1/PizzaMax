@@ -16,9 +16,9 @@ import kotlinx.coroutines.launch
 
 class CartActivity : AppCompatActivity(), CartAdapter.CartImpl {
 
-    private val productViewmodel: ProductViewModel by viewModels {
+   /* private val productViewmodel: ProductViewModel by viewModels {
         ProductViewModelFactory((application as App).productRepository)
-    }
+    }*/
 
     private val cartAdapter: CartAdapter by lazy {
         CartAdapter(this)
@@ -37,11 +37,11 @@ class CartActivity : AppCompatActivity(), CartAdapter.CartImpl {
         thisRecycler.adapter = cartAdapter
         thisRecycler.layoutManager = LinearLayoutManager(this)
 
-        productViewmodel.getAllFromCart.observe(this, Observer {
+      /*  productViewmodel.getAllFromCart.observe(this, Observer {
             lifecycleScope.launch {
                 cartAdapter.submitList(it)
             }
-        })
+        })*/
     }
 
     /* override fun onCreateView(

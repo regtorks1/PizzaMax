@@ -6,23 +6,23 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.pizzamax.data.dao.*
-import com.example.pizzamax.model.*
+import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
 import kotlinx.coroutines.CoroutineScope
 
 @Database(
-    entities = [ValuesDeals::class, BigBetter::class, Appetizers::class, SignaturePizza::class, Cart::class, Favorites::class, Expenses::class],
+    entities = [ProductRecyclerViewItem.ValuesDeals::class, ProductRecyclerViewItem.BigBetter::class, ProductRecyclerViewItem.Appetizers::class, ProductRecyclerViewItem.SignaturePizza::class, ProductRecyclerViewItem.Cart::class, ProductRecyclerViewItem.Favorites::class, ProductRecyclerViewItem.Expenses::class],
     version = 1,
     exportSchema = true
 )
 @TypeConverters(Converters::class)
 abstract class RoomDb : RoomDatabase() {
-    abstract fun dealsDao(): ValueDealsDao
-    abstract fun bigBetterDao(): BigBetterDoa
-    abstract fun signatureDao(): SignatureDao
-    abstract fun appetizersDao(): AppetizersDao
-    abstract fun favoritesDao(): FavoritesDao
-    abstract fun cartDao(): CartDao
-    abstract fun expensesDao(): ExpensesDao
+    abstract fun dealsDao(): ProductListDao.ValueDealsDao
+    abstract fun bigBetterDao(): ProductListDao.BigBetterDoa
+    abstract fun signatureDao(): ProductListDao.SignatureDao
+    abstract fun appetizersDao(): ProductListDao.AppetizersDao
+    abstract fun favoritesDao(): ProductListDao.FavoritesDao
+    abstract fun cartDao(): ProductListDao.CartDao
+    abstract fun expensesDao(): ProductListDao.ExpensesDao
 
     companion object {
         @Volatile// Singleton prevents multiple instances of database opening at the same time

@@ -1,6 +1,5 @@
 package com.example.pizzamax.views.ui.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,17 +8,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pizzamax.MainActivity
+import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentSignaturePizzaBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.*
-import com.example.pizzamax.viewmodel.ProductViewModel
-import com.example.pizzamax.viewmodel.ProductViewModelFactory
+import com.example.pizzamax.viewmodel.ProductListViewModel
+import com.example.pizzamax.viewmodel.ProductListViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
-import com.example.pizzamax.views.adapters.SignatureRecyclerAdapter
-import com.example.pizzamax.views.ui.activity.CheckoutActivity
-import com.example.pizzamax.views.ui.activity.DetailsActivity
-import com.example.pizzamax.views.ui.activity.FavoritesActivity
+import com.example.pizzamax.views.adapters.ProductRecyclerViewAdapter
+import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.imgUrl
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.price
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.size
@@ -29,8 +29,8 @@ import kotlinx.coroutines.launch
 
 class SignaturePizzaFragment : Fragment(), AdapterListImpl {
 
-    private val productViewmodel: ProductViewModel by viewModels {
-        ProductViewModelFactory((activity?.application as App).productRepository)
+    private val productViewmodel: ProductListViewModel by viewModels {
+        ProductListViewModelFactory((activity?.application as App).productRepository)
     }
 
     companion object {
@@ -44,11 +44,11 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSignaturePizzaBinding.inflate(layoutInflater)
-        val recyclerAdapter: SignatureRecyclerAdapter by lazy {
-            SignatureRecyclerAdapter(
-                this
-            ){title, price ->
+        val bindingMainActivity = (activity as MainActivity).binding
+       val recyclerAdapter: ProductRecyclerViewAdapter by lazy {
+            ProductRecyclerViewAdapter(this){ title, price ->
                 mainAlertDialog(title, price){
+                    bindingMainActivity.linearViewCart.visibility = View.VISIBLE
                 }
             }
         }  //initialize adapter
@@ -59,7 +59,7 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
 
         productViewmodel.getAllFromSignature.observe(viewLifecycleOwner, Observer {
             lifecycleScope.launch {
-                recyclerAdapter.submitList(it)
+                 recyclerAdapter.items = it
             }
         })
         return binding.root
@@ -92,14 +92,14 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
 
     override fun addToFavorites(favorites: SignaturePizza) {
          val list = listOf(
-            Favorites(
+            ProductRecyclerViewItem.Favorites(
                 imgUrl = favorites.imgUrl,
                 price = favorites.price,
                 size = favorites.size
             )
         )
         productViewmodel.insertIntoFavorites(list)
-        startActivity(Intent(requireContext(), FavoritesActivity::class.java))
+        findNavController().navigate(R.id.action_signaturePizzaFragment_to_favoritesFragment)
     }
 
     override fun addToFavorites(favorites: Appetizers) {
@@ -119,12 +119,12 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
     }
 
     override fun onDetailsOnItemClicked(details: SignaturePizza) {
-         val intent = Intent(requireContext(), DetailsActivity::class.java)
-        intent.putExtra(type, "details")
-        intent.putExtra(imgUrl, details.imgUrl)
-        intent.putExtra(size, details.size)
-        intent.putExtra(price, details.price)
-        startActivity(intent)
+      val bundle = Bundle()
+        bundle.putString(type, "details")
+        bundle.putString(imgUrl, details.imgUrl)
+        bundle.putString(size, details.size)
+        bundle.putString(price, details.price)
+        findNavController().navigate(R.id.action_signaturePizzaFragment_to_favoritesFragment, bundle)
     }
 
 }

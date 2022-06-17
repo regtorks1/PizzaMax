@@ -1,10 +1,12 @@
 package com.example.pizzamax.views.ui.fragments
 
 import android.os.Bundle
+import android.view.*
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import androidx.core.view.MenuItemCompat.getActionView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentHomeBinding
 import com.example.pizzamax.model.SliderData
@@ -17,6 +19,12 @@ import com.smarteist.autoimageslider.SliderView
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,6 +36,32 @@ class HomeFragment : Fragment() {
         setupViewPager()
         imageSlider()
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater){
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.top_app_bar, menu)
+        val item: MenuItem = menu.findItem(R.id.spinner)
+        val spinner: Spinner = getActionView(item) as Spinner
+
+        val adapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.spinner_list_item_array, android.R.layout.simple_spinner_item
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+        return super.onCreateOptionsMenu(menu, inflater)
+    }
+
+     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.favorite -> {
+             findNavController().navigate(R.id.action_homeFragment_to_favoritesFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+
     }
 
       private fun setupViewPager() {
