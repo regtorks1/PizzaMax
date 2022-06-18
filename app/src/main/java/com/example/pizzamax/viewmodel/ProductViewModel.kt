@@ -1,6 +1,7 @@
 package com.example.pizzamax.viewmodel
 
 import androidx.lifecycle.*
+import androidx.room.Query
 import com.example.pizzamax.data.repository.ProductRepository
 import com.example.pizzamax.model.*
 import kotlinx.coroutines.Dispatchers
@@ -12,116 +13,36 @@ class ProductViewModel(
     private val _details: MutableLiveData<ValuesDeals> = MutableLiveData()
     val details: LiveData<ValuesDeals> get() = _details
 
-    //VALUE DEALS
-    fun insertIntoRoom(valueDeals: ValuesDeals) = viewModelScope.launch {
-        _details.postValue(valueDeals)
-        repository.insertToRoom(valueDeals)
+    //CATEGORIES
+    fun insertIntoCategories(categories: Categories) = viewModelScope.launch {
+        repository.insertToCategories(categories)
     }
 
-    fun updateList(valueDeals: ValuesDeals) = viewModelScope.launch {
-        _details.postValue(valueDeals)
-        repository.updateList(valueDeals)
+    fun updateCategories(categories: Categories) = viewModelScope.launch {
+        repository.updateCategories(categories)
     }
 
-    fun deleteAll() = viewModelScope.launch {
-        repository.deleteAll()
+    fun deleteAllCategories() = viewModelScope.launch {
+        repository.deleteAllFromCategories()
     }
 
-    val getList: LiveData<List<ValuesDeals>> = repository.getAll().asLiveData()
+    val getCategories: LiveData<List<Categories>> = repository.getAllFromCategories().asLiveData()
 
 
-    //BIG BETTER
-    fun insertIntoRoom(bigBetter: BigBetter) = viewModelScope.launch {
-        repository.insertToRoom(bigBetter)
+     //CATEGORIES LIST
+    fun insertIntoCategories(categories: CategoriesList) = viewModelScope.launch {
+        repository.insertToCategoryList(categories)
     }
 
-    fun updateList(bigBetter: BigBetter) = viewModelScope.launch {
-        repository.updateList(bigBetter)
+    fun updateCategories(categories: CategoriesList) = viewModelScope.launch {
+        repository.updateCategoryList(categories)
     }
 
-    fun deleteAllFromBigBetter() = viewModelScope.launch {
-        repository.deleteFromBigBetter()
+    fun deleteAllList() = viewModelScope.launch {
+        repository.deleteAllFromCategoryList()
     }
 
-    val getAllFromBigBetter: LiveData<List<BigBetter>> = repository.getAllFromBigBetter()
-        .asLiveData()
+    fun  getCategoriesList(query: String): LiveData<List<CategoriesList>> = repository.getAllFromCategoryList(query).asLiveData()
 
-
-    //APPETIZERS
-    fun insertIntoRoom(appetizers: Appetizers) = viewModelScope.launch {
-        repository.insertToRoom(appetizers)
-    }
-
-    fun updateList(appetizers: Appetizers) = viewModelScope.launch {
-        repository.updateList(appetizers)
-    }
-
-    fun deleteAllFromAppetizers()= viewModelScope.launch {
-        repository.deleteAllFromAppetizers()
-    }
-
-    val getAllFromAppetizers: LiveData<List<Appetizers>> = repository.getAllFromAppetizers().asLiveData()
-
-
-
-     //SIGNATURE PIZZA
-    fun insertIntoRoom(signaturePizza: SignaturePizza) = viewModelScope.launch {
-        repository.insertToRoom(signaturePizza)
-    }
-
-    fun updateList(signaturePizza: SignaturePizza) = viewModelScope.launch {
-        repository.updateList(signaturePizza)
-    }
-
-    fun deleteAllFromPizza()= viewModelScope.launch {
-        repository.deleteAllFromSignature()
-    }
-
-    val getAllFromSignature: LiveData<List<SignaturePizza>> = repository.getAllFromSignature().asLiveData()
-
-     //CART
-    fun insertIntoCart(cart: List<Cart>) = viewModelScope.launch {
-        //_details.postValue(cart)
-        repository.insertToRoom(cart)
-    }
-    fun updateCart(cart: Cart) = viewModelScope.launch {
-        repository.updateList(cart)
-    }
-    fun deleteAllFromCart() = viewModelScope.launch {
-        repository.deleteFromCart()
-    }
-    val getAllFromCart: LiveData<List<Cart>> = repository.getAllFromCart().asLiveData()
-
-
-
-    //FAVORITES
-    fun insertIntoFavorites(favorites: List<Favorites>) = viewModelScope.launch {
-        repository.insertToFavorites(favorites)
-    }
-    fun updateFavorites(favorites: Favorites) = viewModelScope.launch {
-        repository.updateList(favorites)
-    }
-    fun deleteAllFromFavorites() = viewModelScope.launch {
-        repository.deleteFromFavorites()
-    }
-    val getAllFavorites: LiveData<List<Favorites>> = repository.getAllFromFavorites().asLiveData()
-    fun deleteFavorite(favorites: MutableList<Favorites>) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteItem(favorites)
-        }
-    }
-
-
-    //EXPENSES
-        fun addToExpenses(expenses: Expenses) = viewModelScope.launch {
-            repository.insertToRoom(expenses)
-        }
-     fun updateExpenses(expenses: MutableList<Expenses>) {
-         viewModelScope.launch(Dispatchers.IO) {
-             repository.updateList(expenses)
-         }
-     }
-
-    val getFromExpenses: LiveData<List<Expenses>> = repository.getAllExpenses().asLiveData()
 
 }

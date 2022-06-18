@@ -16,8 +16,8 @@ import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentBigBetterBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.*
-import com.example.pizzamax.viewmodel.ProductListViewModel
-import com.example.pizzamax.viewmodel.ProductListViewModelFactory
+import com.example.pizzamax.viewmodel.ProductViewModel
+import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
 import com.example.pizzamax.views.adapters.ProductRecyclerViewAdapter
 import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
@@ -30,9 +30,8 @@ import com.example.pizzamax.views.util.mainAlertDialog
 import kotlinx.coroutines.launch
 
 class BigBetterFragment : Fragment(), AdapterListImpl {
-
-    private val productViewmodel: ProductListViewModel by viewModels {
-        ProductListViewModelFactory((activity?.application as App).productRepository)
+ private val productViewmodel: ProductViewModel by viewModels {
+        ProductViewModelFactory((activity?.application as App).productRepository)
     }
 
     companion object {
@@ -60,7 +59,7 @@ class BigBetterFragment : Fragment(), AdapterListImpl {
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
-        productViewmodel.getAllFromBigBetter.observe(viewLifecycleOwner, Observer {
+        productViewmodel.getCategoriesList("better").observe(viewLifecycleOwner, Observer {
             lifecycleScope.launch {
                   recyclerAdapter.items = it
             }
@@ -99,7 +98,7 @@ class BigBetterFragment : Fragment(), AdapterListImpl {
                 size = favorites.size!!
             )
         )
-        productViewmodel.insertIntoFavorites(list)
+      //  productViewmodel.insertIntoFavorites(list)
         findNavController().navigate(R.id.action_bigBetterFragment_to_favoritesFragment)
     }
 

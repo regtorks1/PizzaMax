@@ -47,9 +47,6 @@ sealed class ProductRecyclerViewItem {
         @ColumnInfo(name = "amount") val amount: String
     ) : ProductRecyclerViewItem()
 
-
-
-
     @Entity(tableName = "signature")
     data class SignaturePizza(
         @PrimaryKey(autoGenerate = true) var id: Int = 0,

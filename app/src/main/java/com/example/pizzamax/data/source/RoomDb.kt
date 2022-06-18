@@ -6,16 +6,21 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.pizzamax.data.dao.*
+import com.example.pizzamax.model.Categories
+import com.example.pizzamax.model.CategoriesList
 import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
 import kotlinx.coroutines.CoroutineScope
 
 @Database(
-    entities = [ProductRecyclerViewItem.ValuesDeals::class, ProductRecyclerViewItem.BigBetter::class, ProductRecyclerViewItem.Appetizers::class, ProductRecyclerViewItem.SignaturePizza::class, ProductRecyclerViewItem.Cart::class, ProductRecyclerViewItem.Favorites::class, ProductRecyclerViewItem.Expenses::class],
+    entities = [Categories::class, CategoriesList::class],
     version = 1,
     exportSchema = true
 )
 @TypeConverters(Converters::class)
 abstract class RoomDb : RoomDatabase() {
+    abstract fun categoriesDao(): CategoriesDao
+    abstract fun categoryListDao(): CategoryListDao
+
     abstract fun dealsDao(): ProductListDao.ValueDealsDao
     abstract fun bigBetterDao(): ProductListDao.BigBetterDoa
     abstract fun signatureDao(): ProductListDao.SignatureDao
@@ -34,7 +39,7 @@ abstract class RoomDb : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     RoomDb::class.java,
-                    "MaxPDatabase"
+                    "PizzaMaxDb"
                 ).allowMainThreadQueries()
                     .addCallback(ListDatabaseCallback(context, scope))
                     .build()

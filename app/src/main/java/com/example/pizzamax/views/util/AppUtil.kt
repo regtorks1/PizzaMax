@@ -19,8 +19,8 @@ import coil.request.SuccessResult
 import com.example.pizzamax.R
 import com.example.pizzamax.di.App
 import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
-import com.example.pizzamax.viewmodel.ProductListViewModel
-import com.example.pizzamax.viewmodel.ProductListViewModelFactory
+import com.example.pizzamax.viewmodel.ProductViewModel
+import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import kotlinx.coroutines.launch
 
 /**
@@ -45,8 +45,8 @@ fun Fragment.mainAlertDialog(
     title: String, price: String,
     itemClickListener: () -> Unit
 ){
-         val productViewmodel: ProductListViewModel by viewModels {
-        ProductListViewModelFactory((activity?.application as App).productRepository)
+         val productViewmodel: ProductViewModel by viewModels {
+        ProductViewModelFactory((activity?.application as App).productRepository)
     }
 
     val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog).create()
@@ -103,10 +103,10 @@ fun Fragment.mainAlertDialog(
         Log.d("CART",":::::::::::::${list}")
 
         lifecycleScope.launch {
-            Log.d("DATABASE","::::::::${productViewmodel.insertIntoCart(list)}")
-            productViewmodel.updateExpenses(mutableListOf(
+           // Log.d("DATABASE","::::::::${productViewmodel.insertIntoCart(list)}")
+           /* productViewmodel.updateExpenses(mutableListOf(
                 ProductRecyclerViewItem.Expenses(quantity = increment.text.toString(), amount = total.text.toString())
-            ))
+            ))*/
         }
         itemClickListener()
         builder.dismiss()

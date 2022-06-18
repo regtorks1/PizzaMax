@@ -6,6 +6,8 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.pizzamax.data.dao.*
 import com.example.pizzamax.data.source.RoomDb.Companion.INSTANCE
+import com.example.pizzamax.model.Categories
+import com.example.pizzamax.model.CategoriesList
 import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -21,83 +23,65 @@ class ListDatabaseCallback(
         super.onCreate(db)
         INSTANCE?.let { database ->
             scope.launch {
-                populateDeals(database.dealsDao())
-                populateBigBetter(database.bigBetterDao())
-                populateAppetizers(database.appetizersDao())
-                populateSignature(database.signatureDao())
+                populateProductTable(
+                    database.categoriesDao(),
+                    database.categoryListDao()
+                )
             }
         }
     }
 
-    private suspend fun populateDeals(valueDealsDao: ProductListDao.ValueDealsDao) {
-        val bufferReader = application.assets.open("value_deala.json").bufferedReader()
-        val jsonString = bufferReader.use {
+
+    private suspend fun populateProductTable(
+        categoriesDao: CategoriesDao,
+        categoryListDao: CategoryListDao
+    ) {
+        val productReader = application.assets.open(product).bufferedReader()
+        val readText = productReader.use {
             it.readText()
         }
-        val jsonArray = JSONArray(jsonString)
-        for (i in 0 until jsonArray.length()) {
-            val jsonObject: JSONObject = jsonArray.getJSONObject(i)
-            val id = jsonObject.getString("id")
-            val size = jsonObject.getString("size")
-            val price = jsonObject.getString("price")
-            val imgUrl = jsonObject.getString("image")
-            val deal = ProductRecyclerViewItem.ValuesDeals(imgUrl = imgUrl, size = size, price = price, id = id.toInt())
-            valueDealsDao.insertToRoom(deal)
-            Log.d("readArrayOfJsonObject", "image: $imgUrl  name: $price || version : $size  \n")
+
+        val jsonObj = JSONObject(readText)
+        val jsonArr: JSONArray = jsonObj.getJSONArray(categories)
+        for (i in 0 until jsonObj.length()) {
+            val name = jsonArr.getJSONObject(i).getString(name)
+            val items = jsonArr.getJSONObject(i).getJSONArray(items)
+
+            val id = items.getJSONObject(i).getString(id)
+            val size = items.getJSONObject(i).getString(size)
+            val price = items.getJSONObject(i).getString(price)
+            val imgUrl = items.getJSONObject(i).getString(imgUrl)
+
+            val categoriesList = CategoriesList(
+                id = id.toInt(),
+                size = size,
+                price = price,
+                imgUrl = imgUrl
+            )
+
+            val categories = Categories(
+                id = i,
+                name = name,
+                listOf(categoriesList)
+            )
+            //Insert into database
+            categoriesDao.insertToCategories(categories)
+            categoryListDao.insertToCategoryList(categoriesList)
+
         }
+
     }
 
-     private suspend fun populateBigBetter(bigBetterDao: ProductListDao.BigBetterDoa) {
-        val bufferReader = application.assets.open("2_big_2_better.json").bufferedReader()
-        val jsonString = bufferReader.use {
-            it.readText()
-        }
-        val jsonArray = JSONArray(jsonString)
-        for (i in 0 until jsonArray.length()) {
-            val jsonObject: JSONObject = jsonArray.getJSONObject(i)
-            val id = jsonObject.getString("id")
-            val size = jsonObject.getString("size")
-            val price = jsonObject.getString("price")
-            val imgUrl = jsonObject.getString("image")
-            val deal = ProductRecyclerViewItem.BigBetter(imgUrl = imgUrl, size = size, price = price, id = id.toInt())
-            bigBetterDao.insertToRoom(deal)
-            Log.d("readArrayOfJsonObject", "image: $imgUrl  name: $price || version : $size  \n")
-        }
-    }
+    companion object {
+        const val id = "id"
+        const val size = "size"
+        const val price = "price"
+        const val imgUrl = "image"
 
-        private suspend fun populateAppetizers(appetizersDao: ProductListDao.AppetizersDao) {
-        val bufferReader = application.assets.open("appetizers.json").bufferedReader()
-        val jsonString = bufferReader.use {
-            it.readText()
-        }
-        val jsonArray = JSONArray(jsonString)
-        for (i in 0 until jsonArray.length()) {
-            val jsonObject: JSONObject = jsonArray.getJSONObject(i)
-            val id = jsonObject.getString("id")
-            val size = jsonObject.getString("size")
-            val price = jsonObject.getString("price")
-            val imgUrl = jsonObject.getString("image")
-            val deal = ProductRecyclerViewItem.Appetizers(imgUrl = imgUrl, size = size, price = price, id = id.toInt())
-            appetizersDao.insertToRoom(deal)
-            Log.d("readArrayOfJsonObject", "image: $imgUrl  name: $price || version : $size  \n")
-        }
-    }
+        const val product = "product_list"
+        const val categories = "categories"
+        const val name = "name"
+        const val items = "items"
 
-        private suspend fun populateSignature(signatureDao: ProductListDao.SignatureDao) {
-        val bufferReader = application.assets.open("signature.json").bufferedReader()
-        val jsonString = bufferReader.use {
-            it.readText()
-        }
-        val jsonArray = JSONArray(jsonString)
-        for (i in 0 until jsonArray.length()) {
-            val jsonObject: JSONObject = jsonArray.getJSONObject(i)
-            val id = jsonObject.getString("id")
-            val size = jsonObject.getString("size")
-            val price = jsonObject.getString("price")
-            val imgUrl = jsonObject.getString("image")
-            val deal = ProductRecyclerViewItem.SignaturePizza(imgUrl = imgUrl, size = size, price = price, id = id.toInt())
-            signatureDao.insertToRoom(deal)
-            Log.d("readArrayOfJsonObject", "image: $imgUrl  name: $price || version : $size  \n")
-        }
     }
 }

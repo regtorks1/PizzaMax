@@ -12,18 +12,12 @@ class App : Application() {
     // rather than when the application starts
 
     private val appScope = CoroutineScope(SupervisorJob())
-      val roomDatabaseInstance by lazy { RoomDb.getDatabase(this, appScope) }
+      private val roomDatabaseInstance by lazy { RoomDb.getDatabase(this, appScope) }
     //val repository by lazy { ValueDealsRepository(roomDatabaseInstance.dealsDao()) }
-
     val productRepository by lazy {
-        ProductListRepository(
-            roomDatabaseInstance.bigBetterDao(),
-            roomDatabaseInstance.dealsDao(),
-            roomDatabaseInstance.appetizersDao(),
-            roomDatabaseInstance.signatureDao(),
-            roomDatabaseInstance.favoritesDao(),
-            roomDatabaseInstance.cartDao(),
-            roomDatabaseInstance.expensesDao()
+        ProductRepository(
+            roomDatabaseInstance.categoriesDao(),
+            roomDatabaseInstance.categoryListDao()
         )
     }
 }

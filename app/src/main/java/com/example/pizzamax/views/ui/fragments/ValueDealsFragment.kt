@@ -2,7 +2,6 @@ package com.example.pizzamax.views.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,8 +16,8 @@ import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentValueDealsBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.*
-import com.example.pizzamax.viewmodel.ProductListViewModel
-import com.example.pizzamax.viewmodel.ProductListViewModelFactory
+import com.example.pizzamax.viewmodel.ProductViewModel
+import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
 import com.example.pizzamax.views.adapters.ProductRecyclerViewAdapter
 import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
@@ -28,8 +27,8 @@ import kotlinx.coroutines.launch
 
 class ValueDealsFragment : Fragment(), AdapterListImpl {
 
-    private val productViewmodel: ProductListViewModel by viewModels {
-        ProductListViewModelFactory((activity?.application as App).productRepository)
+    private val productViewmodel: ProductViewModel by viewModels {
+        ProductViewModelFactory((activity?.application as App).productRepository)
     }
     private lateinit var binding: FragmentValueDealsBinding
 
@@ -43,19 +42,19 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         val recyclerAdapter: ProductRecyclerViewAdapter by lazy {
             ProductRecyclerViewAdapter(this) { title, price ->
                 mainAlertDialog(title, price) {
-                    productViewmodel.getAllFromCart.observe(viewLifecycleOwner, Observer { list ->
-                        list.forEach {
-                            item = it.quantity.toInt()
-                            amount += it.price.toInt()
-                            bindingMainActivity.itemNumber.text = "${it.quantity} Items"
-                            bindingMainActivity.amount.text = "Ghc ${it.price}"
-                        }
+                    /* productViewmodel.getAllFromCart.observe(viewLifecycleOwner, Observer { list ->
+                         list.forEach {
+                             item = it.quantity.toInt()
+                             amount += it.price.toInt()
+                             bindingMainActivity.itemNumber.text = "${it.quantity} Items"
+                             bindingMainActivity.amount.text = "Ghc ${it.price}"
+                         }
 
-                        iterator += item
-                        total += amount
-                        Log.d("TOTAL ITEM", "::::::::::::::::::::::$iterator")
-                        Log.d("Total Amt", ":::::::::::::::::::::::${(amount)}")
-                    })
+                         iterator += item
+                         total += amount
+                         Log.d("TOTAL ITEM", "::::::::::::::::::::::$iterator")
+                         Log.d("Total Amt", ":::::::::::::::::::::::${(amount)}")
+                     })*/
                     bindingMainActivity.viewCart.visibility = View.VISIBLE
                     bindingMainActivity.nextView.visibility = View.VISIBLE
                 }
@@ -67,7 +66,7 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         val thisRecycler = binding.recyclerView
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
-        productViewmodel.getList.observe(viewLifecycleOwner, Observer {
+        productViewmodel.getCategoriesList("deals").observe(viewLifecycleOwner, Observer {
             lifecycleScope.launch {
                 it.size
                 recyclerAdapter.items = it
@@ -107,7 +106,7 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
                 size = favorites.size!!
             )
         )
-        productViewmodel.insertIntoFavorites(list)
+        // productViewmodel.insertIntoFavorites(list)
     }
 
 

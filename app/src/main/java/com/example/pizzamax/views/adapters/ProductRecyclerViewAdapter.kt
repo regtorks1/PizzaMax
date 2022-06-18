@@ -6,58 +6,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pizzamax.R
 import com.example.pizzamax.databinding.CartListBinding
 import com.example.pizzamax.databinding.RecyclerListBinding
+import com.example.pizzamax.model.CategoriesList
 
 class ProductRecyclerViewAdapter(
     private val adapterImpl: AdapterListImpl,
     private val itemClick: (title: String, price: String) -> Unit
-) : RecyclerView.Adapter<ProductRecyclerViewHolder>() {
+) : RecyclerView.Adapter<RecyclerViewTypeHolder>() {
 
-    var items = listOf<ProductRecyclerViewItem>()
-        set(value) { field = value
+    var items = listOf<CategoriesList>()
+        set(value) {
+            field = value
             notifyDataSetChanged()
         }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductRecyclerViewHolder {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewTypeHolder {
         return when (viewType) {
-            R.layout.recycler_list -> ProductRecyclerViewHolder.ProductViewType(
-                    RecyclerListBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    )
+            R.layout.recycler_list -> RecyclerViewTypeHolder.ProductViewTypeHolder(
+                RecyclerListBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
                 )
-/*
-                ProductRecyclerViewHolder.BetterViewType(
-                    RecyclerListBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    )
-                )
-
-                ProductRecyclerViewHolder.AppetizersViewType(
-                    RecyclerListBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    )
-                )
-
-                ProductRecyclerViewHolder.SignatureViewType(
-                    RecyclerListBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    )
-                )
-
-                ProductRecyclerViewHolder.FavoriteViewType(
-                    RecyclerListBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    )
-                )*/
-            R.layout.cart_list -> ProductRecyclerViewHolder.CartViewType(
+            )
+            R.layout.cart_list -> RecyclerViewTypeHolder.CartViewTypeHolder(
                 CartListBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
@@ -67,37 +38,33 @@ class ProductRecyclerViewAdapter(
             else -> throw IllegalArgumentException("Invalid ViewType Provided")
         }
     }
-    override fun onBindViewHolder(holder: ProductRecyclerViewHolder, position: Int) {
+
+    override fun onBindViewHolder(holder: RecyclerViewTypeHolder, position: Int) {
         when (holder) {
-            is ProductRecyclerViewHolder.CartViewType -> holder.bind(items[position] as ProductRecyclerViewItem.Cart)
-             is ProductRecyclerViewHolder.ProductViewType -> {
-                 holder.bind(items[position] as ProductRecyclerViewItem.ValuesDeals)
-                 holder.bind(items[position] as ProductRecyclerViewItem.BigBetter)
-                 holder.bind(items[position] as ProductRecyclerViewItem.Appetizers)
-                 holder.bind(items[position] as ProductRecyclerViewItem.SignaturePizza)
-                 holder.bind(items[position] as ProductRecyclerViewItem.Expenses)
-                 holder.bind(items[position] as ProductRecyclerViewItem.Favorites)
-             }
-          /*  is ProductRecyclerViewHolder.AppetizersViewType -> holder.bind(items[position] as ProductRecyclerViewItem.Appetizers)
-            is ProductRecyclerViewHolder.BetterViewType -> holder.bind(items[position] as ProductRecyclerViewItem.BigBetter)
-            is ProductRecyclerViewHolder.FavoriteViewType -> holder.bind(items[position] as ProductRecyclerViewItem.Favorites)
-            is ProductRecyclerViewHolder.SignatureViewType -> holder.bind(items[position] as ProductRecyclerViewItem.SignaturePizza)
-            is ProductRecyclerViewHolder.ValuesDealsViewType -> holder.bind(items[position] as ProductRecyclerViewItem.ValuesDeals)*/
+            is RecyclerViewTypeHolder.ProductViewTypeHolder -> holder.bind(items[position])
+            is RecyclerViewTypeHolder.CartViewTypeHolder -> TODO()
         }
     }
 
-    override fun getItemViewType(position: Int): Int {
-       return when (items[position]) {
-            is ProductRecyclerViewItem.ValuesDeals -> R.layout.recycler_list
-            is ProductRecyclerViewItem.BigBetter -> R.layout.recycler_list
-            is ProductRecyclerViewItem.Appetizers -> R.layout.recycler_list
-            is ProductRecyclerViewItem.SignaturePizza -> R.layout.recycler_list
-            is ProductRecyclerViewItem.Cart -> R.layout.cart_list
-            is ProductRecyclerViewItem.Expenses -> R.layout.recycler_list
-            is ProductRecyclerViewItem.Favorites -> R.layout.recycler_list
-        }
+    override fun getItemCount(): Int {
+        TODO("Not yet implemented")
     }
-
-
-    override fun getItemCount() = items.size
 }
+
+/*override fun getItemViewType(position: Int): Int {
+    return when (position) {
+        is  -> {
+            R.layout.recycler_list
+        }
+
+        is Cart -> {
+            R.layout.cart_list
+        }
+        else -> {
+
+        }
+    }
+}*/
+
+
+//override fun getItemCount() = items.size

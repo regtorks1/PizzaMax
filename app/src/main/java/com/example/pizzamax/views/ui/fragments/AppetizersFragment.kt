@@ -16,8 +16,8 @@ import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentAppetizersBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.*
-import com.example.pizzamax.viewmodel.ProductListViewModel
-import com.example.pizzamax.viewmodel.ProductListViewModelFactory
+import com.example.pizzamax.viewmodel.ProductViewModel
+import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
 import com.example.pizzamax.views.adapters.ProductRecyclerViewAdapter
 import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
@@ -31,14 +31,10 @@ import kotlinx.coroutines.launch
 
 class AppetizersFragment : Fragment(), AdapterListImpl {
 
-    private val productViewmodel: ProductListViewModel by viewModels {
-        ProductListViewModelFactory((activity?.application as App).productRepository)
+    private val productViewmodel: ProductViewModel by viewModels {
+        ProductViewModelFactory((activity?.application as App).productRepository)
     }
-
-
     private lateinit var binding: FragmentAppetizersBinding
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,7 +53,7 @@ class AppetizersFragment : Fragment(), AdapterListImpl {
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
-        productViewmodel.getAllFromAppetizers.observe(viewLifecycleOwner, Observer { list ->
+        productViewmodel.getCategoriesList("appetizer").observe(viewLifecycleOwner, Observer { list ->
             lifecycleScope.launch {
                 recyclerAdapter.items = list
             }
@@ -105,7 +101,7 @@ class AppetizersFragment : Fragment(), AdapterListImpl {
                 size = favorites.size!!
             )
         )
-        productViewmodel.insertIntoFavorites(list)
+      //  productViewmodel.insertIntoFavorites(list)
         findNavController().navigate(R.id.action_appetizersFragment_to_favoritesFragment)
         // startActivity(Intent(requireContext(), FavoritesActivity::class.java))
     }

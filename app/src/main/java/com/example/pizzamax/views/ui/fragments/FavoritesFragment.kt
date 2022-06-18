@@ -6,27 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.MainActivity
-import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentFavoritesBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.*
 import com.example.pizzamax.viewmodel.*
 import com.example.pizzamax.views.adapters.AdapterListImpl
-import com.example.pizzamax.views.adapters.FavoritesAdapter
 import com.example.pizzamax.views.adapters.ProductRecyclerViewAdapter
 import com.example.pizzamax.views.util.mainAlertDialog
-import kotlinx.coroutines.launch
 
 class FavoritesFragment : Fragment(), AdapterListImpl {
     private lateinit var binding: FragmentFavoritesBinding
 
-    private val productViewmodel: ProductListViewModel by viewModels {
-        ProductListViewModelFactory((activity?.application as App).productRepository)
+    private val productViewmodel: ProductViewModel by viewModels {
+        ProductViewModelFactory((activity?.application as App).productRepository)
     }
 
     override fun onCreateView(
@@ -48,9 +42,9 @@ class FavoritesFragment : Fragment(), AdapterListImpl {
         val thisRecycler = binding.recyclerView
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(requireContext())
-        productViewmodel.getAllFavorites.observe(requireActivity(), Observer {
+       /* productViewmodel.getAllFavorites.observe(requireActivity(), Observer {
             recyclerAdapter.items = it
-        })
+        })*/
 
         return binding.root
     }
