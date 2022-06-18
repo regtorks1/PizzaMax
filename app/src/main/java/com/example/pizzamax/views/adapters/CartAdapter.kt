@@ -57,7 +57,6 @@ class CartAdapter(private val impl: CartImpl) :
             impl.viewAllCartList(getItemPosition)
         }
 
-
     }
 
 

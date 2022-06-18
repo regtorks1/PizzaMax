@@ -1,7 +1,6 @@
 package com.example.pizzamax.di
 
 import android.app.Application
-import com.example.pizzamax.data.repository.ProductListRepository
 import com.example.pizzamax.data.repository.ProductRepository
 import com.example.pizzamax.data.source.RoomDb
 import kotlinx.coroutines.CoroutineScope
