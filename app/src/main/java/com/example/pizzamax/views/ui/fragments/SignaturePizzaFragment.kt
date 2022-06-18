@@ -32,9 +32,6 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
      private val productViewmodel: ProductViewModel by viewModels {
         ProductViewModelFactory((activity?.application as App).productRepository)
     }
-    companion object {
-        fun newInstance() = AppetizersFragment()
-    }
 
     private lateinit var binding: FragmentSignaturePizzaBinding
 
@@ -65,32 +62,12 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
     }
 
 
-    override fun onAddCart(cart: ValuesDeals) {
+    override fun onAddToCartListener(cart: Cart) {
         TODO("Not yet implemented")
     }
 
-    override fun onAddCart(cart: Favorites) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onAddCart(cart: Appetizers) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onAddCart(cart: BigBetter) {
-        TODO("Not yet implemented")
-    }
-
-    override fun addToFavorites(favorites: ValuesDeals) {
-        TODO("Not yet implemented")
-    }
-
-    override fun addToFavorites(favorites: BigBetter) {
-        TODO("Not yet implemented")
-    }
-
-    override fun addToFavorites(favorites: SignaturePizza) {
-         val list = listOf(
+    override fun onAddToFavoriteListener(favorites: Favorites) {
+  val list = listOf(
             ProductRecyclerViewItem.Favorites(
                 imgUrl = favorites.imgUrl,
                 price = favorites.price,
@@ -101,28 +78,12 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
         findNavController().navigate(R.id.action_signaturePizzaFragment_to_favoritesFragment)
     }
 
-    override fun addToFavorites(favorites: Appetizers) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onDetailsOnItemClicked(details: ValuesDeals) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onDetailsOnItemClicked(details: BigBetter) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onDetailsOnItemClicked(details: Appetizers) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onDetailsOnItemClicked(details: SignaturePizza) {
-      val bundle = Bundle()
+    override fun onViewDetailListener(categoriesList: CategoriesList) {
+        val bundle = Bundle()
         bundle.putString(type, "details")
-        bundle.putString(imgUrl, details.imgUrl)
-        bundle.putString(size, details.size)
-        bundle.putString(price, details.price)
+        bundle.putString(imgUrl, categoriesList.imgUrl)
+        bundle.putString(size, categoriesList.size)
+        bundle.putString(price, categoriesList.price)
         findNavController().navigate(R.id.action_signaturePizzaFragment_to_favoritesFragment, bundle)
     }
 

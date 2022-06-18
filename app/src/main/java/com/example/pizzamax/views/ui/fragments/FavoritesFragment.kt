@@ -49,51 +49,15 @@ class FavoritesFragment : Fragment(), AdapterListImpl {
         return binding.root
     }
 
-    override fun onAddCart(cart: ValuesDeals) {
+    override fun onAddToCartListener(cart: Cart) {
         TODO("Not yet implemented")
     }
 
-    override fun onAddCart(cart: Favorites) {
+    override fun onAddToFavoriteListener(favorites: Favorites) {
         TODO("Not yet implemented")
     }
 
-    override fun onAddCart(cart: Appetizers) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onAddCart(cart: BigBetter) {
-        TODO("Not yet implemented")
-    }
-
-    override fun addToFavorites(favorites: ValuesDeals) {
-        TODO("Not yet implemented")
-    }
-
-    override fun addToFavorites(favorites: BigBetter) {
-        TODO("Not yet implemented")
-    }
-
-    override fun addToFavorites(favorites: SignaturePizza) {
-        TODO("Not yet implemented")
-    }
-
-    override fun addToFavorites(favorites: Appetizers) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onDetailsOnItemClicked(details: ValuesDeals) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onDetailsOnItemClicked(details: BigBetter) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onDetailsOnItemClicked(details: Appetizers) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onDetailsOnItemClicked(details: SignaturePizza) {
+    override fun onViewDetailListener(categoriesList: CategoriesList) {
         TODO("Not yet implemented")
     }
 

@@ -15,7 +15,9 @@ import com.example.pizzamax.MainActivity
 import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentValueDealsBinding
 import com.example.pizzamax.di.App
-import com.example.pizzamax.model.*
+import com.example.pizzamax.model.Cart
+import com.example.pizzamax.model.CategoriesList
+import com.example.pizzamax.model.Favorites
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
@@ -76,73 +78,33 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         return binding.root
     }
 
-
-    override fun onAddCart(cart: ValuesDeals) {
+    override fun onAddToCartListener(cart: Cart) {
         val intent = Intent(requireContext(), CheckoutActivity::class.java)
         intent.putExtra(type, "cart")
-        intent.putExtra(size, cart.size)
+        intent.putExtra(size, cart.quantity)
         intent.putExtra(price, cart.price)
         startActivity(intent)
     }
 
-    override fun onAddCart(cart: Favorites) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onAddCart(cart: Appetizers) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onAddCart(cart: BigBetter) {
-        TODO("Not yet implemented")
-    }
-
-
-    override fun addToFavorites(favorites: ValuesDeals) {
+    override fun onAddToFavoriteListener(favorites: Favorites) {
         val list = listOf(
             ProductRecyclerViewItem.Favorites(
-                imgUrl = favorites.imgUrl!!,
-                price = favorites.price!!,
-                size = favorites.size!!
+                imgUrl = favorites.imgUrl,
+                price = favorites.price,
+                size = favorites.size
             )
         )
         // productViewmodel.insertIntoFavorites(list)
     }
 
-
-    override fun onDetailsOnItemClicked(details: ValuesDeals) {
+    override fun onViewDetailListener(categoriesList: CategoriesList) {
         val bundle = Bundle()
         bundle.putString(type, "details")
-        bundle.putString(imgUrl, details.imgUrl)
-        bundle.putString(size, details.size)
-        bundle.putString(price, details.price)
+        bundle.putString(imgUrl, categoriesList.imgUrl)
+        bundle.putString(size, categoriesList.size)
+        bundle.putString(price, categoriesList.price)
         findNavController().navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
     }
-
-    override fun onDetailsOnItemClicked(details: BigBetter) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onDetailsOnItemClicked(details: Appetizers) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onDetailsOnItemClicked(details: SignaturePizza) {
-        TODO("Not yet implemented")
-    }
-
-    override fun addToFavorites(favorites: BigBetter) {
-        TODO("Not yet implemented")
-    }
-
-    override fun addToFavorites(favorites: SignaturePizza) {
-        TODO("Not yet implemented")
-    }
-
-    override fun addToFavorites(favorites: Appetizers) {
-        TODO("Not yet implemented")
-    }
-
 
     companion object {
         const val price = "price"
@@ -154,5 +116,4 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         var iterator = 0
         var total = 0
     }
-
 }

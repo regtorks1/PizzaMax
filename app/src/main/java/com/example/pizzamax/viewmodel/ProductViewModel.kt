@@ -10,8 +10,8 @@ import kotlinx.coroutines.launch
 class ProductViewModel(
     private val repository: ProductRepository
 ) : ViewModel() {
-    private val _details: MutableLiveData<ValuesDeals> = MutableLiveData()
-    val details: LiveData<ValuesDeals> get() = _details
+    private val _details: MutableLiveData<CategoriesList> = MutableLiveData()
+    val details: LiveData<CategoriesList> get() = _details
 
     //CATEGORIES
     fun insertIntoCategories(categories: Categories) = viewModelScope.launch {
