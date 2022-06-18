@@ -21,14 +21,6 @@ abstract class RoomDb : RoomDatabase() {
     abstract fun categoriesDao(): CategoriesDao
     abstract fun categoryListDao(): CategoryListDao
 
-    abstract fun dealsDao(): ProductListDao.ValueDealsDao
-    abstract fun bigBetterDao(): ProductListDao.BigBetterDoa
-    abstract fun signatureDao(): ProductListDao.SignatureDao
-    abstract fun appetizersDao(): ProductListDao.AppetizersDao
-    abstract fun favoritesDao(): ProductListDao.FavoritesDao
-    abstract fun cartDao(): ProductListDao.CartDao
-    abstract fun expensesDao(): ProductListDao.ExpensesDao
-
     companion object {
         @Volatile// Singleton prevents multiple instances of database opening at the same time
         var INSTANCE: RoomDb? = null
