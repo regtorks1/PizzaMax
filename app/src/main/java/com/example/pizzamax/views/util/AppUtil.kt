@@ -22,6 +22,7 @@ import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 /**
  * This method convert image url to bitmap
@@ -38,6 +39,17 @@ suspend fun getBitmap(context: Context, imageUrl: String): Bitmap {
     val result = (loading.execute(request) as SuccessResult).drawable
     return (result as BitmapDrawable).bitmap
 
+}
+
+fun getJsonDataFromAsset(context: Context, fileName: String): String? {
+    val jsonString: String
+    try {
+        jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
+    } catch (ioException: IOException) {
+        ioException.printStackTrace()
+        return null
+    }
+    return jsonString
 }
 
 @SuppressLint("SetTextI18n")

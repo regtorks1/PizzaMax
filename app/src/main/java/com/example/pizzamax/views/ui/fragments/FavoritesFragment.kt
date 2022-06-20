@@ -13,6 +13,7 @@ import com.example.pizzamax.di.App
 import com.example.pizzamax.model.*
 import com.example.pizzamax.viewmodel.*
 import com.example.pizzamax.views.adapters.AdapterListImpl
+import com.example.pizzamax.views.adapters.ProductListAdapter
 import com.example.pizzamax.views.adapters.ProductRecyclerViewAdapter
 import com.example.pizzamax.views.util.mainAlertDialog
 
@@ -31,8 +32,8 @@ class FavoritesFragment : Fragment(), AdapterListImpl {
         binding = FragmentFavoritesBinding.inflate(layoutInflater)
          val bindingMainActivity = (activity as MainActivity).binding
 
-       val recyclerAdapter: ProductRecyclerViewAdapter by lazy {
-            ProductRecyclerViewAdapter(this){ title, price ->
+       val recyclerAdapter: ProductListAdapter by lazy {
+            ProductListAdapter(this){ title, price ->
                 mainAlertDialog(title, price){
                     bindingMainActivity.linearViewCart.visibility = View.VISIBLE
                 }

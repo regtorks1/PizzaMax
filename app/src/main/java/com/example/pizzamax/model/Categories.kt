@@ -8,6 +8,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "categories")
 data class Categories(
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
-    @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "list") val list: List<CategoriesList>
+    @ColumnInfo(name = "name") var name: String?=null,
+    @ColumnInfo(name = "list") var list: List<CategoriesList>?=null
 )

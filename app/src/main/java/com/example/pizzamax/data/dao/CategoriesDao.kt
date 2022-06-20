@@ -12,8 +12,8 @@ interface CategoriesDao {
     @Update
     fun updateCategories(categories: Categories)
 
-    @Query("SELECT * FROM categories ORDER BY id ASC")
-    fun getAllFromCategories(): Flow<List<Categories>>
+    @Query("SELECT * FROM categories WHERE name =:query ORDER BY id ASC")
+    fun getAllFromCategories(query: String): Flow<List<Categories>>
 
     @Query("DELETE FROM categories")
     fun deleteAllFromCategories()

@@ -4,11 +4,12 @@ import android.content.Context
 import android.util.Log
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.pizzamax.data.dao.*
+import com.example.pizzamax.data.dao.CategoriesDao
+import com.example.pizzamax.data.dao.CategoryListDao
 import com.example.pizzamax.data.source.RoomDb.Companion.INSTANCE
 import com.example.pizzamax.model.Categories
 import com.example.pizzamax.model.CategoriesList
-import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
+import com.example.pizzamax.views.util.getJsonDataFromAsset
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.json.JSONArray
@@ -32,45 +33,41 @@ class ListDatabaseCallback(
     }
 
 
-    private suspend fun populateProductTable(
+    private fun populateProductTable(
         categoriesDao: CategoriesDao,
         categoryListDao: CategoryListDao
     ) {
-        val productReader = application.assets.open(product).bufferedReader()
-        val readText = productReader.use {
-            it.readText()
-        }
+        val jsonFile = getJsonDataFromAsset(application, "product_list.json")
+        Log.d("DATA", jsonFile.toString())
+        val jsonObj = JSONObject(jsonFile!!)
+        val jsonArray: JSONArray = jsonObj.getJSONArray("categories")
+        Log.d("CATEGORIES", "\n$jsonArray")
+        var categoriesList = CategoriesList()
 
-        val jsonObj = JSONObject(readText)
-        val jsonArr: JSONArray = jsonObj.getJSONArray(categories)
-        for (i in 0 until jsonObj.length()) {
-            val name = jsonArr.getJSONObject(i).getString(name)
-            val items = jsonArr.getJSONObject(i).getJSONArray(items)
+        for (i in 0 until jsonArray.length()) {
+            val name = jsonArray.getJSONObject(i).getString("name")
+            val list = jsonArray.getJSONObject(i).getJSONArray("items")
+            Log.d("categories", "\n$name \n$list")
+            Log.d("LENGTH", "${list.length()}")
+            for (j in 0 until list.length()) {
+                val id = list.getJSONObject(j).getString(id)
+                val size = list.getJSONObject(j).getString(size)
+                val price = list.getJSONObject(j).getString(price)
+                val imgUrl = list.getJSONObject(j).getString(imgUrl)
+                categoriesList =
+                    CategoriesList(id = id.toInt(), size = size, price = price, imgUrl = imgUrl)
+                categoryListDao.insertToCategoryList(categoriesList)
+            }
 
-            val id = items.getJSONObject(i).getString(id)
-            val size = items.getJSONObject(i).getString(size)
-            val price = items.getJSONObject(i).getString(price)
-            val imgUrl = items.getJSONObject(i).getString(imgUrl)
-
-            val categoriesList = CategoriesList(
-                id = id.toInt(),
-                size = size,
-                price = price,
-                imgUrl = imgUrl
-            )
-
-            val categories = Categories(
-                id = i,
-                name = name,
-                listOf(categoriesList)
-            )
-            //Insert into database
+            val categories = Categories(id = i, name = name, listOf(categoriesList))
             categoriesDao.insertToCategories(categories)
-            categoryListDao.insertToCategoryList(categoriesList)
+            Log.d("categories", ":::::::::::::::$categories")
+
+            Log.d("ListItems", ":::::::::::::::$categoriesList")
 
         }
-
     }
+
 
     companion object {
         const val id = "id"

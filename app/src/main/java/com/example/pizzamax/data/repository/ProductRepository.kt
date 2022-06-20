@@ -17,8 +17,8 @@ class ProductRepository(
         categoriesDao.updateCategories(categories)
     }
 
-    override fun getAllFromCategories(): Flow<List<Categories>> {
-     return  categoriesDao.getAllFromCategories()
+    override fun getAllFromCategories(query: String): Flow<List<Categories>> {
+     return  categoriesDao.getAllFromCategories(query)
     }
 
     override fun deleteAllFromCategories() {
@@ -37,8 +37,8 @@ class ProductRepository(
        return categoryListDao.updateCategoryList(categoriesList)
     }
 
-    override fun getAllFromCategoryList(query: String): Flow<List<CategoriesList>> {
-       return categoryListDao.getAllFromCategoryList(query)
+    override fun getAllFromCategoryList(): Flow<List<CategoriesList>> {
+       return categoryListDao.getAllFromCategoryList()
     }
 
     override fun deleteAllFromCategoryList() {

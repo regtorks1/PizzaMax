@@ -24,7 +24,7 @@ class ActivityViewmodel(private val repository: ProductRepository) : ViewModel()
         repository.deleteAllFromCategories()
     }
 
-    val getCategories: LiveData<List<Categories>> = repository.getAllFromCategories().asLiveData()
+    fun getCategories(query: String): LiveData<List<Categories>> = repository.getAllFromCategories(query).asLiveData()
 
 
     //CATEGORIES LIST
@@ -40,8 +40,8 @@ class ActivityViewmodel(private val repository: ProductRepository) : ViewModel()
         repository.deleteAllFromCategoryList()
     }
 
-    fun getCategoriesList(query: String): LiveData<List<CategoriesList>> =
-        repository.getAllFromCategoryList(query).asLiveData()
+    val getCategoriesList: LiveData<List<CategoriesList>> =
+        repository.getAllFromCategoryList().asLiveData()
 
 
 }

@@ -18,6 +18,7 @@ import com.example.pizzamax.model.*
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
+import com.example.pizzamax.views.adapters.ProductListAdapter
 import com.example.pizzamax.views.adapters.ProductRecyclerViewAdapter
 import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.imgUrl
@@ -41,8 +42,8 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
     ): View {
         binding = FragmentSignaturePizzaBinding.inflate(layoutInflater)
         val bindingMainActivity = (activity as MainActivity).binding
-       val recyclerAdapter: ProductRecyclerViewAdapter by lazy {
-            ProductRecyclerViewAdapter(this){ title, price ->
+       val recyclerAdapter: ProductListAdapter by lazy {
+            ProductListAdapter(this){ title, price ->
                 mainAlertDialog(title, price){
                     bindingMainActivity.linearViewCart.visibility = View.VISIBLE
                 }
@@ -53,9 +54,15 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
-        productViewmodel.getCategoriesList("signature").observe(viewLifecycleOwner, Observer {
+        productViewmodel.getCategoriesList("signature").observe(viewLifecycleOwner, Observer {list->
             lifecycleScope.launch {
-                 recyclerAdapter.items = it
+                list.forEach {
+                     recyclerAdapter.submitList(it.list)
+                }
+
+              /*  list.map {
+                    recyclerAdapter.submitList(it.list)
+                }*/
             }
         })
         return binding.root

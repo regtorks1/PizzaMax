@@ -2,6 +2,7 @@ package com.example.pizzamax.views.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +22,7 @@ import com.example.pizzamax.model.Favorites
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
-import com.example.pizzamax.views.adapters.ProductRecyclerViewAdapter
+import com.example.pizzamax.views.adapters.ProductListAdapter
 import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
 import com.example.pizzamax.views.ui.activity.CheckoutActivity
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.imgUrl
@@ -43,8 +44,8 @@ class AppetizersFragment : Fragment(), AdapterListImpl {
     ): View {
         binding = FragmentAppetizersBinding.inflate(layoutInflater)
         val bindingMainActivity = (activity as MainActivity).binding
-        val recyclerAdapter: ProductRecyclerViewAdapter by lazy {
-            ProductRecyclerViewAdapter(this) { title, price ->
+        val recyclerAdapter: ProductListAdapter by lazy {
+            ProductListAdapter(this) { title, price ->
                 mainAlertDialog(title, price) {
                     bindingMainActivity.linearViewCart.visibility = View.VISIBLE
                 }
@@ -55,10 +56,15 @@ class AppetizersFragment : Fragment(), AdapterListImpl {
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
+        Log.d("FRAGMENT", ":::::::::::::::::::::::::::::::::inside")
+
         productViewmodel.getCategoriesList("appetizer")
             .observe(viewLifecycleOwner, Observer { list ->
                 lifecycleScope.launch {
-                    recyclerAdapter.items = list
+                    list.forEach {
+                         recyclerAdapter.submitList(it.list?.toList())
+                         Log.d("APPETIZERS", "::::::::::::::${it.list}")
+                    }
                 }
             })
         return binding.root
