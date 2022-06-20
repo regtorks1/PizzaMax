@@ -98,6 +98,14 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         TODO("Not yet implemented")
     }
 
+    override fun onAddCart(cart: Category) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onAddCart(cart: CategoryItems) {
+        TODO("Not yet implemented")
+    }
+
 
     override fun addToFavorites(favorites: ValuesDeals) {
         val list = listOf(
@@ -133,6 +141,14 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         TODO("Not yet implemented")
     }
 
+    override fun onDetailsOnItemClicked(details: Category) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDetailsOnItemsClicked(details: CategoryItems) {
+        TODO("Not yet implemented")
+    }
+
     override fun addToFavorites(favorites: BigBetter) {
         TODO("Not yet implemented")
     }
@@ -142,6 +158,14 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
     }
 
     override fun addToFavorites(favorites: Appetizers) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addToFavorites(favorites: Category) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addToFavorites(favorites: CategoryItems) {
         TODO("Not yet implemented")
     }
 

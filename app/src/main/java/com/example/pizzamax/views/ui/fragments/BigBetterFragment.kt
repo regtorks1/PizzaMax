@@ -88,6 +88,14 @@ class BigBetterFragment : Fragment(), AdapterListImpl {
         startActivity(intent)
     }
 
+    override fun onAddCart(cart: Category) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onAddCart(cart: CategoryItems) {
+        TODO("Not yet implemented")
+    }
+
     override fun addToFavorites(favorites: ValuesDeals) {
         TODO("Not yet implemented")
     }
@@ -112,6 +120,14 @@ class BigBetterFragment : Fragment(), AdapterListImpl {
         TODO("Not yet implemented")
     }
 
+    override fun addToFavorites(favorites: Category) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addToFavorites(favorites: CategoryItems) {
+        TODO("Not yet implemented")
+    }
+
     override fun onDetailsOnItemClicked(details: ValuesDeals) {
         TODO("Not yet implemented")
     }
@@ -130,6 +146,14 @@ class BigBetterFragment : Fragment(), AdapterListImpl {
     }
 
     override fun onDetailsOnItemClicked(details: SignaturePizza) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDetailsOnItemClicked(details: Category) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDetailsOnItemsClicked(details: CategoryItems) {
         TODO("Not yet implemented")
     }
 
