@@ -60,12 +60,10 @@ class AppetizersFragment : Fragment(), AdapterListImpl {
 
         productViewmodel.getCategoriesList("appetizer")
             .observe(viewLifecycleOwner, Observer { list ->
-                lifecycleScope.launch {
-                    list.forEach {
+                    list.f {
                          recyclerAdapter.submitList(it.list?.toList())
                          Log.d("APPETIZERS", "::::::::::::::${it.list}")
                     }
-                }
             })
         return binding.root
     }

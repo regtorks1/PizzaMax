@@ -2,6 +2,7 @@ package com.example.pizzamax.views.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentValueDealsBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.Cart
+import com.example.pizzamax.model.Categories
 import com.example.pizzamax.model.CategoriesList
 import com.example.pizzamax.model.Favorites
 import com.example.pizzamax.viewmodel.ProductViewModel
@@ -32,6 +34,7 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
     }
     private lateinit var binding: FragmentValueDealsBinding
     var listArray : ArrayList<CategoriesList> = ArrayList()
+    private lateinit var iWant: Categories
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,45 +43,37 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         binding = FragmentValueDealsBinding.inflate(layoutInflater)
         val bindingMainActivity = (activity as MainActivity).binding
 
-        val recyclerAdapter: ProductAdapter by lazy { ProductAdapter(listArray) }
 
-//        val recyclerAdapter: ProductListAdapter by lazy {
-//            ProductListAdapter(this) { title, price ->
-//                mainAlertDialog(title, price) {
-//                    /* productViewmodel.getAllFromCart.observe(viewLifecycleOwner, Observer { list ->
-//                         list.forEach {
-//                             item = it.quantity.toInt()
-//                             amount += it.price.toInt()
-//                             bindingMainActivity.itemNumber.text = "${it.quantity} Items"
-//                             bindingMainActivity.amount.text = "Ghc ${it.price}"
-//                         }
-//
-//                         iterator += item
-//                         total += amount
-//                         Log.d("TOTAL ITEM", "::::::::::::::::::::::$iterator")
-//                         Log.d("Total Amt", ":::::::::::::::::::::::${(amount)}")
-//                     })*/
-//                    bindingMainActivity.viewCart.visibility = View.VISIBLE
-//                    bindingMainActivity.nextView.visibility = View.VISIBLE
-//                }
-//            }
-//        }  //initialize adapter
+
+        val recyclerAdapter: ProductListAdapter by lazy {
+            ProductListAdapter(this) { title, price ->
+                mainAlertDialog(title, price) {
+                    productViewmodel.getCategoryList.observe(viewLifecycleOwner, Observer { list ->
+                         list.forEach {
+                             //item = it.quantity.toInt()
+                             //amount += it.price.toInt()
+                             //bindingMainActivity.itemNumber.text = "${it.quantity} Items"
+                             bindingMainActivity.amount.text = "Ghc ${it.price}"
+                         }
+
+                         iterator += item
+                         total += amount
+                         Log.d("TOTAL ITEM", "::::::::::::::::::::::$iterator")
+                         Log.d("Total Amt", ":::::::::::::::::::::::${(amount)}")
+                     })
+                    bindingMainActivity.viewCart.visibility = View.VISIBLE
+                    bindingMainActivity.nextView.visibility = View.VISIBLE
+                }
+            }
+        }  //initialize adapter
 
 
         //recycler setup
         val thisRecycler = binding.recyclerView
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
-        productViewmodel.getCategoriesList("deals").observe(viewLifecycleOwner, Observer {list->
-            lifecycleScope.launch {
-                list.forEach {
-
-                }
-
-             /*   list.map {
-                recyclerAdapter.submitList(it.list)
-                }*/
-            }
+        productViewmodel.getCategoryList.observe(viewLifecycleOwner, Observer {list->
+                 recyclerAdapter.submitList(list)
         })
 
         return binding.root

@@ -35,7 +35,7 @@ class ListDatabaseCallback(
 
     private fun populateProductTable(
         categoriesDao: CategoriesDao,
-        categoryListDao: CategoryListDao
+        categoryListDao: CategoryListDao,
     ) {
         val jsonFile = getJsonDataFromAsset(application, "product_list.json")
         Log.d("DATA", jsonFile.toString())
@@ -66,6 +66,7 @@ class ListDatabaseCallback(
             Log.d("ListItems", ":::::::::::::::$categoriesList")
 
         }
+
     }
 
 
