@@ -48,13 +48,9 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, CheckoutActivity::class.java)
             startActivity(intent)
         }
-
-
-
         imageSlider()
         setupTabLayout()
         setupViewPager()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -106,7 +102,6 @@ class MainActivity : AppCompatActivity() {
                         binding.viewPager.currentItem = it
                     }
                 }
-
                 override fun onTabUnselected(tab: TabLayout.Tab?) {
                 }
 
