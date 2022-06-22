@@ -16,7 +16,9 @@ class App : Application() {
     val productRepository by lazy {
         ProductRepository(
             roomDatabaseInstance.categoriesDao(),
-            roomDatabaseInstance.categoryListDao()
+            roomDatabaseInstance.categoryItemsDao(),
+            roomDatabaseInstance.cartDao(),
+            roomDatabaseInstance.favorites()
         )
     }
 }

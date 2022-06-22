@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CategoriesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertToCategories(categories: Categories)
+    fun insertToCategories(categories: MutableList<Categories>)
 
     @Update
     fun updateCategories(categories: Categories)

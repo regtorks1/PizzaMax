@@ -19,8 +19,6 @@ import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
 import com.example.pizzamax.views.adapters.ProductListAdapter
-import com.example.pizzamax.views.adapters.ProductRecyclerViewAdapter
-import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.imgUrl
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.price
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.size
@@ -44,7 +42,7 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
         val bindingMainActivity = (activity as MainActivity).binding
        val recyclerAdapter: ProductListAdapter by lazy {
             ProductListAdapter(this){ title, price ->
-                mainAlertDialog(title, price){
+                mainAlertDialog(title, price!!){
                     bindingMainActivity.linearViewCart.visibility = View.VISIBLE
                 }
             }
@@ -54,8 +52,17 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
+<<<<<<< HEAD
         productViewmodel.getCategoryList.observe(viewLifecycleOwner, Observer {list->
            recyclerAdapter.submitList(list)
+=======
+        productViewmodel.getCategoriesList("signature").observe(viewLifecycleOwner, Observer {list->
+            lifecycleScope.launch {
+                list.forEach {
+                     recyclerAdapter.submitList(it.list)
+                }
+            }
+>>>>>>> 8b8374c1d943034c3f75ba58207db097e9ed0a3b
         })
         return binding.root
     }
@@ -65,25 +72,24 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
         TODO("Not yet implemented")
     }
 
-    override fun onAddToFavoriteListener(favorites: Favorites) {
-  val list = listOf(
-            ProductRecyclerViewItem.Favorites(
-                imgUrl = favorites.imgUrl,
-                price = favorites.price,
-                size = favorites.size
+    override fun onAddToFavoriteListener(favorites: CategoryItems) {
+     val list = listOf(
+            Favorites(
+                imgUrl = favorites.imgUrl!!,
+                price = favorites.price!!,
+                size = favorites.size!!
             )
         )
-       // productViewmodel.insertIntoFavorites(list)
-        findNavController().navigate(R.id.action_signaturePizzaFragment_to_favoritesFragment)
+        productViewmodel.insertIntoFavorites(list)
     }
 
-    override fun onViewDetailListener(categoriesList: CategoriesList) {
+    override fun onViewDetailListener(categoryItems: CategoryItems) {
         val bundle = Bundle()
         bundle.putString(type, "details")
-        bundle.putString(imgUrl, categoriesList.imgUrl)
-        bundle.putString(size, categoriesList.size)
-        bundle.putString(price, categoriesList.price)
-        findNavController().navigate(R.id.action_signaturePizzaFragment_to_favoritesFragment, bundle)
+        bundle.putString(imgUrl, categoryItems.imgUrl)
+        bundle.putString(size, categoryItems.size)
+        bundle.putString(price, categoryItems.price)
+        findNavController().navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
     }
 
 }

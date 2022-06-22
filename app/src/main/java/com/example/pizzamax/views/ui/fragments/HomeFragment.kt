@@ -3,10 +3,12 @@ package com.example.pizzamax.views.ui.fragments
 import android.os.Bundle
 import android.view.*
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.Spinner
 import androidx.core.view.MenuItemCompat.getActionView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.pizzamax.MainActivity
 import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentHomeBinding
 import com.example.pizzamax.model.SliderData
@@ -31,6 +33,9 @@ class HomeFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater)
+        (activity as MainActivity).binding.linearViewCart.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_checkoutFragment)
+        }
 
         setupTabLayout()
         setupViewPager()
@@ -48,6 +53,7 @@ class HomeFragment : Fragment() {
             requireContext(),
             R.array.spinner_list_item_array, android.R.layout.simple_spinner_item
         )
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
         return super.onCreateOptionsMenu(menu, inflater)

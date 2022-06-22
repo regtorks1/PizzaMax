@@ -4,7 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
 import androidx.room.TypeConverter
-import com.example.pizzamax.model.CategoriesList
+import com.example.pizzamax.model.CategoryItems
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.ByteArrayOutputStream
@@ -14,18 +14,17 @@ import java.util.*
 class Converters {
 
     @TypeConverter
-    fun listToJson(list : String?): List<CategoriesList?>?{
+    fun listToJson(list : String?): List<CategoryItems?>?{
         if (list ==null) {
             Log.d("@TypeConverters","$list is empty")
             return Collections.emptyList()
         }
-        val listType: Type = object:TypeToken<List<CategoriesList?>?>(){}.type
-        return Gson().fromJson<List<CategoriesList?>>(list, listType)
+        val listType: Type = object:TypeToken<List<CategoryItems?>?>(){}.type
+        return Gson().fromJson<List<CategoryItems?>>(list, listType)
     }
 
     @TypeConverter
-    fun jsonToString(list: List<CategoriesList?>?):String{
-         Log.d("@TypeConverters","$list is empty")
+    fun jsonToString(list: List<CategoryItems?>?):String{
         return Gson().toJson(list)
     }
 

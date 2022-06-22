@@ -2,6 +2,7 @@ package com.example.pizzamax.views.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,13 +17,12 @@ import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentBigBetterBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.Cart
-import com.example.pizzamax.model.CategoriesList
+import com.example.pizzamax.model.CategoryItems
 import com.example.pizzamax.model.Favorites
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
 import com.example.pizzamax.views.adapters.ProductListAdapter
-import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
 import com.example.pizzamax.views.ui.activity.CheckoutActivity
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.imgUrl
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.price
@@ -46,7 +46,7 @@ class BigBetterFragment : Fragment(), AdapterListImpl {
 
         val recyclerAdapter: ProductListAdapter by lazy {
             ProductListAdapter(this) { title, price ->
-                mainAlertDialog(title, price) {
+                mainAlertDialog(title, price!!) {
                     bindingMainActivity.linearViewCart.visibility = View.VISIBLE
                 }
             }
@@ -57,6 +57,7 @@ class BigBetterFragment : Fragment(), AdapterListImpl {
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
         productViewmodel.getCategoriesList("better").observe(viewLifecycleOwner, Observer { list ->
+            Log.d("BETTER", "$list")
             lifecycleScope.launch {
                 list.forEach {
                     recyclerAdapter.submitList(it.list)
@@ -74,25 +75,25 @@ class BigBetterFragment : Fragment(), AdapterListImpl {
         startActivity(intent)
     }
 
-    override fun onAddToFavoriteListener(favorites: Favorites) {
+    override fun onAddToFavoriteListener(favorites: CategoryItems) {
         val list = listOf(
-            ProductRecyclerViewItem.Favorites(
-                imgUrl = favorites.imgUrl,
-                price = favorites.price,
-                size = favorites.size
+            Favorites(
+                imgUrl = favorites.imgUrl!!,
+                price = favorites.price!!,
+                size = favorites.size!!
             )
         )
-        //  productViewmodel.insertIntoFavorites(list)
-        findNavController().navigate(R.id.action_bigBetterFragment_to_favoritesFragment)
+        productViewmodel.insertIntoFavorites(list)
+        findNavController().navigate(R.id.action_homeFragment_to_favoritesFragment)
     }
 
-    override fun onViewDetailListener(categoriesList: CategoriesList) {
+    override fun onViewDetailListener(categoryItems: CategoryItems) {
         val bundle = Bundle()
         bundle.putString(type, "details")
-        bundle.putString(imgUrl, categoriesList.imgUrl)
-        bundle.putString(size, categoriesList.size)
-        bundle.putString(price, categoriesList.price)
-        findNavController().navigate(R.id.action_bigBetterFragment_to_detailsFragment, bundle)
+        bundle.putString(imgUrl, categoryItems.imgUrl)
+        bundle.putString(size, categoryItems.size)
+        bundle.putString(price, categoryItems.price)
+        findNavController().navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
     }
 
 

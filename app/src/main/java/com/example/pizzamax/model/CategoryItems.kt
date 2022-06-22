@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "category_list")
-data class CategoriesList(
+data class CategoryItems(
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
     @ColumnInfo(name = "image") var imgUrl: String?=null,
     @ColumnInfo(name = "size") var size: String?=null,
