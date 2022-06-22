@@ -46,7 +46,7 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
                         list.forEach {
                             item = it.quantity.toInt()
                             amount += it.price.toInt()
-                            bindingMainActivity.itemNumber.text = "${it.quantity} Items"
+                            bindingMainActivity!!.itemNumber.text = "${it.quantity} Items"
                             bindingMainActivity.amount.text = "Ghc ${it.price}"
                         }
 
@@ -55,7 +55,7 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
                         Log.d("TOTAL ITEM", "::::::::::::::::::::::$iterator")
                         Log.d("Total Amt", ":::::::::::::::::::::::${(amount)}")
                     })
-                    bindingMainActivity.linearViewCart.visibility = View.VISIBLE
+                    bindingMainActivity!!.linearViewCart.visibility = View.VISIBLE
                     bindingMainActivity.viewCart.visibility = View.VISIBLE
                     bindingMainActivity.nextView.visibility = View.VISIBLE
                 }

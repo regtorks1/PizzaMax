@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.DialogFragment
+import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FirstAlertdialogBinding
 
 class CustomDialog : DialogFragment() {
@@ -37,6 +39,8 @@ class CustomDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+
         binding = FirstAlertdialogBinding.inflate(layoutInflater)
         return binding.root
     }

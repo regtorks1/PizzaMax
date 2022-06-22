@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.ui.activity.FavoritesActivity">
+    tools:context=".views.ui.activity.FavoritesActivity"
+    android:background="?attr/background_color">
 
 
 
@@ -38,7 +39,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/recycler_list" />
+        tools:listitem="@layout/recycler_list"
+        android:background="?attr/checkoutRecycler_background"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.MainActivity
+import com.example.pizzamax.R
 import com.example.pizzamax.databinding.ActivityFavoritesBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.Favorites
@@ -30,12 +32,19 @@ class FavoritesActivity : AppCompatActivity(), FavoritesAdapter.OnFavoriteDetail
     private val favoritesAdapter: FavoritesAdapter by lazy {
         FavoritesAdapter(this) { title, price ->
             mainAlertDialog(title, price) {
-                (activity as MainActivity).binding.linearViewCart.visibility = View.VISIBLE
+                (activity as MainActivity).binding!!.linearViewCart.visibility = View.VISIBLE
             }
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.darkTheme)
+        }
+        else {
+            setTheme(R.style.Theme_PizzaMax)
+        }
+
         super.onCreate(savedInstanceState)
         binding = ActivityFavoritesBinding.inflate(layoutInflater)
         setContentView(binding.root)

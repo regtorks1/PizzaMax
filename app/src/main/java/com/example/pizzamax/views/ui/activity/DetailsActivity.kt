@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import coil.load
 import com.example.pizzamax.MainActivity
+import com.example.pizzamax.R
 import com.example.pizzamax.databinding.ActivityDetailsBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.viewmodel.ActivityViewModelFactory
@@ -23,6 +25,13 @@ class DetailsActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.darkTheme)
+        }
+        else {
+            setTheme(R.style.Theme_PizzaMax)
+        }
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -35,7 +44,7 @@ class DetailsActivity : AppCompatActivity() {
 
              binding.addCart.setOnClickListener {
                  mainAlertDialog(title = size!!, price = priceString!!){
-                      (activity as MainActivity).binding.linearViewCart.visibility = View.VISIBLE
+                      (activity as MainActivity).binding!!.linearViewCart.visibility = View.VISIBLE
                  }
             }
 

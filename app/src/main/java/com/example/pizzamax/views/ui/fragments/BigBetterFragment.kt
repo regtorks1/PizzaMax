@@ -51,7 +51,7 @@ class BigBetterFragment : Fragment(), AdapterListImpl {
             BigBetterAdapter(
                 this
             ) {title, price -> mainAlertDialog(title, price){
-                bindingMainActivity.linearViewCart.visibility = View.VISIBLE
+                bindingMainActivity!!.linearViewCart.visibility = View.VISIBLE
                 bindingMainActivity.nextView.visibility = View.VISIBLE
                 bindingMainActivity.viewCart.visibility = View.VISIBLE
             }

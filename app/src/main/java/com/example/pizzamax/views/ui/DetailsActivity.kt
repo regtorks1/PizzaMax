@@ -35,7 +35,7 @@ class DetailsActivity : AppCompatActivity() {
 
             binding.addCart.setOnClickListener {
                 mainAlertDialog(title = size!!, price = priceString!!){
-                    (activity as MainActivity).binding.linearViewCart.visibility = View.VISIBLE
+                    (activity as MainActivity).binding!!.linearViewCart.visibility = View.VISIBLE
                 }
             }
 

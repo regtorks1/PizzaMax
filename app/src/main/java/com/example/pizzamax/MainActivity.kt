@@ -13,6 +13,7 @@ import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.MenuItemCompat.getActionView
 import androidx.fragment.app.viewModels
@@ -32,18 +33,21 @@ import com.smarteist.autoimageslider.SliderView
 
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
-
-//    private val productViewmodel: ProductViewModel by viewModels {
-//        ProductViewModelFactory((activity?.application as App).productRepository)
-//    }
+     lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        setContentView(binding.root)
 
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.darkTheme)
+        }
+        else {
+            setTheme(R.style.Theme_PizzaMax)
+        }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        super.onCreate(savedInstanceState)
+
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         binding.linearViewCart.setOnClickListener {
             val intent = Intent(this, CheckoutActivity::class.java)
             startActivity(intent)
@@ -51,6 +55,15 @@ class MainActivity : AppCompatActivity() {
         imageSlider()
         setupTabLayout()
         setupViewPager()
+
+        binding.switchKey.setOnCheckedChangeListener{_, isChecked ->
+            if(isChecked){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -118,11 +131,11 @@ class MainActivity : AppCompatActivity() {
             R.drawable.pizza_max_poster2,
             R.drawable.pizza_max_poster3
         )
-        val imageView : SliderView = binding.slider
+        val imageView : SliderView = binding!!.slider
         imageView.fitsSystemWindows = true
 
         val sliderDataArrayList = ArrayList<SliderData>()
-        val sliderView: SliderView = binding.slider
+        val sliderView: SliderView = binding!!.slider
         sliderDataArrayList.add(SliderData(sliderImg[0]))
         sliderDataArrayList.add(SliderData(sliderImg[1]))
         sliderDataArrayList.add(SliderData(sliderImg[2]))
