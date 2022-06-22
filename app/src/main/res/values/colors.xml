@@ -19,5 +19,6 @@
     <color name="green">#32CD32</color>
     <color name="grey">#E6E6E6</color>
     <color name="real_grey">#808080</color>
+    <color name="teal_700">#FF018786</color>
 
 </resources>

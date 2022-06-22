@@ -16,22 +16,12 @@ import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentValueDealsBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.Cart
-<<<<<<< HEAD
-import com.example.pizzamax.model.Categories
-import com.example.pizzamax.model.CategoriesList
-import com.example.pizzamax.model.Favorites
-import com.example.pizzamax.viewmodel.ProductViewModel
-import com.example.pizzamax.viewmodel.ProductViewModelFactory
-import com.example.pizzamax.views.adapters.*
-import com.example.pizzamax.views.ui.activity.CheckoutActivity
-=======
 import com.example.pizzamax.model.CategoryItems
 import com.example.pizzamax.model.Favorites
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
 import com.example.pizzamax.views.adapters.ProductListAdapter
->>>>>>> 8b8374c1d943034c3f75ba58207db097e9ed0a3b
 import com.example.pizzamax.views.util.mainAlertDialog
 import kotlinx.coroutines.launch
 
@@ -41,8 +31,7 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         ProductViewModelFactory((activity?.application as App).productRepository)
     }
     private lateinit var binding: FragmentValueDealsBinding
-    var listArray : ArrayList<CategoriesList> = ArrayList()
-    private lateinit var iWant: Categories
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,27 +39,6 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
     ): View {
         binding = FragmentValueDealsBinding.inflate(layoutInflater)
         val bindingMainActivity = (activity as MainActivity).binding
-<<<<<<< HEAD
-
-
-
-        val recyclerAdapter: ProductListAdapter by lazy {
-            ProductListAdapter(this) { title, price ->
-                mainAlertDialog(title, price) {
-                    productViewmodel.getCategoryList.observe(viewLifecycleOwner, Observer { list ->
-                         list.forEach {
-                             //item = it.quantity.toInt()
-                             //amount += it.price.toInt()
-                             //bindingMainActivity.itemNumber.text = "${it.quantity} Items"
-                             bindingMainActivity.amount.text = "Ghc ${it.price}"
-                         }
-
-                         iterator += item
-                         total += amount
-                         Log.d("TOTAL ITEM", "::::::::::::::::::::::$iterator")
-                         Log.d("Total Amt", ":::::::::::::::::::::::${(amount)}")
-                     })
-=======
         val recyclerAdapter: ProductListAdapter by lazy {
             ProductListAdapter(this) { title, price ->
                 mainAlertDialog(title, price!!) {
@@ -85,7 +53,6 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
                         total += amount
                     })
                     bindingMainActivity.linearViewCart.visibility = View.VISIBLE
->>>>>>> 8b8374c1d943034c3f75ba58207db097e9ed0a3b
                     bindingMainActivity.viewCart.visibility = View.VISIBLE
                     bindingMainActivity.nextView.visibility = View.VISIBLE
                 }
@@ -96,10 +63,6 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         val thisRecycler = binding.recyclerView
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
-<<<<<<< HEAD
-        productViewmodel.getCategoryList.observe(viewLifecycleOwner, Observer {list->
-                 recyclerAdapter.submitList(list)
-=======
         productViewmodel.getCategoriesList("deals").observe(viewLifecycleOwner, Observer { list ->
             Log.d("DEALS", "$list")
             lifecycleScope.launch {
@@ -107,7 +70,6 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
                     recyclerAdapter.submitList(it.list)
                 }
             }
->>>>>>> 8b8374c1d943034c3f75ba58207db097e9ed0a3b
         })
 
         return binding.root

@@ -45,6 +45,8 @@ android {
     }
 }
 
+//implementation 'androidx.navigation:navigation-fragment:2.4.2'
+
 dependencies {
     //android components
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"

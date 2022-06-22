@@ -34,11 +34,7 @@ class ListDatabaseCallback(
 
     private fun populateProductTable(
         categoriesDao: CategoriesDao,
-<<<<<<< HEAD
-        categoryListDao: CategoryListDao,
-=======
         categoryItemsDao: CategoryItemsDao
->>>>>>> 8b8374c1d943034c3f75ba58207db097e9ed0a3b
     ) {
         val jsonFile = getJsonDataFromAsset(application, "product_list.json")
         Log.d("DATA", jsonFile.toString())
