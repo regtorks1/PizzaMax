@@ -5,10 +5,10 @@ import android.util.Log
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.pizzamax.data.dao.CategoriesDao
-import com.example.pizzamax.data.dao.CategoryListDao
+import com.example.pizzamax.data.dao.CategoryItemsDao
 import com.example.pizzamax.data.source.RoomDb.Companion.INSTANCE
 import com.example.pizzamax.model.Categories
-import com.example.pizzamax.model.CategoriesList
+import com.example.pizzamax.model.CategoryItems
 import com.example.pizzamax.views.util.getJsonDataFromAsset
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -26,25 +26,24 @@ class ListDatabaseCallback(
             scope.launch {
                 populateProductTable(
                     database.categoriesDao(),
-                    database.categoryListDao()
+                    database.categoryItemsDao()
                 )
             }
         }
     }
 
-
     private fun populateProductTable(
         categoriesDao: CategoriesDao,
-        categoryListDao: CategoryListDao
+        categoryItemsDao: CategoryItemsDao
     ) {
         val jsonFile = getJsonDataFromAsset(application, "product_list.json")
         Log.d("DATA", jsonFile.toString())
         val jsonObj = JSONObject(jsonFile!!)
         val jsonArray: JSONArray = jsonObj.getJSONArray("categories")
         Log.d("CATEGORIES", "\n$jsonArray")
-        var categoriesList = CategoriesList()
 
         for (i in 0 until jsonArray.length()) {
+            val categoryItems = mutableListOf<CategoryItems>()
             val name = jsonArray.getJSONObject(i).getString("name")
             val list = jsonArray.getJSONObject(i).getJSONArray("items")
             Log.d("categories", "\n$name \n$list")
@@ -54,16 +53,24 @@ class ListDatabaseCallback(
                 val size = list.getJSONObject(j).getString(size)
                 val price = list.getJSONObject(j).getString(price)
                 val imgUrl = list.getJSONObject(j).getString(imgUrl)
-                categoriesList =
-                    CategoriesList(id = id.toInt(), size = size, price = price, imgUrl = imgUrl)
-                categoryListDao.insertToCategoryList(categoriesList)
+                categoryItems.add(
+                    CategoryItems(
+                        id = id.toInt(),
+                        size = size,
+                        price = price,
+                        imgUrl = imgUrl
+                    )
+                )
+                //  categoryItemsDao.insertToCategoryList(categoryItems)
+                Log.d("ListItems", ":::::::::::::::$categoryItems")
             }
 
-            val categories = Categories(id = i, name = name, listOf(categoriesList))
+
+            val categories = mutableListOf<Categories>()
+              categories.add(Categories(id = i, name = name, categoryItems))
             categoriesDao.insertToCategories(categories)
             Log.d("categories", ":::::::::::::::$categories")
 
-            Log.d("ListItems", ":::::::::::::::$categoriesList")
 
         }
     }

@@ -18,7 +18,7 @@ import coil.request.ImageRequest
 import coil.request.SuccessResult
 import com.example.pizzamax.R
 import com.example.pizzamax.di.App
-import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
+import com.example.pizzamax.model.Cart
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import kotlinx.coroutines.launch
@@ -102,7 +102,7 @@ fun Fragment.mainAlertDialog(
 
     addToCartBtn.setOnClickListener {
              val list = listOf(
-                 ProductRecyclerViewItem.Cart(
+                 Cart(
                  itemName = title,
                  price = total.text.toString(),
                  quantity = increment.text.toString(),
@@ -115,7 +115,7 @@ fun Fragment.mainAlertDialog(
         Log.d("CART",":::::::::::::${list}")
 
         lifecycleScope.launch {
-           // Log.d("DATABASE","::::::::${productViewmodel.insertIntoCart(list)}")
+           Log.d("DATABASE","::::::::${productViewmodel.insertIntoCart(list)}")
            /* productViewmodel.updateExpenses(mutableListOf(
                 ProductRecyclerViewItem.Expenses(quantity = increment.text.toString(), amount = total.text.toString())
             ))*/

@@ -81,7 +81,7 @@
             android:backgroundTint="@color/real_red"
             android:layout_marginStart="345dp"
             android:layout_marginTop="138dp"
-            android:src="@drawable/favorites_states"
+            android:background="@drawable/favorites_states"
             android:clickable="true"
             android:focusable="true"/>
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <color name="primary">#DB3022</color>
     <color name="background">#17181A</color>
     <color name="backgroundAd">#21242B</color>
@@ -19,5 +18,4 @@
     <color name="green">#32CD32</color>
     <color name="grey">#E6E6E6</color>
     <color name="real_grey">#808080</color>
-
 </resources>

@@ -1,8 +1,6 @@
 package com.example.pizzamax.views.ui.fragments
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,14 +15,12 @@ import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentAppetizersBinding
 import com.example.pizzamax.di.App
 import com.example.pizzamax.model.Cart
-import com.example.pizzamax.model.CategoriesList
+import com.example.pizzamax.model.CategoryItems
 import com.example.pizzamax.model.Favorites
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
 import com.example.pizzamax.views.adapters.ProductListAdapter
-import com.example.pizzamax.views.adapters.ProductRecyclerViewItem
-import com.example.pizzamax.views.ui.activity.CheckoutActivity
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.imgUrl
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.price
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.size
@@ -46,7 +42,7 @@ class AppetizersFragment : Fragment(), AdapterListImpl {
         val bindingMainActivity = (activity as MainActivity).binding
         val recyclerAdapter: ProductListAdapter by lazy {
             ProductListAdapter(this) { title, price ->
-                mainAlertDialog(title, price) {
+                mainAlertDialog(title, price!!) {
                     bindingMainActivity.linearViewCart.visibility = View.VISIBLE
                 }
             }
@@ -56,14 +52,11 @@ class AppetizersFragment : Fragment(), AdapterListImpl {
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
-        Log.d("FRAGMENT", ":::::::::::::::::::::::::::::::::inside")
-
         productViewmodel.getCategoriesList("appetizer")
             .observe(viewLifecycleOwner, Observer { list ->
                 lifecycleScope.launch {
                     list.forEach {
-                         recyclerAdapter.submitList(it.list?.toList())
-                         Log.d("APPETIZERS", "::::::::::::::${it.list}")
+                        recyclerAdapter.submitList(it.list?.toList())
                     }
                 }
             })
@@ -71,33 +64,27 @@ class AppetizersFragment : Fragment(), AdapterListImpl {
     }
 
     override fun onAddToCartListener(cart: Cart) {
-        val intent = Intent(requireContext(), CheckoutActivity::class.java)
-        intent.putExtra("type", "cart")
-        intent.putExtra("size", cart.quantity)
-        intent.putExtra("price", cart.price)
-        startActivity(intent)
+        findNavController().navigate(R.id.action_homeFragment_to_checkoutFragment)
     }
 
-    override fun onAddToFavoriteListener(favorites: Favorites) {
+    override fun onAddToFavoriteListener(favorites: CategoryItems) {
         val list = listOf(
-            ProductRecyclerViewItem.Favorites(
-                imgUrl = favorites.imgUrl,
-                price = favorites.price,
-                size = favorites.size
+            Favorites(
+                imgUrl = favorites.imgUrl!!,
+                price = favorites.price!!,
+                size = favorites.size!!
             )
         )
-        //  productViewmodel.insertIntoFavorites(list)
-        findNavController().navigate(R.id.action_appetizersFragment_to_favoritesFragment)
-        // startActivity(Intent(requireContext(), FavoritesActivity::class.java))
+        productViewmodel.insertIntoFavorites(list)
     }
 
-    override fun onViewDetailListener(categoriesList: CategoriesList) {
+    override fun onViewDetailListener(categoryItems: CategoryItems) {
         val bundle = Bundle()
         bundle.putString(type, "details")
-        bundle.putString(imgUrl, categoriesList.imgUrl)
-        bundle.putString(size, categoriesList.size)
-        bundle.putString(price, categoriesList.price)
-        findNavController().navigate(R.id.action_appetizersFragment_to_detailsFragment, bundle)
+        bundle.putString(imgUrl, categoryItems.imgUrl)
+        bundle.putString(size, categoryItems.size)
+        bundle.putString(price, categoryItems.price)
+        findNavController().navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
     }
 
 

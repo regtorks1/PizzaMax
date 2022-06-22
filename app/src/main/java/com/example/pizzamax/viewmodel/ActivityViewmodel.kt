@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import com.example.pizzamax.data.repository.ProductRepository
 import com.example.pizzamax.model.Cart
 import com.example.pizzamax.model.Categories
-import com.example.pizzamax.model.CategoriesList
+import com.example.pizzamax.model.CategoryItems
 import kotlinx.coroutines.launch
 
 class ActivityViewmodel(private val repository: ProductRepository) : ViewModel() {
@@ -12,7 +12,7 @@ class ActivityViewmodel(private val repository: ProductRepository) : ViewModel()
     val details: LiveData<Cart> get() = _details
 
     //CATEGORIES
-    fun insertIntoCategories(categories: Categories) = viewModelScope.launch {
+    fun insertIntoCategories(categories: MutableList<Categories>) = viewModelScope.launch {
         repository.insertToCategories(categories)
     }
 
@@ -28,11 +28,11 @@ class ActivityViewmodel(private val repository: ProductRepository) : ViewModel()
 
 
     //CATEGORIES LIST
-    fun insertIntoCategories(categories: CategoriesList) = viewModelScope.launch {
+    fun insertIntoCategories(categories: CategoryItems) = viewModelScope.launch {
         repository.insertToCategoryList(categories)
     }
 
-    fun updateCategories(categories: CategoriesList) = viewModelScope.launch {
+    fun updateCategories(categories: CategoryItems) = viewModelScope.launch {
         repository.updateCategoryList(categories)
     }
 
@@ -40,7 +40,7 @@ class ActivityViewmodel(private val repository: ProductRepository) : ViewModel()
         repository.deleteAllFromCategoryList()
     }
 
-    val getCategoriesList: LiveData<List<CategoriesList>> =
+    val getCategoryItems: LiveData<List<CategoryItems>> =
         repository.getAllFromCategoryList().asLiveData()
 
 
