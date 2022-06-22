@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/deep_orange">
+        android:background="?attr/button_color">
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,7 +23,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="180dp"
             android:textSize="18sp"
-            android:textColor="@color/white"
+            android:textColor="?attr/checkout_background"
             android:textStyle="bold"/>
     </LinearLayout>
 
@@ -38,7 +38,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/recycler_list"
-        app:layout_constraintTop_toBottomOf="@+id/favorite_linear"/>
+        app:layout_constraintTop_toBottomOf="@+id/favorite_linear"
+        android:background="?attr/checkoutRecycler_background"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

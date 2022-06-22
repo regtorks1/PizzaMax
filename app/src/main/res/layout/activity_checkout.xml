@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/off_white">
+        android:background="?attr/checkout_background">
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/coordinate_layout"
@@ -30,7 +30,7 @@
                     android:id="@+id/topAppBar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@color/white"
+                    android:background="?attr/background_color"
                     app:elevation="10dp">
 
                     <ImageView
@@ -38,6 +38,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/arrow_back"
+                        android:backgroundTint="?attr/icon_color"
                         android:clickable="true"
                         android:contentDescription="@string/back_arrow"
                         android:focusable="true" />
@@ -47,7 +48,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/checkout"
-                        android:textColor="@color/black"
+                        android:textColor="?attr/text_color"
                         android:textSize="16sp" />
 
                     <ImageView
@@ -57,6 +58,7 @@
                         android:layout_gravity="end"
                         android:layout_marginEnd="15dp"
                         android:background="@drawable/delete_outline"
+                        android:backgroundTint="?attr/icon_color"
                         android:clickable="true"
                         android:contentDescription="@string/delete"
                         android:focusable="true" />
@@ -71,8 +73,8 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="12dp"
             android:text="@string/your_delivery_details"
-            android:textColor="@color/black"
-            android:textCursorDrawable="@color/black"
+            android:textColor="?attr/text_color"
+            android:textCursorDrawable="?attr/text_color"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -84,7 +86,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enter_your_name"
-            android:textColor="@color/black"
+            android:textColorHint="?attr/hint_color"
+            android:textColor="?attr/text_color"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,7 +102,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.018"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/enter_your_name" />
+            app:layout_constraintTop_toBottomOf="@+id/enter_your_name"
+            android:textColorHint="?attr/hint_color"/>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/phone_number"
@@ -107,6 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/_301_22345689"
+            android:textColorHint="?attr/hint_color"
             android:inputType="phone"
             android:paddingStart="125dp"
             android:textSize="12sp"
@@ -142,7 +147,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/select_your_delivery_address"
-            android:textColor="@color/real_red"
+            android:textColor="?attr/description_color"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.018"
@@ -154,10 +159,10 @@
             android:layout_width="85dp"
             android:layout_height="41dp"
             android:layout_marginStart="175dp"
-            android:backgroundTint="@color/deep_orange"
+            android:backgroundTint="?attr/button_color"
             android:text="@string/select"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="?attr/button_textColor"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.894"
@@ -171,7 +176,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="15dp"
             android:text="@string/payment_method"
-            android:textColor="@color/black"
+            android:textColor="?attr/text_color"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -195,6 +200,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="23dp"
             android:background="@drawable/circle_card"
+            android:backgroundTint="?attr/background_tint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.056"
             app:layout_constraintStart_toStartOf="parent"
@@ -207,6 +213,7 @@
             android:layout_marginStart="55dp"
             android:layout_marginTop="23dp"
             android:text="@string/select_payment_method"
+            android:textColor="?attr/hint_color"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.018"
@@ -232,7 +239,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="25dp"
             android:text="@string/delivery_time"
-            android:textColor="@color/black"
+            android:textColor="?attr/text_color"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -257,6 +264,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="22dp"
             android:text="@string/asap"
+            android:textColor="?attr/hint_color"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.018"
@@ -289,7 +297,6 @@
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toBottomOf="@+id/access_time"
              android:layout_marginStart="5dp"/>
-
          <TextView
              android:id="@+id/promo_regular"
              android:layout_width="wrap_content"
@@ -302,7 +309,6 @@
              app:layout_constraintTop_toBottomOf="@+id/Items"
              android:layout_marginTop="10dp"
              android:textColor="@color/black"/>
-
          <TextView
              android:id="@+id/description"
              android:layout_width="wrap_content"
@@ -315,7 +321,6 @@
              app:layout_constraintHorizontal_bias="0.0"
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toBottomOf="@+id/promo_regular" />
-
          <ImageButton
              android:id="@+id/neg_btn"
              android:layout_width="30dp"
@@ -329,7 +334,6 @@
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toBottomOf="@+id/description"
              android:src="@drawable/horizontal_rule"/>
-
          <TextView
              android:id="@+id/increment"
              android:layout_width="wrap_content"
@@ -342,7 +346,6 @@
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toBottomOf="@+id/description"
              android:textSize="12sp"/>
-
          <ImageButton
              android:id="@+id/add_btn"
              android:layout_width="30dp"
@@ -356,7 +359,6 @@
              app:layout_constraintHorizontal_bias="0.157"
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toBottomOf="@+id/description" />
-
          <TextView
              android:id="@+id/amount"
              android:layout_width="wrap_content"
@@ -368,7 +370,6 @@
              app:layout_constraintHorizontal_bias="0.267"
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toBottomOf="@+id/description" />
-
          <TextView
              android:id="@+id/price"
              android:layout_width="wrap_content"
@@ -398,13 +399,14 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/access_time"
-            tools:listitem="@layout/cart_list" />
+            tools:listitem="@layout/cart_list"
+            android:background="?attr/checkoutRecycler_background"/>
 
         <View
             android:id="@+id/underline1"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/grey"
+            android:background="?attr/background_color"
             app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
         <TextView
@@ -413,7 +415,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/subtotal"
-            android:textColor="@color/black"
+            android:textColor="?attr/text_color"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.018"
@@ -427,6 +429,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="4dp"
             android:text="@string/delivery_changes"
+            android:textColor="?attr/hint_color"
             android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -439,7 +442,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/_100"
-            android:textColor="@color/black"
+            android:textColor="?attr/text_color"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.956"
@@ -452,7 +455,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/grand_total_incl_tax"
-            android:textColor="@color/black"
+            android:textColor="?attr/text_color"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.018"
@@ -465,7 +468,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/_100"
-            android:textColor="@color/black"
+            android:textColor="?attr/text_color"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.956"
@@ -493,10 +496,10 @@
             android:layout_height="41dp"
             android:layout_marginStart="225dp"
             android:layout_marginTop="5dp"
-            android:backgroundTint="@color/real_grey"
+            android:backgroundTint="?attr/secondButton_background"
             android:text="@string/apply"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="?attr/button_textColor"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.894"
@@ -510,7 +513,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:text="@string/special_instruction_optional"
-            android:textColor="@color/black"
+            android:textColor="?attr/text_color"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -522,10 +525,10 @@
             android:layout_width="match_parent"
             android:layout_height="78dp"
             android:layout_marginTop="16dp"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="?attr/description_color"
             android:text="@string/place_order"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="?attr/button_textColor"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

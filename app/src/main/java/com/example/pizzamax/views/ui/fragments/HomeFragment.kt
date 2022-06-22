@@ -5,6 +5,7 @@ import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Spinner
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.MenuItemCompat.getActionView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -31,6 +32,8 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater)
         (activity as MainActivity).binding.linearViewCart.setOnClickListener {

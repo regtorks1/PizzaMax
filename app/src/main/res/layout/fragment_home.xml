@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.ui.fragments.HomeFragment">
- <com.smarteist.autoimageslider.SliderView
+
+
+    <com.smarteist.autoimageslider.SliderView
         android:id="@+id/slider"
         android:layout_width="match_parent"
         android:layout_height="170dp"
@@ -23,24 +25,25 @@
         app:sliderIndicatorPadding="5dp"
         app:sliderIndicatorRadius="2dp"
         app:sliderIndicatorSelectedColor="#FFF"
-        app:sliderIndicatorUnselectedColor="@color/grey"
+        app:sliderIndicatorUnselectedColor="?attr/background_color"
         app:sliderScrollTimeInSec="1"
-        >
+        android:layout_marginTop="40dp" >
     </com.smarteist.autoimageslider.SliderView>
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/slider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/slider"
+        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
         app:tabGravity="center"
-        app:tabIndicatorColor="@color/red"
+        app:tabIndicatorColor="?attr/indicator_color"
         app:tabIndicatorHeight="2dp"
         app:tabMode="scrollable"
-        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-        app:tabTextColor="@color/black" />
+        app:tabTextColor="?attr/text_color"
+        />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
