@@ -1,13 +1,19 @@
 package com.example.pizzamax.views.ui.fragments
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Switch
+import android.widget.ToggleButton
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.AppCompatToggleButton
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.MenuItemCompat.getActionView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -54,12 +60,14 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_checkoutFragment)
         }
 
+
         setupTabLayout()
         setupViewPager()
         imageSlider()
         return binding.root
     }
 
+    @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater){
         val inflater: MenuInflater = menuInflater
@@ -67,14 +75,19 @@ class HomeFragment : Fragment() {
         val item: MenuItem = menu.findItem(R.id.spinner)
         val spinner: Spinner = getActionView(item) as Spinner
         val switchItem : MenuItem = menu.findItem(R.id.switch_key)
-        val switch : SwitchCompat = getActionView(switchItem) as SwitchCompat
+        val switch : Switch = getActionView(switchItem) as Switch
 
+        switch.thumbDrawable.setTint(ContextCompat.getColor(requireContext(), R.color.light_orange))
+        switch.trackDrawable.setTint(ContextCompat.getColor(requireContext(),R.color.light_orange))
 
 
         switch.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                //activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                //activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS
+            // _BAR
+                switch.thumbDrawable.setTint(ContextCompat.getColor(requireContext(), R.color.light_orange))
+                switch.trackDrawable.setTint(ContextCompat.getColor(requireContext(),R.color.light_orange))
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }

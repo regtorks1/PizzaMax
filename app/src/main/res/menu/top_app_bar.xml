@@ -20,9 +20,9 @@
         android:id="@+id/switch_key"
         android:title=""
         app:showAsAction="always"
-        app:iconTint = "?attr/icon_color"
-        app:actionViewClass="androidx.appcompat.widget.SwitchCompat"
-        android:checkable="true" />
+        app:actionViewClass="android.widget.Switch"
+        android:checkable="true"
+        android:iconTint = "@style/MenuItems"/>
 
 
     <item
