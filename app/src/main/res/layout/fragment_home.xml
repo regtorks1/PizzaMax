@@ -26,8 +26,7 @@
         app:sliderIndicatorRadius="2dp"
         app:sliderIndicatorSelectedColor="#FFF"
         app:sliderIndicatorUnselectedColor="?attr/background_color"
-        app:sliderScrollTimeInSec="1"
-        android:layout_marginTop="40dp" >
+        app:sliderScrollTimeInSec="1">
     </com.smarteist.autoimageslider.SliderView>
 
     <com.google.android.material.tabs.TabLayout

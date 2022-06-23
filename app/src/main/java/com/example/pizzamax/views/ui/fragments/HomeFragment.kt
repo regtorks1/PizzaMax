@@ -1,11 +1,13 @@
 package com.example.pizzamax.views.ui.fragments
 
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.ArrayAdapter
-import android.widget.ImageView
 import android.widget.Spinner
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.MenuItemCompat.getActionView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -21,21 +23,33 @@ import com.smarteist.autoimageslider.SliderView
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            context?.setTheme(R.style.darkTheme)
+        }
+        else {
+            context?.setTheme(R.style.Theme_PizzaMax)
+        }
+
+
         setHasOptionsMenu(true)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-
+        activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater)
+
+
+
         (activity as MainActivity).binding.linearViewCart.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_checkoutFragment)
         }
@@ -46,11 +60,25 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater){
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.top_app_bar, menu)
         val item: MenuItem = menu.findItem(R.id.spinner)
         val spinner: Spinner = getActionView(item) as Spinner
+        val switchItem : MenuItem = menu.findItem(R.id.switch_key)
+        val switch : SwitchCompat = getActionView(switchItem) as SwitchCompat
+
+
+
+        switch.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                //activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
 
         val adapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
             requireContext(),
@@ -68,6 +96,7 @@ class HomeFragment : Fragment() {
              findNavController().navigate(R.id.action_homeFragment_to_favoritesFragment)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
 

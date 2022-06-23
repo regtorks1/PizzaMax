@@ -17,6 +17,15 @@
 
 
     <item
+        android:id="@+id/switch_key"
+        android:title=""
+        app:showAsAction="always"
+        app:iconTint = "?attr/icon_color"
+        app:actionViewClass="androidx.appcompat.widget.SwitchCompat"
+        android:checkable="true" />
+
+
+    <item
         android:id="@+id/search"
         android:icon="@drawable/search_24"
         android:title="@string/search"
@@ -31,12 +40,7 @@
         tools:ignore="AlwaysShowAction"
         app:iconTint = "?attr/icon_color"/>
 
-    <item
-        android:id="@+id/profile"
-        android:icon="@drawable/person_outline"
-        android:title="@string/profile"
-        app:showAsAction="always"
-        app:iconTint = "?attr/icon_color"/>
+
 
 
 </menu>

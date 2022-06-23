@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/dialog_background">
 
     <LinearLayout
         android:id="@+id/linear_choose"
@@ -11,14 +12,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/grey"
+        android:background="?attr/background_color"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pizza_flavors"
-            android:textColor="@color/black"
+            android:textColor="?attr/text_color"
             android:textSize="16sp"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="15dp"
@@ -29,7 +30,8 @@
             android:layout_height="wrap_content"
             android:text="@string/please_select_any_one_option"
             android:textSize="14sp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp"
+            android:textColor="?attr/hint_color"/>
     </LinearLayout>
 
     <TextView
@@ -40,7 +42,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:text="@string/chicken_fajita"
-        android:textColor="@color/black"
+        android:textColor="?attr/text_color"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.003"
@@ -64,7 +66,7 @@
         android:layout_width="370dp"
         android:layout_height="2dp"
         android:layout_marginTop="16dp"
-        android:background="@color/grey"
+        android:background="?attr/background_color"
         android:foregroundGravity="center"
         app:layout_constraintTop_toBottomOf="@+id/chicken_frajita"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +81,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:text="@string/cheese_max"
-        android:textColor="@color/black"
+        android:textColor="?attr/text_color"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.003"
@@ -103,7 +105,7 @@
         android:layout_width="370dp"
         android:layout_height="2dp"
         android:layout_marginTop="16dp"
-        android:background="@color/grey"
+        android:background="?attr/background_color"
         android:foregroundGravity="center"
         app:layout_constraintTop_toBottomOf="@+id/cheese_max"
         app:layout_constraintEnd_toEndOf="parent"
@@ -118,7 +120,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:text="@string/veggie_max"
-        android:textColor="@color/black"
+        android:textColor="?attr/text_color"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.003"
@@ -142,7 +144,7 @@
         android:layout_width="370dp"
         android:layout_height="2dp"
         android:layout_marginTop="16dp"
-        android:background="@color/grey"
+        android:background="?attr/background_color"
         android:foregroundGravity="center"
         app:layout_constraintTop_toBottomOf="@+id/thin_Style"
         app:layout_constraintEnd_toEndOf="parent"
@@ -157,7 +159,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:text="@string/bbq_max"
-        android:textColor="@color/black"
+        android:textColor="?attr/text_color"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.003"
@@ -176,17 +178,6 @@
         android:layout_marginStart="350dp"
         android:visibility="invisible"/>
 
-    <View
-        android:id="@+id/underline_choose3"
-        android:layout_width="370dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/grey"
-        android:foregroundGravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/bbq_max"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_editor_absoluteX="19dp" />
 
     <LinearLayout
         android:id="@+id/buttons_price"
@@ -200,10 +191,10 @@
             android:id="@+id/cancel2"
             android:layout_width="205dp"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/grey"
+            android:backgroundTint="?attr/background_color"
             android:text="@string/cancel"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="?attr/button_textColor"
             android:textSize="14sp"
             />
 
@@ -211,10 +202,10 @@
             android:id="@+id/Confirm1"
             android:layout_width="205dp"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="?attr/indicator_color"
             android:text="@string/confirm"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="?attr/button_textColor"
             android:textSize="14sp"
             />
     </LinearLayout>
