@@ -49,17 +49,14 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
 
-
         (activity as MainActivity).binding.linearViewCart.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_checkoutFragment)
         }
-
 
         setupTabLayout()
         setupViewPager()
@@ -109,7 +106,6 @@ class HomeFragment : Fragment() {
              findNavController().navigate(R.id.action_homeFragment_to_favoritesFragment)
                 true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
 
