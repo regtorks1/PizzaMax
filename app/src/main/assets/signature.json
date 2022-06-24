@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "size": "Steamed Fish Fillet",
+    "price": "150",
+    "image": "https://img.freepik.com/free-photo/steamed-fish-fillet-with-roasted-parsley-garlic-bathed-olive-oil-potato-slices-food_636935-559.jpg?w=740"
+
+  },
+  {
+    "id": "2",
+    "size": "Grilled Beef Burger with serrano ham",
+    "price": "120",
+    "image": "https://img.freepik.com/free-photo/grilled-beef-burger-with-serrano-ham-potatoes-with-dressing-wooden-table-fast-food_636935-638.jpg?w=740"
+  },
+  {
+    "id": "3",
+    "size": "Sandwich burger with beef and red onion",
+    "price": "150",
+    "image": "https://img.freepik.com/free-photo/big-sandwich-hamburger-burger-with-beef-red-onion-tomato-fried-bacon_2829-5398.jpg?t=st=1654786605~exp=1654787205~hmac=31c4e86f700bba1b4b23af8f9458aa55ef5a119ad2eab0d63906e9b67059697a&w=740"
+  },
+  {
+    "id": "4",
+    "size": "Creme brulee bark dessert with red berries",
+    "price": "190",
+    "image": "https://img.freepik.com/free-photo/creme-brulee-caramel-bark-dessert-with-red-berries-creme-brulee-dessert-food_636935-213.jpg?w=996"
+  },
+  {
+    "id": "5",
+    "size": "Chilli stuffed mexican tomato sauce",
+    "price": "250",
+    "image": "https://img.freepik.com/free-photo/chili-stuffed-with-puff-pastry-tomato-sauce-mexican-dish-mexican-food-gastronomy_636935-374.jpg?w=996"
+  },
+  {
+    "id": "6",
+    "size": "Selective focus shot fresh sliced rice kingfish",
+    "price": "100",
+    "image": "https://img.freepik.com/free-photo/selective-focus-shot-fresh-salad-with-sliced-kingfish-cucumber-rice_181624-42764.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+  },
+
+  {
+    "id": "7",
+    "size": "Indonesian stir fry bean sprouts mixed with fried tofu",
+    "price": "100",
+    "image": "https://img.freepik.com/free-photo/oseng-tauge-indonesian-stir-fry-bean-sprouts-mixed-with-fried-tofu_448865-1211.jpg?w=996"
+  }
+]

@@ -1,25 +1,47 @@
 package com.example.pizzamax.viewmodel
 
 import androidx.lifecycle.*
-import com.example.pizzamax.data.repository.ValueDealsRepository
-import com.example.pizzamax.model.ValuesDeals
+import com.example.pizzamax.data.repository.ProductRepository
+import com.example.pizzamax.model.Cart
+import com.example.pizzamax.model.Categories
+import com.example.pizzamax.model.CategoryItems
 import kotlinx.coroutines.launch
 
-class ActivityViewmodel(private val repository: ValueDealsRepository) : ViewModel() {
-    private val _details: MutableLiveData<ValuesDeals> = MutableLiveData()
-    val details: LiveData<ValuesDeals> get() = _details
+class ActivityViewmodel(private val repository: ProductRepository) : ViewModel() {
+    private val _details: MutableLiveData<Cart> = MutableLiveData()
+    val details: LiveData<Cart> get() = _details
 
-
-
-    fun insertIntoRoom(valueDeals: ValuesDeals) = viewModelScope.launch {
-        _details.postValue(valueDeals)
-        repository.insertToRoom(valueDeals)
+    //CATEGORIES
+    fun insertIntoCategories(categories: MutableList<Categories>) = viewModelScope.launch {
+        repository.insertToCategories(categories)
     }
 
-    fun updateList(valueDeals: ValuesDeals) = viewModelScope.launch {
-        _details.postValue(valueDeals)
-        repository.updateList(valueDeals)
+    fun updateCategories(categories: Categories) = viewModelScope.launch {
+        repository.updateCategories(categories)
     }
 
-    val getList: LiveData<List<ValuesDeals>> = repository.getAll().asLiveData()
+    fun deleteAllCategories() = viewModelScope.launch {
+        repository.deleteAllFromCategories()
+    }
+
+    fun getCategories(query: String): LiveData<List<Categories>> = repository.getAllFromCategories(query).asLiveData()
+
+
+    //CATEGORIES LIST
+    fun insertIntoCategories(categories: CategoryItems) = viewModelScope.launch {
+        repository.insertToCategoryList(categories)
+    }
+
+    fun updateCategories(categories: CategoryItems) = viewModelScope.launch {
+        repository.updateCategoryList(categories)
+    }
+
+    fun deleteAllList() = viewModelScope.launch {
+        repository.deleteAllFromCategoryList()
+    }
+
+    val getCategoryItems: LiveData<List<CategoryItems>> =
+        repository.getAllFromCategoryList().asLiveData()
+
+
 }

@@ -5,14 +5,24 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.pizzamax.data.dao.ValueDealsDao
-import com.example.pizzamax.model.ValuesDeals
+import com.example.pizzamax.data.dao.*
+import com.example.pizzamax.model.Cart
+import com.example.pizzamax.model.Categories
+import com.example.pizzamax.model.CategoryItems
+import com.example.pizzamax.model.Favorites
 import kotlinx.coroutines.CoroutineScope
 
-@Database(entities = [ValuesDeals::class], version = 1, exportSchema = false)
+@Database(
+    entities = [Categories::class, CategoryItems::class,  Cart::class, Favorites::class],
+    version = 2,
+    exportSchema = true
+)
 @TypeConverters(Converters::class)
 abstract class RoomDb : RoomDatabase() {
-    abstract fun dealsDao(): ValueDealsDao
+    abstract fun categoriesDao(): CategoriesDao
+    abstract fun categoryItemsDao(): CategoryItemsDao
+    abstract fun cartDao():CartDao
+    abstract fun favorites(): FavoritesDao
 
     companion object {
         @Volatile// Singleton prevents multiple instances of database opening at the same time
@@ -24,8 +34,9 @@ abstract class RoomDb : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     RoomDb::class.java,
-                    "deals"
-                ).addCallback(ListDatabaseCallback(context, scope))
+                    "PizzaMaxDatabase"
+                ).allowMainThreadQueries().addMigrations(ALTER_TABLE_MIGRATION_1_2)
+                    .addCallback(ListDatabaseCallback(context, scope))
                     .build()
                 INSTANCE = instance
                 // return instance
@@ -33,4 +44,6 @@ abstract class RoomDb : RoomDatabase() {
             }
         }
     }
+
+
 }

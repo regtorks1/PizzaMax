@@ -17,23 +17,30 @@
 
 
     <item
+        android:id="@+id/switch_key"
+        android:title=""
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.Switch"
+        android:checkable="true"
+        android:iconTint = "@style/MenuItems"/>
+
+
+    <item
         android:id="@+id/search"
         android:icon="@drawable/search_24"
         android:title="@string/search"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        app:iconTint = "@color/icon_color"/>
 
     <item
         android:id="@+id/favorite"
         android:icon="@drawable/favorite_border"
         android:title="@string/favorite"
         app:showAsAction="always"
-        tools:ignore="AlwaysShowAction" />
+        tools:ignore="AlwaysShowAction"
+        app:iconTint = "@color/icon_color"/>
 
-    <item
-        android:id="@+id/profile"
-        android:icon="@drawable/person_outline"
-        android:title="@string/profile"
-        app:showAsAction="always" />
+
 
 
 </menu>

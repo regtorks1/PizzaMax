@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name = "background_color">#FF000000</color>
+    <color name ="text_color">#E6E6E6</color>
+    <color name = "button_color">#FA840A</color>
+    <color name = "indicator_color">#FA500A</color>
+    <color name = "cardBackground_color">#43464B</color>
+    <color name = "checkout_background">#FF000000</color>
+    <color name = "linearView_textColor">#FFFFFF</color>
+    <color name = "icon_color">#FFFFFF</color>
+    <color name = "hint_color">#E6E6E6</color>
+    <color name = "description_color">#FF0000</color>
+    <color name = "button_textColor">#FFFFFF</color>
+    <color name = "checkoutRecycler_background">#000000</color>
+    <color name = "secondButton_background">#808080</color>
+    <color name = "amount_color">#32CD32</color>
+    <color name = "background_tint">#FF0000</color>
+    <color name = "dialog_background">#43464B</color>
+    <color name = "buttonColor_2">#F5B916</color>
+    <color name ="black">#FF000000</color>
+    <color name = "white">#E6E6E6</color>
+    <color name = "tagText_color">#000000</color>
+</resources>

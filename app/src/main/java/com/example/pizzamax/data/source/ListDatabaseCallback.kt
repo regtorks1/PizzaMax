@@ -4,68 +4,89 @@ import android.content.Context
 import android.util.Log
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.pizzamax.R
-import com.example.pizzamax.data.dao.ValueDealsDao
+import com.example.pizzamax.data.dao.CategoriesDao
+import com.example.pizzamax.data.dao.CategoryItemsDao
 import com.example.pizzamax.data.source.RoomDb.Companion.INSTANCE
-import com.example.pizzamax.model.ValuesDeals
-import com.example.pizzamax.views.util.getBitmap
+import com.example.pizzamax.model.Categories
+import com.example.pizzamax.model.CategoryItems
+import com.example.pizzamax.views.util.getJsonDataFromAsset
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.json.JSONArray
-import org.json.JSONException
-import java.io.BufferedReader
+import org.json.JSONObject
 
+@Suppress("BlockingMethodInNonBlockingContext")
 class ListDatabaseCallback(
-    private val context: Context,
+    private val application: Context,
     private val scope: CoroutineScope
 ) : RoomDatabase.Callback() {
     override fun onCreate(db: SupportSQLiteDatabase) {
         super.onCreate(db)
         INSTANCE?.let { database ->
             scope.launch {
-                populateDatabase(database.dealsDao())
+                populateProductTable(
+                    database.categoriesDao(),
+                    database.categoryItemsDao()
+                )
             }
         }
     }
 
-    private suspend fun populateDatabase(listDao: ValueDealsDao) {
-        try {
-            val list = loadJsonData()
-            if (list != null) {
-                for (i in 0 until list.length()) {//read from 0 until length-1
-                    val item = list.getJSONObject(i)//obtain the json object
+    private fun populateProductTable(
+        categoriesDao: CategoriesDao,
+        categoryItemsDao: CategoryItemsDao
+    ) {
+        val jsonFile = getJsonDataFromAsset(application, "product_list.json")
+        Log.d("DATA", jsonFile.toString())
+        val jsonObj = JSONObject(jsonFile!!)
+        val jsonArray: JSONArray = jsonObj.getJSONArray("categories")
+        Log.d("CATEGORIES", "\n$jsonArray")
 
-                    //get item by name
-                    val price = item.getString("price")
-                    val size = item.getString("size").toInt()
-                    val image = item.getString("image")
-                    val imgUrl = getBitmap(context, image)//if loading from url
-
-                    //load the data into entity
-                    val data = ValuesDeals(
-                        image = imgUrl,
+        for (i in 0 until jsonArray.length()) {
+            val categoryItems = mutableListOf<CategoryItems>()
+            val name = jsonArray.getJSONObject(i).getString("name")
+            val list = jsonArray.getJSONObject(i).getJSONArray("items")
+            Log.d("categories", "\n$name \n$list")
+            Log.d("LENGTH", "${list.length()}")
+            for (j in 0 until list.length()) {
+                val id = list.getJSONObject(j).getString(id)
+                val size = list.getJSONObject(j).getString(size)
+                val price = list.getJSONObject(j).getString(price)
+                val imgUrl = list.getJSONObject(j).getString(imgUrl)
+                categoryItems.add(
+                    CategoryItems(
+                        id = id.toInt(),
                         size = size,
-                        price = price
+                        price = price,
+                        imgUrl = imgUrl
                     )
-
-                    //using dao to insert data to the database
-                    listDao.insertToRoom(data)
-
-                }
-
+                )
+                //  categoryItemsDao.insertToCategoryList(categoryItems)
+                Log.d("ListItems", ":::::::::::::::$categoryItems")
             }
-        } catch (e: JSONException) {
-            Log.d("populateDatabase", "$e")
+
+
+            val categories = mutableListOf<Categories>()
+              categories.add(Categories(id = i, name = name, categoryItems))
+            categoriesDao.insertToCategories(categories)
+            Log.d("categories", ":::::::::::::::$categories")
+
+
         }
+
     }
 
-    private fun loadJsonData(): JSONArray {
-        //obtain input from resources
-        val inputStream = context.resources.openRawResource(R.raw.value_deala)
 
-        //using buffered reader to read the inputStream byte
-        BufferedReader(inputStream.reader()).use {
-            return JSONArray(it.readText())
-        }
+    companion object {
+        const val id = "id"
+        const val size = "size"
+        const val price = "price"
+        const val imgUrl = "image"
+
+        const val product = "product_list"
+        const val categories = "categories"
+        const val name = "name"
+        const val items = "items"
+
     }
 }

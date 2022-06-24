@@ -1,0 +1,293 @@
+{
+  "categories": [
+    {
+      "name": "appetizer",
+      "items": [
+        {
+          "id": "1",
+          "size": "Chicken Wings full buffet",
+          "price": "150",
+          "image": "https://img.freepik.com/free-photo/baked-chicken-wings-asian-style_2829-10159.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "2",
+          "size": "Samosas with chicken fillet and green herbs",
+          "price": "100",
+          "image": "https://img.freepik.com/free-photo/samosas-with-chicken-fillet-green-herbs_2829-10800.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "3",
+          "size": "Fresh chicken salad with grapefruit and lettuce honey mustard dressing",
+          "price": "150",
+          "image": "https://img.freepik.com/free-photo/fresh-chicken-salad-grapefruit-lettuce-honey-mustard-dressing-dietary-menu-proper-nutrition-top-view_2829-19946.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "4",
+          "size": "Crispy fried chicken",
+          "price": "170",
+          "image": "https://img.freepik.com/free-photo/crispy-fried-chicken-wooden-cutting-board_1150-20220.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "5",
+          "size": "7.5-inch pizzaroni",
+          "price": "250",
+          "image": "https://img.freepik.com/free-photo/side-view-pizza-with-slices-bell-pepper-pizza-slices-flour-board-cookware_176474-3185.jpg?size=338&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "6",
+          "size": "Fresh salad with sliced kingfish cucumber rice",
+          "price": "100",
+          "image": "https://img.freepik.com/free-photo/selective-focus-shot-fresh-salad-with-sliced-kingfish-cucumber-rice_181624-42764.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "7",
+          "size": "Italian spaghetti pasta with tomato sauce cheese toppings",
+          "price": "100",
+          "image": "https://img.freepik.com/free-photo/tasty-appetizing-classic-italian-spaghetti-pasta-with-tomato-sauce-cheese-parmesan-basil-plate-ingredients-cooking-pasta-white-marble-table-flat-lay-top-view-copy-space_1150-45810.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "8",
+          "size": "7-inch pizza rum",
+          "price": "250",
+          "image": "https://img.freepik.com/free-photo/delicious-pizza-isolated-white_53876-138507.jpg?w=826&t=st=1654273396~exp=1654273996~hmac=a03de8248b37364a2d8617fdbdb74d82f3adae74858e981cc71ec8e54ea7a9ac"
+        },
+        {
+          "id": "9",
+          "size": "Grilled chicken legs barbecue sauce with pepper seeds",
+          "price": "200",
+          "image": "https://img.freepik.com/free-photo/grilled-chicken-legs-barbecue-sauce-with-pepper-seeds-parsley-salt-black-stone-plate-black-stone-table_1150-37858.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "10",
+          "size": "Pasta spaghetti with shrimps",
+          "price": "150",
+          "image": "https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?t=st=1654785655~exp=1654786255~hmac=fc3c540e425d28d6ffb0e248494dd53205cc97f3a1c6ac3bab8e2ac7fc723568&w=996"
+        }
+      ]
+    },
+    {
+      "name": "deals",
+      "items": [
+        {
+          "id": "1",
+          "size": "7-inch papan pizza",
+          "price": "200",
+          "image": "https://img.freepik.com/free-photo/veg-pizza-wooden-pizza-board-isolated-rustic-wooden-background-selective-focus_57665-8616.jpg?w=1060"
+        },
+        {
+          "id": "2",
+          "size": "8-inch beautiful pizza",
+          "price": "250",
+          "image": "https://img.freepik.com/free-photo/whole-italian-pizza-wooden-table-with-ingredients_251318-13.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "3",
+          "size": "5-inch Pepperoni pizza",
+          "price": "150",
+          "image": "https://img.freepik.com/free-photo/front-view-delicious-cheese-pizza-consists-olives-pepper-tomatoes-dark-surface_179666-34391.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "4",
+          "size": "6-inch bolognese pizza",
+          "price": "200",
+          "image": "https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "5",
+          "size": "7.5-inch pizzaroni",
+          "price": "250",
+          "image": "https://img.freepik.com/free-photo/side-view-pizza-with-slices-bell-pepper-pizza-slices-flour-board-cookware_176474-3185.jpg?size=338&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "6",
+          "size": "5.5-inch pizza new york",
+          "price": "100",
+          "image": "https://img.freepik.com/free-photo/pizza-pizza-filled-with-tomatoes-salami-olives_140725-1200.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "7",
+          "size": "8.5-inch pizza paparazzi",
+          "price": "300",
+          "image": "https://img.freepik.com/free-photo/classic-pizza-dark-wooden-table-surface-scattering-flour-pizza-restaurant-menu-concept_152625-1030.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "8",
+          "size": "7-inch pizza rum",
+          "price": "250",
+          "image": "https://img.freepik.com/free-photo/delicious-pizza-isolated-white_53876-138507.jpg?w=826&t=st=1654273396~exp=1654273996~hmac=a03de8248b37364a2d8617fdbdb74d82f3adae74858e981cc71ec8e54ea7a9ac"
+        },
+        {
+          "id": "9",
+          "size": "6-inch pizza tuscany",
+          "price": "200",
+          "image": "https://img.freepik.com/free-photo/whole-italian-pizza-wooden-table-with-ingredients_251318-13.jpg?w=996"
+        },
+        {
+          "id": "10",
+          "size": "6.5-inch pizza rome",
+          "price": "150",
+          "image": "https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        }
+      ]
+    },
+    {
+      "name": "signature",
+      "items": [
+        {
+          "id": "1",
+          "size": "Steamed Fish Fillet",
+          "price": "150",
+          "image": "https://img.freepik.com/free-photo/steamed-fish-fillet-with-roasted-parsley-garlic-bathed-olive-oil-potato-slices-food_636935-559.jpg?w=740"
+        },
+        {
+          "id": "2",
+          "size": "Grilled Beef Burger with serrano ham",
+          "price": "120",
+          "image": "https://img.freepik.com/free-photo/grilled-beef-burger-with-serrano-ham-potatoes-with-dressing-wooden-table-fast-food_636935-638.jpg?w=740"
+        },
+        {
+          "id": "3",
+          "size": "Sandwich burger with beef and red onion",
+          "price": "150",
+          "image": "https://img.freepik.com/free-photo/big-sandwich-hamburger-burger-with-beef-red-onion-tomato-fried-bacon_2829-5398.jpg?t=st=1654786605~exp=1654787205~hmac=31c4e86f700bba1b4b23af8f9458aa55ef5a119ad2eab0d63906e9b67059697a&w=740"
+        },
+        {
+          "id": "4",
+          "size": "Creme brulee bark dessert with red berries",
+          "price": "190",
+          "image": "https://img.freepik.com/free-photo/creme-brulee-caramel-bark-dessert-with-red-berries-creme-brulee-dessert-food_636935-213.jpg?w=996"
+        },
+        {
+          "id": "5",
+          "size": "Chilli stuffed mexican tomato sauce",
+          "price": "250",
+          "image": "https://img.freepik.com/free-photo/chili-stuffed-with-puff-pastry-tomato-sauce-mexican-dish-mexican-food-gastronomy_636935-374.jpg?w=996"
+        },
+        {
+          "id": "6",
+          "size": "Selective focus shot fresh sliced rice kingfish",
+          "price": "100",
+          "image": "https://img.freepik.com/free-photo/selective-focus-shot-fresh-salad-with-sliced-kingfish-cucumber-rice_181624-42764.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "7",
+          "size": "Indonesian stir fry bean sprouts mixed with fried tofu",
+          "price": "100",
+          "image": "https://img.freepik.com/free-photo/oseng-tauge-indonesian-stir-fry-bean-sprouts-mixed-with-fried-tofu_448865-1211.jpg?w=996"
+        }
+      ]
+    },
+    {
+      "name": "better",
+      "items": [
+        {
+          "id": "1",
+          "size": "Homemade Burger",
+          "price": "150",
+          "image": "https://img.freepik.com/free-photo/fresh-tasty-homemade-burger-wooden-table_147620-1307.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "2",
+          "size": "Cheese Burger with grilled ",
+          "price": "100",
+          "image": "https://img.freepik.com/free-photo/side-view-double-cheeseburger-with-grilled-beef-patties-cheese-lettuce-leaf-burger-buns_141793-4883.jpg?t=st=1654786022~exp=1654786622~hmac=ad68686aac6dc42cc5d240505fd244620ebba339f9850320cd056492aac42957&w=996"
+        },
+        {
+          "id": "3",
+          "size": "Sandwich burger with beef and red onion",
+          "price": "150",
+          "image": "https://img.freepik.com/free-photo/big-sandwich-hamburger-burger-with-beef-red-onion-tomato-fried-bacon_2829-5398.jpg?t=st=1654786605~exp=1654787205~hmac=31c4e86f700bba1b4b23af8f9458aa55ef5a119ad2eab0d63906e9b67059697a&w=740"
+        },
+        {
+          "id": "4",
+          "size": "Hamburger with juicy beef burgers",
+          "price": "190",
+          "image": "https://img.freepik.com/free-photo/big-sandwich-hamburger-with-juicy-beef-burger-cheese-tomato-red-onion-wooden-table_2829-19631.jpg?t=st=1654786605~exp=1654787205~hmac=eb7398baabacb0118ae112643c181b603693c0d750fb6b09635629574ebe968f&w=996"
+        },
+        {
+          "id": "5",
+          "size": "Delicious grilled burgers",
+          "price": "250",
+          "image": "https://img.freepik.com/free-photo/delicious-grilled-burgers_62847-13.jpg?w=996"
+        },
+        {
+          "id": "6",
+          "size": "Fresh salad with sliced kingfish cucumber rice",
+          "price": "100",
+          "image": "https://img.freepik.com/free-photo/selective-focus-shot-fresh-salad-with-sliced-kingfish-cucumber-rice_181624-42764.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "7",
+          "size": "Italian Burgers",
+          "price": "100",
+          "image": "https://img.freepik.com/free-photo/front-view-burgers-stand_141793-15545.jpg?t=st=1654786605~exp=1654787205~hmac=93a7d2dbbec724b0d09e83861f4fd88750fb808d82ff3d20231e954b60102660&w=996"
+        }
+      ]
+    },
+     {
+      "name": "appetizer",
+      "items": [
+        {
+          "id": "1",
+          "size": "Chicken Wings full buffet",
+          "price": "150",
+          "image": "https://img.freepik.com/free-photo/baked-chicken-wings-asian-style_2829-10159.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "2",
+          "size": "Samosas with chicken fillet and green herbs",
+          "price": "100",
+          "image": "https://img.freepik.com/free-photo/samosas-with-chicken-fillet-green-herbs_2829-10800.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "3",
+          "size": "Fresh chicken salad with grapefruit and lettuce honey mustard dressing",
+          "price": "150",
+          "image": "https://img.freepik.com/free-photo/fresh-chicken-salad-grapefruit-lettuce-honey-mustard-dressing-dietary-menu-proper-nutrition-top-view_2829-19946.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "4",
+          "size": "Crispy fried chicken",
+          "price": "170",
+          "image": "https://img.freepik.com/free-photo/crispy-fried-chicken-wooden-cutting-board_1150-20220.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "5",
+          "size": "7.5-inch pizzaroni",
+          "price": "250",
+          "image": "https://img.freepik.com/free-photo/side-view-pizza-with-slices-bell-pepper-pizza-slices-flour-board-cookware_176474-3185.jpg?size=338&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "6",
+          "size": "Fresh salad with sliced kingfish cucumber rice",
+          "price": "100",
+          "image": "https://img.freepik.com/free-photo/selective-focus-shot-fresh-salad-with-sliced-kingfish-cucumber-rice_181624-42764.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "7",
+          "size": "Italian spaghetti pasta with tomato sauce cheese toppings",
+          "price": "100",
+          "image": "https://img.freepik.com/free-photo/tasty-appetizing-classic-italian-spaghetti-pasta-with-tomato-sauce-cheese-parmesan-basil-plate-ingredients-cooking-pasta-white-marble-table-flat-lay-top-view-copy-space_1150-45810.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "8",
+          "size": "7-inch pizza rum",
+          "price": "250",
+          "image": "https://img.freepik.com/free-photo/delicious-pizza-isolated-white_53876-138507.jpg?w=826&t=st=1654273396~exp=1654273996~hmac=a03de8248b37364a2d8617fdbdb74d82f3adae74858e981cc71ec8e54ea7a9ac"
+        },
+        {
+          "id": "9",
+          "size": "Grilled chicken legs barbecue sauce with pepper seeds",
+          "price": "200",
+          "image": "https://img.freepik.com/free-photo/grilled-chicken-legs-barbecue-sauce-with-pepper-seeds-parsley-salt-black-stone-plate-black-stone-table_1150-37858.jpg?size=626&ext=jpg&ga=GA1.2.707152998.1654271208"
+        },
+        {
+          "id": "10",
+          "size": "Pasta spaghetti with shrimps",
+          "price": "150",
+          "image": "https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?t=st=1654785655~exp=1654786255~hmac=fc3c540e425d28d6ffb0e248494dd53205cc97f3a1c6ac3bab8e2ac7fc723568&w=996"
+        }
+      ]
+    }
+  ]
+}

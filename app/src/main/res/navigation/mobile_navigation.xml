@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation.xml"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.pizzamax.views.ui.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.pizzamax.views.ui.fragments.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/action_detailsFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_detailsFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.pizzamax.views.ui.fragments.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/appetizersFragment"
+        android:name="com.example.pizzamax.views.ui.fragments.AppetizersFragment"
+        android:label="fragment_appetizers"
+        tools:layout="@layout/fragment_appetizers" />
+    <fragment
+        android:id="@+id/bigBetterFragment"
+        android:name="com.example.pizzamax.views.ui.fragments.BigBetterFragment"
+        android:label="fragment_big_better"
+        tools:layout="@layout/fragment_big_better" />
+    <fragment
+        android:id="@+id/signaturePizzaFragment"
+        android:name="com.example.pizzamax.views.ui.fragments.SignaturePizzaFragment"
+        android:label="fragment_signature_pizza"
+        tools:layout="@layout/fragment_signature_pizza" />
+    <fragment
+        android:id="@+id/valueDealsFragment"
+        android:name="com.example.pizzamax.views.ui.fragments.ValueDealsFragment"
+        android:label="fragment_value_deals"
+        tools:layout="@layout/fragment_value_deals" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.pizzamax.views.ui.fragments.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.example.pizzamax.views.ui.fragments.CheckoutFragment"
+        android:label="fragment_checkout"
+        tools:layout="@layout/fragment_checkout" >
+        <action
+            android:id="@+id/action_checkoutFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_checkoutFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+</navigation>
