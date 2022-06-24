@@ -7,7 +7,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 //Adding or removing from column
 val ALTER_TABLE_MIGRATION_1_2: Migration = object : Migration(1, 2) {
     override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL("ALTER TABLE tableName ADD COLUMN col_name RETURN_TYPE")
+        database.execSQL("ALTER TABLE cart ADD COLUMN quantity_price TEXT DEFAULT 1 not null ")
     }
 
 }

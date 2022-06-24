@@ -56,8 +56,8 @@ fun getJsonDataFromAsset(context: Context, fileName: String): String? {
 fun Fragment.mainAlertDialog(
     title: String, price: String,
     itemClickListener: () -> Unit
-){
-         val productViewmodel: ProductViewModel by viewModels {
+) {
+    val productViewmodel: ProductViewModel by viewModels {
         ProductViewModelFactory((activity?.application as App).productRepository)
     }
 
@@ -75,7 +75,6 @@ fun Fragment.mainAlertDialog(
     val priceAlert = view.findViewById<TextView>(R.id.price_alert)
     val total = view.findViewById<TextView>(R.id.total_price_alert)
     val desc = view.findViewById<TextView>(R.id.deal_description)
-
 
 
     //Calculation
@@ -101,24 +100,23 @@ fun Fragment.mainAlertDialog(
     }
 
     addToCartBtn.setOnClickListener {
-             val list = listOf(
-                 Cart(
-                 itemName = title,
-                 price = total.text.toString(),
-                 quantity = increment.text.toString(),
-                 pizzaSize = title,
-                 crust = "",
-                 flavors = ""
-             )
-             )
+         val totalAmt = adder.times(amt)
+        val list = listOf(
+            Cart(
+                itemName = title,
+                price = total.text.toString(),
+                quantity = increment.text.toString(),
+                pizzaSize = title,
+                crust = "",
+                flavors = "",
+                quantityPrice = totalAmt.toString()
+            )
+        )
 
-        Log.d("CART",":::::::::::::${list}")
+        Log.d("CART", ":::::::::::::${list}")
 
         lifecycleScope.launch {
-           Log.d("DATABASE","::::::::${productViewmodel.insertIntoCart(list)}")
-           /* productViewmodel.updateExpenses(mutableListOf(
-                ProductRecyclerViewItem.Expenses(quantity = increment.text.toString(), amount = total.text.toString())
-            ))*/
+            Log.d("DATABASE", "::::::::${productViewmodel.insertIntoCart(list)}")
         }
         itemClickListener()
         builder.dismiss()

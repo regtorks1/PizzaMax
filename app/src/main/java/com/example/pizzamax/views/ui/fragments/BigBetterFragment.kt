@@ -23,7 +23,6 @@ import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
 import com.example.pizzamax.views.adapters.ProductListAdapter
-import com.example.pizzamax.views.ui.activity.CheckoutActivity
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.imgUrl
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.price
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.size
@@ -68,11 +67,11 @@ class BigBetterFragment : Fragment(), AdapterListImpl {
     }
 
     override fun onAddToCartListener(cart: Cart) {
-        val intent = Intent(requireContext(), CheckoutActivity::class.java)
+        /*val intent = Intent(requireContext(), CheckoutActivity::class.java)
         intent.putExtra("type", "cart")
         intent.putExtra("size", cart.quantity)
         intent.putExtra("price", cart.price)
-        startActivity(intent)
+        startActivity(intent)*/
     }
 
     override fun onAddToFavoriteListener(favorites: CategoryItems) {

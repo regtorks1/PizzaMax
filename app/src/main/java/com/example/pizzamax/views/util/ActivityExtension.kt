@@ -40,7 +40,6 @@ fun Activity.mainAlertDialog(
     val desc = view.findViewById<TextView>(R.id.deal_description)
 
 
-
     //Calculation
     desc.text = title
     priceAlert.text = price
@@ -69,19 +68,21 @@ fun Activity.mainAlertDialog(
     }
 
     addToCartBtn.setOnClickListener {
-             val list = listOf(
-                 Cart(
-                 itemName = title,
-                 price = price,
-                 quantity = adder.toString(),
-                 pizzaSize = title,
-                 crust = "",
-                 flavors = ""
-             )
-             )
+        val totalAmt = adder.times(amt)
+        val list = listOf(
+            Cart(
+                itemName = title,
+                price = price,
+                quantity = adder.toString(),
+                pizzaSize = title,
+                crust = "",
+                flavors = "",
+                quantityPrice = totalAmt.toString()
+            )
+        )
 
-        Log.d("CART",":::::::::::::${list}")
-       // Log.d("DATABASE","::::::::${productViewmodel.insertIntoCart(list)}")
+        Log.d("CART", ":::::::::::::${list}")
+        // Log.d("DATABASE","::::::::${productViewmodel.insertIntoCart(list)}")
         itemClickListener()
         builder.dismiss()
     }

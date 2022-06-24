@@ -1,18 +1,14 @@
 package com.example.pizzamax.views.ui.fragments
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Switch
-import android.widget.ToggleButton
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.AppCompatToggleButton
-import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.MenuItemCompat.getActionView
 import androidx.fragment.app.Fragment
@@ -33,10 +29,9 @@ class HomeFragment : Fragment() {
 
         super.onCreate(savedInstanceState)
 
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             context?.setTheme(R.style.Theme_PizzaMax)
-        }
-        else {
+        } else {
             context?.setTheme(R.style.Theme_PizzaMax)
         }
 
@@ -56,7 +51,15 @@ class HomeFragment : Fragment() {
 
 
         (activity as MainActivity).binding.linearViewCart.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_checkoutFragment)
+            when (findNavController().currentDestination?.id) {
+                R.id.homeFragment -> {
+                    findNavController().navigate(R.id.action_homeFragment_to_checkoutFragment)
+                }
+
+                R.id.detailsFragment -> {
+                    findNavController().navigate(R.id.action_detailsFragment_to_checkoutFragment)
+                }
+            }
         }
 
 
@@ -68,25 +71,35 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.M)
-    override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater){
+    override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.top_app_bar, menu)
         val item: MenuItem = menu.findItem(R.id.spinner)
         val spinner: Spinner = getActionView(item) as Spinner
-        val switchItem : MenuItem = menu.findItem(R.id.switch_key)
-        val switch : Switch = getActionView(switchItem) as Switch
+        val switchItem: MenuItem = menu.findItem(R.id.switch_key)
+        val switch: Switch = getActionView(switchItem) as Switch
 
         switch.thumbDrawable.setTint(ContextCompat.getColor(requireContext(), R.color.button_color))
-        switch.trackDrawable.setTint(ContextCompat.getColor(requireContext(),R.color.button_color))
+        switch.trackDrawable.setTint(ContextCompat.getColor(requireContext(), R.color.button_color))
 
 
         switch.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) {
+            if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 //activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS
-            // _BAR
-                switch.thumbDrawable.setTint(ContextCompat.getColor(requireContext(), R.color.button_color))
-                switch.trackDrawable.setTint(ContextCompat.getColor(requireContext(),R.color.button_color))
+                // _BAR
+                switch.thumbDrawable.setTint(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.button_color
+                    )
+                )
+                switch.trackDrawable.setTint(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.button_color
+                    )
+                )
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
@@ -102,19 +115,17 @@ class HomeFragment : Fragment() {
         return super.onCreateOptionsMenu(menu, inflater)
     }
 
-     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.favorite -> {
-             findNavController().navigate(R.id.action_homeFragment_to_favoritesFragment)
+                findNavController().navigate(R.id.action_homeFragment_to_favoritesFragment)
                 true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
-
     }
 
-      private fun setupViewPager() {
+    private fun setupViewPager() {
         binding.viewPager.apply {
             adapter = ViewPagerAdapter(childFragmentManager, binding.tabLayout.tabCount)
             addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(binding.tabLayout))
@@ -145,14 +156,14 @@ class HomeFragment : Fragment() {
         }
     }
 
-     private fun imageSlider() {
+    private fun imageSlider() {
         val sliderImg = intArrayOf(
             R.drawable.pizza_max_poster,
             R.drawable.pizza_max_poster1,
             R.drawable.pizza_max_poster2,
             R.drawable.pizza_max_poster3
         )
-        val imageView : SliderView = binding.slider
+        val imageView: SliderView = binding.slider
         imageView.fitsSystemWindows = true
 
         val sliderDataArrayList = ArrayList<SliderData>()

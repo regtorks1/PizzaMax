@@ -13,6 +13,7 @@ data class Cart(
     @ColumnInfo(name = "crust") val crust: String,
     @ColumnInfo(name = "flavors") val flavors: String,
     @ColumnInfo(name = "quantity") val quantity: String,
+    @ColumnInfo(name = "quantity_price") val quantityPrice: String
 
 
 )

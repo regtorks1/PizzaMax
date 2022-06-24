@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="top">
 
-    <TextView
+ <!--   <TextView
         android:id="@+id/Items"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,20 +16,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
 
     <TextView
+        android:layout_marginTop="10dp"
         android:id="@+id/item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="@string/app_promo_regular"
         android:textColor="@color/text_color"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Items" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/pizza_size"

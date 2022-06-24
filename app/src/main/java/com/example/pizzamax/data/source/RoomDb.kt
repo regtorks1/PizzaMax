@@ -14,7 +14,7 @@ import kotlinx.coroutines.CoroutineScope
 
 @Database(
     entities = [Categories::class, CategoryItems::class,  Cart::class, Favorites::class],
-    version = 1,
+    version = 2,
     exportSchema = true
 )
 @TypeConverters(Converters::class)
@@ -35,7 +35,7 @@ abstract class RoomDb : RoomDatabase() {
                     context.applicationContext,
                     RoomDb::class.java,
                     "PizzaMaxDatabase"
-                ).allowMainThreadQueries()
+                ).allowMainThreadQueries().addMigrations(ALTER_TABLE_MIGRATION_1_2)
                     .addCallback(ListDatabaseCallback(context, scope))
                     .build()
                 INSTANCE = instance

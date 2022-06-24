@@ -20,10 +20,14 @@ class CartAdapter(private val impl: CartImpl) :
         fun bind(list: Cart?) {
             binding.itemTitle.text = list?.itemName + list?.id.toString()
             binding.price.text = list?.price
-            val amount = Integer.parseInt(list?.price.toString())
-            val price = Integer.parseInt(binding.price.text.toString())
-            binding.amount.text = (amount + price).toString()
+            binding.amount.text = list?.quantityPrice
             binding.quantity.text = list?.quantity.toString()
+
+            /*  val amount = Integer.parseInt(list?.price.toString())
+              val price = Integer.parseInt(binding.price.text.toString())
+
+              binding.amount.text = (amount + price).toString()*/
+
             binding.pizzaFlavor.text = ""
 //                Resources.getSystem().getString(R.string.choose_your_crust) + list?.crust
             binding.pizzaFlavor.text = ""
@@ -43,14 +47,27 @@ class CartAdapter(private val impl: CartImpl) :
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val getItemPosition = getItem(position)
         holder.bind(getItemPosition)
+        with(holder.binding) {
+            var incrementAmt = 0
+            val negNum = 0
+            val amt = Integer.parseInt(price.text.toString())
+            var incrementNum = Integer.parseInt(quantity.text.toString())
 
-        holder.binding.addBtn.setOnClickListener {
+            addBtn.setOnClickListener {
+                incrementNum += 1
+                incrementAmt = amt * incrementNum
+                quantity.text = incrementNum.toString()
+                amount.text = incrementAmt.toString()
 
-            Log.d("ITEM CLICKED", "::::::::::::::::::YOU CLICK")
+            }
 
-        }
-        holder.binding.negBtn.setOnClickListener {
-            Log.d("ITEM CLICKED", "::::::::::::::::::YOU CLICK")
+            negBtn.setOnClickListener {
+                incrementNum -= 1
+                incrementAmt = amt * incrementNum
+                quantity.text = incrementNum.toString()
+                amount.text = incrementAmt.toString()
+            }
+
         }
 
         holder.itemView.setOnClickListener {
@@ -58,7 +75,6 @@ class CartAdapter(private val impl: CartImpl) :
         }
 
     }
-
 
     class ListComparator : DiffUtil.ItemCallback<Cart>() {
         override fun areItemsTheSame(oldItem: Cart, newItem: Cart): Boolean {
@@ -70,7 +86,7 @@ class CartAdapter(private val impl: CartImpl) :
         }
     }
 
-    interface CartImpl{
+    interface CartImpl {
         fun viewAllCartList(cart: Cart)
     }
 

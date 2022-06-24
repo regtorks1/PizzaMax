@@ -31,7 +31,16 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         ProductViewModelFactory((activity?.application as App).productRepository)
     }
     private lateinit var binding: FragmentValueDealsBinding
+    private var cartItems = arrayListOf<Cart>()
+    private var totalCartPrice: Int = 0
+    private var quantity: Int = 0
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val bindingMainActivity = (activity as MainActivity).binding
+        bindingMainActivity.itemNumber.text = "$quantity Items"
+        bindingMainActivity.amount.text = "Ghc $totalCartPrice"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,19 +51,7 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         val recyclerAdapter: ProductListAdapter by lazy {
             ProductListAdapter(this) { title, price ->
                 mainAlertDialog(title, price!!) {
-                    productViewmodel.getAllFromCart.observe(viewLifecycleOwner, Observer { list ->
-                        list.forEach {
-                            item = it.quantity.toInt()
-                            amount += it.price.toInt()
-                            bindingMainActivity.itemNumber.text = "${it.quantity} Items"
-                            bindingMainActivity.amount.text = "Ghc ${it.price}"
-                        }
-                        iterator += item
-                        total += amount
-                    })
                     bindingMainActivity.linearViewCart.visibility = View.VISIBLE
-                    bindingMainActivity.viewCart.visibility = View.VISIBLE
-                    bindingMainActivity.nextView.visibility = View.VISIBLE
                 }
             }
         }  //initialize adapter
@@ -69,6 +66,17 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
                 list.forEach {
                     recyclerAdapter.submitList(it.list)
                 }
+            }
+        })
+
+        productViewmodel.getAllFromCart.observe(viewLifecycleOwner, Observer { list ->
+            cartItems.clear()
+            cartItems.addAll(list)
+            cartItems.forEach {
+                totalCartPrice += it.price.toInt()
+                quantity += it.quantity.toInt()
+                bindingMainActivity.itemNumber.text = "$quantity Items"
+                bindingMainActivity.amount.text = "Ghc $totalCartPrice"
             }
         })
 
