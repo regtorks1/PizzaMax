@@ -18,6 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/recycler_list"
         android:scrollbars="none"
-        android:background="?attr/background_color"/>
+        android:background="@color/background_color"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

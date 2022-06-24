@@ -77,8 +77,8 @@ class HomeFragment : Fragment() {
         val switchItem : MenuItem = menu.findItem(R.id.switch_key)
         val switch : Switch = getActionView(switchItem) as Switch
 
-        switch.thumbDrawable.setTint(ContextCompat.getColor(requireContext(), R.color.light_orange))
-        switch.trackDrawable.setTint(ContextCompat.getColor(requireContext(),R.color.light_orange))
+        switch.thumbDrawable.setTint(ContextCompat.getColor(requireContext(), R.color.button_color))
+        switch.trackDrawable.setTint(ContextCompat.getColor(requireContext(),R.color.button_color))
 
 
         switch.setOnCheckedChangeListener { _, isChecked ->
@@ -86,8 +86,8 @@ class HomeFragment : Fragment() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 //activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS
             // _BAR
-                switch.thumbDrawable.setTint(ContextCompat.getColor(requireContext(), R.color.light_orange))
-                switch.trackDrawable.setTint(ContextCompat.getColor(requireContext(),R.color.light_orange))
+                switch.thumbDrawable.setTint(ContextCompat.getColor(requireContext(), R.color.button_color))
+                switch.trackDrawable.setTint(ContextCompat.getColor(requireContext(),R.color.button_color))
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }

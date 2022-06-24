@@ -30,7 +30,7 @@
         android:icon="@drawable/search_24"
         android:title="@string/search"
         app:showAsAction="always"
-        app:iconTint = "?attr/icon_color"/>
+        app:iconTint = "@color/icon_color"/>
 
     <item
         android:id="@+id/favorite"
@@ -38,7 +38,7 @@
         android:title="@string/favorite"
         app:showAsAction="always"
         tools:ignore="AlwaysShowAction"
-        app:iconTint = "?attr/icon_color"/>
+        app:iconTint = "@color/icon_color"/>
 
 
 

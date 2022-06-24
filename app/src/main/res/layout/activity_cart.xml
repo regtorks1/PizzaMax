@@ -16,6 +16,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/cart_list"
-        android:background="?attr/checkoutRecycler_background"/>
+        android:background="@color/checkoutRecycler_background"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

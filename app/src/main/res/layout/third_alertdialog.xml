@@ -12,14 +12,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="?attr/background_color"
+        android:background="@color/background_color"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pizza_flavors"
-            android:textColor="?attr/text_color"
+            android:textColor="@color/text_color"
             android:textSize="16sp"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="15dp"
@@ -31,7 +31,7 @@
             android:text="@string/please_select_any_one_option"
             android:textSize="14sp"
             android:layout_marginStart="16dp"
-            android:textColor="?attr/hint_color"/>
+            android:textColor="@color/hint_color"/>
     </LinearLayout>
 
     <TextView
@@ -42,7 +42,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:text="@string/chicken_fajita"
-        android:textColor="?attr/text_color"
+        android:textColor="@color/text_color"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.003"
@@ -66,7 +66,7 @@
         android:layout_width="370dp"
         android:layout_height="2dp"
         android:layout_marginTop="16dp"
-        android:background="?attr/background_color"
+        android:background="@color/background_color"
         android:foregroundGravity="center"
         app:layout_constraintTop_toBottomOf="@+id/chicken_frajita"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +81,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:text="@string/cheese_max"
-        android:textColor="?attr/text_color"
+        android:textColor="@color/text_color"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.003"
@@ -105,7 +105,7 @@
         android:layout_width="370dp"
         android:layout_height="2dp"
         android:layout_marginTop="16dp"
-        android:background="?attr/background_color"
+        android:background="@color/background_color"
         android:foregroundGravity="center"
         app:layout_constraintTop_toBottomOf="@+id/cheese_max"
         app:layout_constraintEnd_toEndOf="parent"
@@ -120,7 +120,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:text="@string/veggie_max"
-        android:textColor="?attr/text_color"
+        android:textColor="@color/text_color"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.003"
@@ -144,7 +144,7 @@
         android:layout_width="370dp"
         android:layout_height="2dp"
         android:layout_marginTop="16dp"
-        android:background="?attr/background_color"
+        android:background="@color/background_color"
         android:foregroundGravity="center"
         app:layout_constraintTop_toBottomOf="@+id/thin_Style"
         app:layout_constraintEnd_toEndOf="parent"
@@ -159,7 +159,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:text="@string/bbq_max"
-        android:textColor="?attr/text_color"
+        android:textColor="@color/text_color"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.003"
@@ -191,10 +191,10 @@
             android:id="@+id/cancel2"
             android:layout_width="205dp"
             android:layout_height="match_parent"
-            android:backgroundTint="?attr/background_color"
+            android:backgroundTint="@color/background_color"
             android:text="@string/cancel"
             android:textAllCaps="false"
-            android:textColor="?attr/button_textColor"
+            android:textColor="@color/button_textColor"
             android:textSize="14sp"
             />
 
@@ -202,10 +202,10 @@
             android:id="@+id/Confirm1"
             android:layout_width="205dp"
             android:layout_height="match_parent"
-            android:backgroundTint="?attr/indicator_color"
+            android:backgroundTint="@color/indicator_color"
             android:text="@string/confirm"
             android:textAllCaps="false"
-            android:textColor="?attr/button_textColor"
+            android:textColor="@color/button_textColor"
             android:textSize="14sp"
             />
     </LinearLayout>

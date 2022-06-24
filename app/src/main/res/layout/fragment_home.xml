@@ -25,7 +25,7 @@
         app:sliderIndicatorPadding="5dp"
         app:sliderIndicatorRadius="2dp"
         app:sliderIndicatorSelectedColor="#FFF"
-        app:sliderIndicatorUnselectedColor="?attr/background_color"
+        app:sliderIndicatorUnselectedColor="@color/background_color"
         app:sliderScrollTimeInSec="1">
     </com.smarteist.autoimageslider.SliderView>
 
@@ -38,10 +38,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
         app:tabGravity="center"
-        app:tabIndicatorColor="?attr/indicator_color"
+        app:tabIndicatorColor="@color/indicator_color"
         app:tabIndicatorHeight="2dp"
         app:tabMode="scrollable"
-        app:tabTextColor="?attr/text_color"
+        app:tabTextColor="@color/text_color"
         />
 
     <androidx.viewpager.widget.ViewPager

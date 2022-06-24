@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="?attr/background_color">
+    android:background="@color/background_color">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -17,7 +17,7 @@
         android:layout_marginTop="40dp"
         app:cardElevation="250dp"
         android:layout_marginStart="25dp"
-        app:cardBackgroundColor="?attr/cardBackground_color">
+        app:cardBackgroundColor="@color/cardBackground_color">
 
         <ImageView
             android:id="@+id/poster_banner"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="@string/deal_1"
             android:layout_marginStart="175dp"
-            android:textColor="?attr/text_color"
+            android:textColor="@color/text_color"
             android:paddingTop="8dp"
             android:paddingStart="5dp"/>
 
@@ -45,7 +45,7 @@
             android:layout_marginStart="175dp"
             android:layout_marginTop="30dp"
             android:paddingStart="5dp"
-            android:textColor="?attr/hint_color"/>
+            android:textColor="@color/hint_color"/>
 
         <ImageView
             android:id="@+id/price_back"
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="190dp"
-            android:textColor="?attr/text_color"
+            android:textColor="@color/text_color"
             android:layout_marginTop="105dp"
             android:textSize="12sp" />
 
@@ -68,20 +68,20 @@
             android:id="@+id/add_cart"
             android:layout_width="100dp"
             android:layout_height="41dp"
-            android:backgroundTint="@color/deep_orange"
+            android:backgroundTint="@color/button_color"
             android:layout_marginStart="180dp"
             android:layout_marginTop="123dp"
             android:text="@string/add"
-            android:textColor="?attr/button_textColor"
+            android:textColor="@color/button_textColor"
             android:drawableEnd="@drawable/shopping_cart_24"
-            android:drawableTint="?attr/button_textColor"
+            android:drawableTint="@color/button_textColor"
             android:textSize="15sp" />
 
         <ImageView
             android:id="@+id/favorite_heart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="?attr/background_tint"
+            android:backgroundTint="@color/background_tint"
             android:layout_marginStart="345dp"
             android:layout_marginTop="138dp"
             android:background="@drawable/favorite_border"
@@ -92,7 +92,7 @@
             android:id="@+id/favorite_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="?attr/background_tint"
+            android:backgroundTint="@color/background_tint"
             android:layout_marginStart="345dp"
             android:layout_marginTop="138dp"
             android:background="@drawable/delete_outline"

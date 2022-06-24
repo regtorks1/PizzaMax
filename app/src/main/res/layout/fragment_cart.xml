@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:background="?attr/checkoutRecycler_background"
+        android:background="@color/checkoutRecycler_background"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -4,7 +4,7 @@
 
     <color name = "white">#E6E6E6</color>
     <color name ="text_color">#FF000000</color>
-    <color name = "button_color">#3F51B5</color>
+    <color name = "button_color">#FF9800</color>
     <color name = "indicator_color">#FA500A</color>
     <color name = "cardBackground_color">#FFFFFF</color>
     <color name = "linearView_textColor">#FFFFFF</color>
