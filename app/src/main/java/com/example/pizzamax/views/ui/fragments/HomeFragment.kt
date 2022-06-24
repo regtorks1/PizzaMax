@@ -34,12 +34,11 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-            context?.setTheme(R.style.darkTheme)
+            context?.setTheme(R.style.Theme_PizzaMax)
         }
         else {
             context?.setTheme(R.style.Theme_PizzaMax)
         }
-
 
         setHasOptionsMenu(true)
     }

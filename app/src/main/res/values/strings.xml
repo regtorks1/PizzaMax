@@ -75,6 +75,10 @@
     <string name="ghc_200_">Ghc 200</string>
     <string name="neg">neg</string>
     <string name="favorites">Favorites</string>
+    <string name="delete_fav_icon">delete_fav_icon</string>
+    <string name="fav_icon">fav_icon</string>
+    <string name="button_background">button background</string>
+    <string name="next_icon">next icon</string>
 
 
 </resources>

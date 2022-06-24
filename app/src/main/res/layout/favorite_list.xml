@@ -25,7 +25,8 @@
             android:layout_height="139dp"
             android:scaleType="fitXY"
             android:adjustViewBounds="true"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/image" />
 
         <TextView
             android:id="@+id/deal"
@@ -33,8 +34,9 @@
             android:layout_height="wrap_content"
             android:text="@string/deal_1"
             android:layout_marginStart="175dp"
-            android:textColor="@color/text_color"
+            android:textColor="@color/black"
             android:paddingTop="8dp"
+            android:paddingEnd="5dp"
             android:paddingStart="5dp"/>
 
         <TextView
@@ -44,8 +46,8 @@
             android:text="@string/_7_inch_papan_pizza"
             android:layout_marginStart="175dp"
             android:layout_marginTop="30dp"
-            android:paddingStart="5dp"
-            android:textColor="@color/hint_color"/>
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"/>
 
         <ImageView
             android:id="@+id/price_back"
@@ -53,14 +55,15 @@
             android:layout_height="wrap_content"
             android:background="@drawable/background_tag"
             android:layout_marginStart="180dp"
-            android:layout_marginTop="103dp"/>
+            android:layout_marginTop="103dp"
+            android:contentDescription="@string/button_background" />
 
         <TextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="190dp"
-            android:textColor="@color/text_color"
+            android:textColor="@color/black"
             android:layout_marginTop="105dp"
             android:textSize="12sp" />
 
@@ -72,9 +75,8 @@
             android:layout_marginStart="180dp"
             android:layout_marginTop="123dp"
             android:text="@string/add"
-            android:textColor="@color/button_textColor"
+            android:textColor="@color/white"
             android:drawableEnd="@drawable/shopping_cart_24"
-            android:drawableTint="@color/button_textColor"
             android:textSize="15sp" />
 
         <ImageView
@@ -84,9 +86,10 @@
             android:backgroundTint="@color/background_tint"
             android:layout_marginStart="345dp"
             android:layout_marginTop="138dp"
-            android:background="@drawable/favorite_border"
+            android:background="@drawable/delete_favorite"
             android:clickable="true"
-            android:focusable="true"/>
+            android:focusable="true"
+            android:contentDescription="@string/delete" />
 
         <ImageView
             android:id="@+id/favorite_delete"
@@ -98,7 +101,8 @@
             android:background="@drawable/delete_outline"
             android:clickable="true"
             android:focusable="true"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            android:contentDescription="@string/delete" />
 
 
 

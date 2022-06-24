@@ -2,10 +2,10 @@ package com.example.pizzamax.views.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
@@ -19,13 +19,12 @@ import com.example.pizzamax.model.Favorites
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
-import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.size
 import com.example.pizzamax.views.util.mainAlertDialog
 
 class DetailsFragment : Fragment(), AdapterListImpl {
     private lateinit var binding: FragmentDetailsBinding
 
-     private val productViewmodel: ProductViewModel by viewModels {
+    private val productViewmodel: ProductViewModel by viewModels {
         ProductViewModelFactory((activity?.application as App).productRepository)
     }
 
@@ -35,19 +34,22 @@ class DetailsFragment : Fragment(), AdapterListImpl {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentDetailsBinding.inflate(layoutInflater)
-        val priceTv = binding.price.text.toString()
-        val sizeTv = binding.pizzaSize.text
-        val name = binding.deal.text.toString()
-        binding.addCart.setOnClickListener {
-                mainAlertDialog(title = name, price = priceTv){
+
+
+        with(binding) {
+            price.text = "Ghc " + arguments?.getString("price")
+            pizzaSize.text = arguments?.getString("size")
+            posterBanner.load(arguments?.getString("imgUrl"))
+            val priceTv = binding.price.text.toString()
+            val sizeTv = binding.pizzaSize.text
+            val name = binding.deal.text.toString()
+
+            addCart.setOnClickListener {
+                mainAlertDialog(title = name, price = priceTv.drop(4)) {
                     (activity as MainActivity).binding.linearViewCart.visibility = View.VISIBLE
                 }
             }
-         with(binding) {
-                price.text = "Ghc " + arguments?.getString("price")
-                pizzaSize.text = arguments?.getString("size")
-                posterBanner.load(arguments?.getString("imgUrl"))
-            }
+        }
         return binding.root
     }
 
@@ -56,7 +58,7 @@ class DetailsFragment : Fragment(), AdapterListImpl {
     }
 
     override fun onAddToFavoriteListener(favorites: CategoryItems) {
-      val list = listOf(
+        val list = listOf(
             Favorites(
                 imgUrl = favorites.imgUrl!!,
                 price = favorites.price!!,
@@ -67,7 +69,7 @@ class DetailsFragment : Fragment(), AdapterListImpl {
     }
 
     override fun onViewDetailListener(categoryItems: CategoryItems) {
-       Log.d("DETAIL","NOT IMPLEMENTED")
+        Log.d("DETAIL", "NOT IMPLEMENTED")
     }
 
 

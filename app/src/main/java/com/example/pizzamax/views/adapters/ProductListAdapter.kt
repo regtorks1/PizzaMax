@@ -56,7 +56,7 @@ class ProductListAdapter(
         holder.binding.favoriteHeart.setOnClickListener {
             adapterImpl.onAddToFavoriteListener(getItemPosition)
           //  holder.binding.favoriteHeart.setImageState()
-          //  holder.binding.favoriteHeart.setImageResource(R.drawable.ic_baseline_favorite_24)
+          holder.binding.favoriteHeart.setImageResource(R.drawable.ic_baseline_favorite_24)
         }
     }
 
