@@ -38,7 +38,7 @@ val repositoryModule = module {
 val roomDBModule = module {
     fun provideDatabase(application: Application) : RoomDb{
         return Room.databaseBuilder(application, RoomDb::class.java, "PizzaMaxDatabase")
-            .fallbackToDestructiveMigration()
+            .allowMainThreadQueries()
             .build()
     }
     fun categoriesDao(database: RoomDb): CategoriesDao{
@@ -54,7 +54,7 @@ val roomDBModule = module {
         return database.favorites()
     }
 
-    single { provideDatabase(androidApplication()) }
+    single {provideDatabase(androidApplication())}
     single {categoriesDao(get())}
     single {categoryItemsDao(get())}
     single {cartDao(get())}
