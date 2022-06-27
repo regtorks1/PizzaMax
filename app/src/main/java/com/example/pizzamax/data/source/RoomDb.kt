@@ -24,6 +24,7 @@ abstract class RoomDb : RoomDatabase() {
     abstract fun cartDao():CartDao
     abstract fun favorites(): FavoritesDao
 
+
     companion object {
         @Volatile// Singleton prevents multiple instances of database opening at the same time
         var INSTANCE: RoomDb? = null

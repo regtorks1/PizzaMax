@@ -24,12 +24,14 @@ import com.example.pizzamax.views.adapters.AdapterListImpl
 import com.example.pizzamax.views.adapters.ProductListAdapter
 import com.example.pizzamax.views.util.mainAlertDialog
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ValueDealsFragment : Fragment(), AdapterListImpl {
 
-    private val productViewmodel: ProductViewModel by viewModels {
-        ProductViewModelFactory((activity?.application as App).productRepository)
-    }
+//    private val productViewmodel: ProductViewModel by viewModels {
+//        ProductViewModelFactory((activity?.application as App).productRepository)
+//    }
+    private val productViewmodel by viewModel<ProductViewModel>()
     private lateinit var binding: FragmentValueDealsBinding
 
 

@@ -16,7 +16,7 @@
     <color name = "amount_color">#32CD32</color>
     <color name = "background_tint">#FF0000</color>
     <color name = "dialog_background">#43464B</color>
-    <color name = "buttonColor_2">#F5B916</color>
+    <color name = "buttonColor_2">#FFC107</color>
     <color name ="black">#FF000000</color>
     <color name = "white">#E6E6E6</color>
     <color name = "tagText_color">#000000</color>

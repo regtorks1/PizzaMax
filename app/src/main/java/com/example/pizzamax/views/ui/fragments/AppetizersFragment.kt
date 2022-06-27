@@ -27,12 +27,15 @@ import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.size
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.type
 import com.example.pizzamax.views.util.mainAlertDialog
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AppetizersFragment : Fragment(), AdapterListImpl {
 
-    private val productViewmodel: ProductViewModel by viewModels {
-        ProductViewModelFactory((activity?.application as App).productRepository)
-    }
+//    private val productViewmodel: ProductViewModel by viewModels {
+//        ProductViewModelFactory((activity?.application as App).productRepository)
+//}
+    private val productViewmodel: ProductViewModel by viewModel()
+
     private lateinit var binding: FragmentAppetizersBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

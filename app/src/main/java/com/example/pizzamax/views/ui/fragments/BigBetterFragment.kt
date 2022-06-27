@@ -30,11 +30,14 @@ import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.size
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.type
 import com.example.pizzamax.views.util.mainAlertDialog
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BigBetterFragment : Fragment(), AdapterListImpl {
-    private val productViewmodel: ProductViewModel by viewModels {
-        ProductViewModelFactory((activity?.application as App).productRepository)
-    }
+//    private val productViewmodel: ProductViewModel by viewModels {
+//        ProductViewModelFactory((activity?.application as App).productRepository)
+//    }
+
+    private val productViewmodel: ProductViewModel by viewModel()
     private lateinit var binding: FragmentBigBetterBinding
 
     override fun onCreateView(
