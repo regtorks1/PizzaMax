@@ -9,28 +9,35 @@ import com.example.pizzamax.data.dao.FavoritesDao
 import com.example.pizzamax.data.repository.ProductRepository
 import com.example.pizzamax.data.source.RoomDb
 import com.example.pizzamax.viewmodel.ProductViewModel
-import com.example.pizzamax.views.adapters.ProductListAdapter
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.core.scope.Scope
 import org.koin.dsl.module
 
 
 val viewModelModule = module{
     viewModel {
-       ProductViewModel(repository = get())
+       ProductViewModel(get())
     }
 }
 
-val repositoryModule = module{
-    factory {
-        ProductRepository(cartDao = )
+val repositoryModule = module {
+    fun provideUserRepository(
+        cartDao: CartDao,
+        categoriesDao: CategoriesDao,
+        categoryItemsDao: CategoryItemsDao,
+        favoritesDao: FavoritesDao
+    ): ProductRepository {
+      return ProductRepository(categoriesDao,categoryItemsDao,cartDao, favoritesDao)
+    }
+
+    single {
+        provideUserRepository(get(), get(), get(), get())
     }
 }
 
 val roomDBModule = module {
     fun provideDatabase(application: Application) : RoomDb{
-        return Room.databaseBuilder(application, RoomDb::class.java, "DATABASE")
+        return Room.databaseBuilder(application, RoomDb::class.java, "PizzaMaxDatabase")
             .fallbackToDestructiveMigration()
             .build()
     }

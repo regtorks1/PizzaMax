@@ -1,6 +1,7 @@
 package com.example.pizzamax.views.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,6 +56,7 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
 
         productViewmodel.getCategoriesList("signature")
             .observe(viewLifecycleOwner, Observer { list ->
+                Log.d("SIGNATURE", "$list")
                 lifecycleScope.launch {
                     list.forEach {
                         recyclerAdapter.submitList(it.list)
