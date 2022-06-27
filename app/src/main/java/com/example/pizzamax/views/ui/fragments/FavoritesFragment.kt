@@ -23,13 +23,13 @@ import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.pric
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.size
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.type
 import com.example.pizzamax.views.util.mainAlertDialog
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavoritesFragment : Fragment(), FavoritesAdapter.OnFavoriteDetailPage {
     private lateinit var binding: FragmentFavoritesBinding
 
-    private val productViewmodel: ProductViewModel by viewModels {
-        ProductViewModelFactory((activity?.application as App).productRepository)
-    }
+    private val productViewmodel: ProductViewModel by viewModels ()
 
     private val recyclerAdapter: FavoritesAdapter by lazy {
         FavoritesAdapter(this) { title, price ->

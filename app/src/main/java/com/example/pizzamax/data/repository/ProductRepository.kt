@@ -9,8 +9,9 @@ import com.example.pizzamax.model.Categories
 import com.example.pizzamax.model.CategoryItems
 import com.example.pizzamax.model.Favorites
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class ProductRepository(
+class ProductRepository @Inject constructor(
     private val categoriesDao: CategoriesDao,
     private val categoryItemsDao: CategoryItemsDao,
     private val cartDao: CartDao,

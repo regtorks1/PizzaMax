@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.MainActivity
 import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentAppetizersBinding
-import com.example.pizzamax.di.App
 import com.example.pizzamax.model.Cart
 import com.example.pizzamax.model.CategoryItems
 import com.example.pizzamax.model.Favorites
@@ -26,13 +25,17 @@ import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.pric
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.size
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.type
 import com.example.pizzamax.views.util.mainAlertDialog
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class AppetizersFragment : Fragment(), AdapterListImpl {
 
-    private val productViewmodel: ProductViewModel by viewModels {
-        ProductViewModelFactory((activity?.application as App).productRepository)
-    }
+    @Inject
+    lateinit var  factory : ProductViewModelFactory
+
+    private val productViewmodel: ProductViewModel by viewModels ()
     private lateinit var binding: FragmentAppetizersBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +55,7 @@ class AppetizersFragment : Fragment(), AdapterListImpl {
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
-        productViewmodel.getCategoriesList("appetizer")
+        productViewmodel.getCategory("appetizer")
             .observe(viewLifecycleOwner, Observer { list ->
                 lifecycleScope.launch {
                     list.forEach {

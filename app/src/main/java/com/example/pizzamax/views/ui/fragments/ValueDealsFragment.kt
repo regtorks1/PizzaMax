@@ -14,22 +14,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.MainActivity
 import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentValueDealsBinding
-import com.example.pizzamax.di.App
 import com.example.pizzamax.model.Cart
 import com.example.pizzamax.model.CategoryItems
 import com.example.pizzamax.model.Favorites
 import com.example.pizzamax.viewmodel.ProductViewModel
-import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
 import com.example.pizzamax.views.adapters.ProductListAdapter
 import com.example.pizzamax.views.util.mainAlertDialog
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class ValueDealsFragment : Fragment(), AdapterListImpl {
 
-    private val productViewmodel: ProductViewModel by viewModels {
-        ProductViewModelFactory((activity?.application as App).productRepository)
-    }
+    private val productViewmodel: ProductViewModel by viewModels ()
+
+
     private lateinit var binding: FragmentValueDealsBinding
     private var cartItems = arrayListOf<Cart>()
     private var totalCartPrice: Int = 0
@@ -60,7 +60,7 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         val thisRecycler = binding.recyclerView
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
-        productViewmodel.getCategoriesList("deals").observe(viewLifecycleOwner, Observer { list ->
+        productViewmodel.getCategory("deals").observe(viewLifecycleOwner, Observer { list ->
             Log.d("DEALS", "$list")
             lifecycleScope.launch {
                 list.forEach {

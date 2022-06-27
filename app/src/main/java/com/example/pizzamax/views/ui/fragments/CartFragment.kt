@@ -15,13 +15,13 @@ import com.example.pizzamax.model.Cart
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.CartAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
+@AndroidEntryPoint
 class CartFragment : Fragment(), CartAdapter.CartImpl {
-    private val productViewmodel: ProductViewModel by viewModels {
-        ProductViewModelFactory((activity?.application as App).productRepository)
-    }
+      private val productViewmodel: ProductViewModel by viewModels ()
 
     private lateinit var binding: FragmentCartBinding
 

@@ -13,10 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.MainActivity
 import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentSignaturePizzaBinding
-import com.example.pizzamax.di.App
 import com.example.pizzamax.model.*
 import com.example.pizzamax.viewmodel.ProductViewModel
-import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
 import com.example.pizzamax.views.adapters.ProductListAdapter
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.imgUrl
@@ -24,13 +22,13 @@ import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.pric
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.size
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.type
 import com.example.pizzamax.views.util.mainAlertDialog
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class SignaturePizzaFragment : Fragment(), AdapterListImpl {
 
-     private val productViewmodel: ProductViewModel by viewModels {
-        ProductViewModelFactory((activity?.application as App).productRepository)
-    }
+     private val productViewmodel: ProductViewModel by viewModels ()
 
     private lateinit var binding: FragmentSignaturePizzaBinding
 
@@ -52,7 +50,7 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
-        productViewmodel.getCategoriesList("signature").observe(viewLifecycleOwner, Observer {list->
+        productViewmodel.getCategory("signature").observe(viewLifecycleOwner, Observer { list->
             lifecycleScope.launch {
                 list.forEach {
                      recyclerAdapter.submitList(it.list)

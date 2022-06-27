@@ -22,14 +22,14 @@ import com.example.pizzamax.model.Cart
 import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.CartAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class CheckoutFragment : Fragment(), CartAdapter.CartImpl {
     private lateinit var binding: FragmentCheckoutBinding
 
-    private val productViewmodel: ProductViewModel by viewModels {
-        ProductViewModelFactory((activity?.application as App).productRepository)
-    }
+    private val productViewmodel: ProductViewModel by viewModels ()
 
     private var cartItems = mutableListOf<Cart>()
     private var totalCartPrice: Int = 0

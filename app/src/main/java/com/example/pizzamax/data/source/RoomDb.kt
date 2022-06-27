@@ -13,7 +13,10 @@ import com.example.pizzamax.model.Favorites
 import kotlinx.coroutines.CoroutineScope
 
 @Database(
-    entities = [Categories::class, CategoryItems::class,  Cart::class, Favorites::class],
+    entities = [
+        Categories::class,
+        CategoryItems::class,
+        Cart::class, Favorites::class],
     version = 2,
     exportSchema = true
 )
@@ -23,27 +26,4 @@ abstract class RoomDb : RoomDatabase() {
     abstract fun categoryItemsDao(): CategoryItemsDao
     abstract fun cartDao():CartDao
     abstract fun favorites(): FavoritesDao
-
-    companion object {
-        @Volatile// Singleton prevents multiple instances of database opening at the same time
-        var INSTANCE: RoomDb? = null
-        fun getDatabase(context: Context, scope: CoroutineScope): RoomDb {
-            // if the INSTANCE is not null, then return it,
-            // if it is, then create the database
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    RoomDb::class.java,
-                    "PizzaMaxDatabase"
-                ).allowMainThreadQueries().addMigrations(ALTER_TABLE_MIGRATION_1_2)
-                    .addCallback(ListDatabaseCallback(context, scope))
-                    .build()
-                INSTANCE = instance
-                // return instance
-                instance
-            }
-        }
-    }
-
-
 }

@@ -21,8 +21,10 @@ import com.example.pizzamax.views.adapters.SliderAdapter
 import com.example.pizzamax.views.adapters.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.smarteist.autoimageslider.SliderView
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {

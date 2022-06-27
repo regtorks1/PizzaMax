@@ -6,21 +6,24 @@ import com.example.pizzamax.model.Cart
 import com.example.pizzamax.model.Categories
 import com.example.pizzamax.model.CategoryItems
 import com.example.pizzamax.model.Favorites
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ProductViewModel(
-    private val repository: ProductRepository
-) : ViewModel() {
+
+@HiltViewModel
+class ProductViewModel
+@Inject constructor(val repository: ProductRepository) : ViewModel() {
     private val _details: MutableLiveData<CategoryItems> = MutableLiveData()
     val details: LiveData<CategoryItems> get() = _details
 
     //CATEGORIES
-    fun insertIntoCategories(categories: MutableList<Categories>) = viewModelScope.launch {
+    fun insertIntoCategory(categories: MutableList<Categories>) = viewModelScope.launch {
         repository.insertToCategories(categories)
     }
 
-    fun updateCategories(categories: Categories) = viewModelScope.launch {
+    fun updateCategory(categories: Categories) = viewModelScope.launch {
         repository.updateCategories(categories)
     }
 
@@ -28,7 +31,7 @@ class ProductViewModel(
         repository.deleteAllFromCategories()
     }
 
-    fun getCategoriesList(query: String): LiveData<List<Categories>> =
+    fun getCategory(query: String): LiveData<List<Categories>> =
         repository.getAllFromCategories(query).asLiveData()
 
 

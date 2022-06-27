@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.pizzamax.data.dao.CategoriesDao
 import com.example.pizzamax.data.dao.CategoryItemsDao
-import com.example.pizzamax.data.source.RoomDb.Companion.INSTANCE
+import com.example.pizzamax.di.DatabaseModule
 import com.example.pizzamax.model.Categories
 import com.example.pizzamax.model.CategoryItems
 import com.example.pizzamax.views.util.getJsonDataFromAsset
@@ -20,34 +20,31 @@ class ListDatabaseCallback(
     private val application: Context,
     private val scope: CoroutineScope
 ) : RoomDatabase.Callback() {
+    @Volatile
+    private var databaseInstance: RoomDb? =null
     override fun onCreate(db: SupportSQLiteDatabase) {
         super.onCreate(db)
-        INSTANCE?.let { database ->
+        DatabaseModule.databaseInstance.let { roomDb ->
             scope.launch {
                 populateProductTable(
-                    database.categoriesDao(),
-                    database.categoryItemsDao()
+                    roomDb!!.categoriesDao()
                 )
             }
         }
     }
 
     private fun populateProductTable(
-        categoriesDao: CategoriesDao,
-        categoryItemsDao: CategoryItemsDao
+        categoriesDao: CategoriesDao
     ) {
         val jsonFile = getJsonDataFromAsset(application, "product_list.json")
-        Log.d("DATA", jsonFile.toString())
         val jsonObj = JSONObject(jsonFile!!)
         val jsonArray: JSONArray = jsonObj.getJSONArray("categories")
-        Log.d("CATEGORIES", "\n$jsonArray")
 
+        //getting the category names with their corresponding list
         for (i in 0 until jsonArray.length()) {
             val categoryItems = mutableListOf<CategoryItems>()
             val name = jsonArray.getJSONObject(i).getString("name")
             val list = jsonArray.getJSONObject(i).getJSONArray("items")
-            Log.d("categories", "\n$name \n$list")
-            Log.d("LENGTH", "${list.length()}")
             for (j in 0 until list.length()) {
                 val id = list.getJSONObject(j).getString(id)
                 val size = list.getJSONObject(j).getString(size)
@@ -61,19 +58,13 @@ class ListDatabaseCallback(
                         imgUrl = imgUrl
                     )
                 )
-                //  categoryItemsDao.insertToCategoryList(categoryItems)
-                Log.d("ListItems", ":::::::::::::::$categoryItems")
-            }
+            }//getting the items from each category name
 
-
+            //inserting into database
             val categories = mutableListOf<Categories>()
-              categories.add(Categories(id = i, name = name, categoryItems))
-            categoriesDao.insertToCategories(categories)
-            Log.d("categories", ":::::::::::::::$categories")
-
-
+                categories.add(Categories(id = i, name = name, categoryItems))
+                categoriesDao.insertToCategories(categories)
         }
-
     }
 
 
@@ -82,7 +73,6 @@ class ListDatabaseCallback(
         const val size = "size"
         const val price = "price"
         const val imgUrl = "image"
-
         const val product = "product_list"
         const val categories = "categories"
         const val name = "name"

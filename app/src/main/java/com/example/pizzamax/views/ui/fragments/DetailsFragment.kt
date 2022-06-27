@@ -20,13 +20,13 @@ import com.example.pizzamax.viewmodel.ProductViewModel
 import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
 import com.example.pizzamax.views.util.mainAlertDialog
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailsFragment : Fragment(), AdapterListImpl {
     private lateinit var binding: FragmentDetailsBinding
 
-    private val productViewmodel: ProductViewModel by viewModels {
-        ProductViewModelFactory((activity?.application as App).productRepository)
-    }
+    private val productViewmodel: ProductViewModel by viewModels ()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

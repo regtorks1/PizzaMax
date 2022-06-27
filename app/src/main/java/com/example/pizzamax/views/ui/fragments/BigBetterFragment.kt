@@ -1,6 +1,5 @@
 package com.example.pizzamax.views.ui.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,12 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.MainActivity
 import com.example.pizzamax.R
 import com.example.pizzamax.databinding.FragmentBigBetterBinding
-import com.example.pizzamax.di.App
 import com.example.pizzamax.model.Cart
 import com.example.pizzamax.model.CategoryItems
 import com.example.pizzamax.model.Favorites
 import com.example.pizzamax.viewmodel.ProductViewModel
-import com.example.pizzamax.viewmodel.ProductViewModelFactory
 import com.example.pizzamax.views.adapters.AdapterListImpl
 import com.example.pizzamax.views.adapters.ProductListAdapter
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.imgUrl
@@ -28,12 +25,11 @@ import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.pric
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.size
 import com.example.pizzamax.views.ui.fragments.ValueDealsFragment.Companion.type
 import com.example.pizzamax.views.util.mainAlertDialog
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
+@AndroidEntryPoint
 class BigBetterFragment : Fragment(), AdapterListImpl {
-    private val productViewmodel: ProductViewModel by viewModels {
-        ProductViewModelFactory((activity?.application as App).productRepository)
-    }
+    private val productViewmodel: ProductViewModel by viewModels ()
     private lateinit var binding: FragmentBigBetterBinding
 
     override fun onCreateView(
@@ -55,7 +51,7 @@ class BigBetterFragment : Fragment(), AdapterListImpl {
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
-        productViewmodel.getCategoriesList("better").observe(viewLifecycleOwner, Observer { list ->
+        productViewmodel.getCategory("better").observe(viewLifecycleOwner, Observer { list ->
             Log.d("BETTER", "$list")
             lifecycleScope.launch {
                 list.forEach {

@@ -57,9 +57,7 @@ fun Fragment.mainAlertDialog(
     title: String, price: String,
     itemClickListener: () -> Unit
 ) {
-    val productViewmodel: ProductViewModel by viewModels {
-        ProductViewModelFactory((activity?.application as App).productRepository)
-    }
+    val productViewmodel: ProductViewModel by viewModels ()
 
     val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog).create()
     val view = layoutInflater.inflate(R.layout.fragment_main_alert, null)
