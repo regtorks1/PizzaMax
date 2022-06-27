@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -30,10 +31,10 @@ class CheckoutFragment : Fragment(), CartAdapter.CartImpl {
         ProductViewModelFactory((activity?.application as App).productRepository)
     }
 
-    private var cartItems  = mutableListOf<Cart>()
-    private var totalCartPrice:Int = 0
-    private var quantity:Int = 0
-    private var subtotal: Int=0
+    private var cartItems = mutableListOf<Cart>()
+    private var totalCartPrice: Int = 0
+    private var quantity: Int = 0
+    private var newVal: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,22 +58,22 @@ class CheckoutFragment : Fragment(), CartAdapter.CartImpl {
         thisRecycler.adapter = cartAdapter
         thisRecycler.layoutManager = LinearLayoutManager(requireContext())
 
-        productViewmodel.getAllFromCart.observe(viewLifecycleOwner, Observer {list->
+        productViewmodel.getAllFromCart.observe(viewLifecycleOwner, Observer { list ->
             lifecycleScope.launch {
-                cartAdapter.submitList(list)
-                cartItems.clear()
-                cartItems.addAll(list)
-
+                list?.let {
+                    cartAdapter.submitList(it)
+                    cartItems.clear()
+                    totalCartPrice = 0
+                    cartItems.addAll(list)
+                }
                 cartItems.forEach {
                     totalCartPrice += it.price.toInt()
-                    quantity +=it.quantity.toInt()
-                    subtotal = quantity*totalCartPrice
-                    binding.grandTotal1.text=subtotal.toString()
-                    binding.subTotal.text = subtotal.toString()
-
-                    Log.d("CART",":::::::::::::::::::${totalCartPrice}")
-                     Log.d("QUANTITY",":::::::::::::::::::${quantity}")
+                    quantity += it.quantity.toInt()
+                    newVal += it.quantityPrice.toInt()
                 }
+                binding.subTotal.text = totalCartPrice.toString()
+                Log.d("CART", ":::::::::::::::::::${totalCartPrice}")
+                Log.d("QUANTITY", ":::::::::::::::::::${quantity}")
 
             }
         })
@@ -105,7 +106,7 @@ class CheckoutFragment : Fragment(), CartAdapter.CartImpl {
     }
 
     override fun viewAllCartList(cart: Cart) {
-      // findNavController().navigate(R.id.action_checkoutFragment_to_cartFragment)
+        // findNavController().navigate(R.id.action_checkoutFragment_to_cartFragment)
     }
 
 }
