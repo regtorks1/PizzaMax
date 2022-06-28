@@ -10,7 +10,7 @@ import com.example.pizzamax.model.CategoryItems
 import com.example.pizzamax.model.Favorites
 import kotlinx.coroutines.flow.Flow
 
-class ProductRepository(
+class ProductRepository (
     private val categoriesDao: CategoriesDao,
     private val categoryItemsDao: CategoryItemsDao,
     private val cartDao: CartDao,

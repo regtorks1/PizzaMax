@@ -3,8 +3,10 @@ package com.example.pizzamax.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 
 @Entity(tableName = "category_list")
+@Serializable
 data class CategoryItems(
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
     @ColumnInfo(name = "image") var imgUrl: String?=null,
