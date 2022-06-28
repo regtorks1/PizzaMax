@@ -37,18 +37,34 @@ class DetailsFragment : Fragment(), AdapterListImpl {
 
 
         with(binding) {
-            price.text = "Ghc " + arguments?.getString("price")
-            pizzaSize.text = arguments?.getString("size")
-            posterBanner.load(arguments?.getString("imgUrl"))
-            val priceTv = binding.price.text.toString()
-            val sizeTv = binding.pizzaSize.text
-            val name = binding.deal.text.toString()
+            arguments?.let {
+                val details = it.getParcelable<CategoryItems>("cate_items")
+                price.text = details?.price
+                pizzaSize.text = details?.size
+                posterBanner.load(details?.imgUrl)
 
-            addCart.setOnClickListener {
-                mainAlertDialog(title = name, price = priceTv.drop(4)) {
-                    (activity as MainActivity).binding.linearViewCart.visibility = View.VISIBLE
+                val priceTv = binding.price.text.toString()
+                val name = binding.deal.text.toString()
+                addCart.setOnClickListener {
+                    mainAlertDialog(title = name, price = priceTv.drop(4)) {
+                        (activity as MainActivity).binding.linearViewCart.visibility = View.VISIBLE
+                    }
                 }
             }
+
+            /*arguments?.let {
+                val details = it.getParcelable<Favorites>("fav")
+                price.text = details?.price
+                pizzaSize.text = details?.size
+                posterBanner.load(details?.imgUrl)
+                val priceTv = binding.price.text.toString()
+                val name = binding.deal.text.toString()
+                addCart.setOnClickListener {
+                    mainAlertDialog(title = name, price = priceTv.drop(4)) {
+                        (activity as MainActivity).binding.linearViewCart.visibility = View.VISIBLE
+                    }
+                }
+            }*/
         }
         return binding.root
     }

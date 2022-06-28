@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -57,11 +58,8 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.OnFavoriteDetailPage {
     }
 
     override fun viewDetail(favorites: Favorites) {
-        val bundle = Bundle()
-        bundle.putString(type, "details")
-        bundle.putString(imgUrl, favorites.imgUrl)
-        bundle.putString(size, favorites.size)
-        bundle.putString(price, favorites.price)
+      val bundle = bundleOf("fav" to favorites)
+        bundle.putParcelable(type, favorites)
         findNavController().navigate(R.id.action_favoritesFragment_to_detailsFragment, bundle)
     }
 
@@ -70,13 +68,6 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.OnFavoriteDetailPage {
         currentList.removeAt(position)
         recyclerAdapter.submitList(currentList)
     }
-
-   /* private fun deleteIcon(): View {
-        val view = layoutInflater.inflate(R.layout.recycler_list, null)
-        val fv = view.findViewById<ImageView>(R.id.favorite_heart)
-        fv.setImageResource(R.drawable.delete_favorite)
-        return view
-    }*/
 
 
 }

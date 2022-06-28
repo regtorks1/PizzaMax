@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -79,11 +80,8 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
     }
 
     override fun onViewDetailListener(categoryItems: CategoryItems) {
-        val bundle = Bundle()
-        bundle.putString(type, "details")
-        bundle.putString(imgUrl, categoryItems.imgUrl)
-        bundle.putString(size, categoryItems.size)
-        bundle.putString(price, categoryItems.price)
+        val bundle = bundleOf("cate_items" to categoryItems)
+        bundle.putParcelable(type, categoryItems)
         findNavController().navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
     }
 
