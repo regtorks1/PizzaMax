@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzamax.MainActivity
 import com.example.pizzamax.R
+import com.example.pizzamax.data.repository.ProductRepository
 import com.example.pizzamax.databinding.FragmentAppetizersBinding
 import com.example.pizzamax.model.Cart
 import com.example.pizzamax.model.CategoryItems
@@ -35,13 +36,21 @@ class AppetizersFragment : Fragment(), AdapterListImpl {
     @Inject
     lateinit var  factory : ProductViewModelFactory
 
+
+    @Inject
+    lateinit var repository: ProductRepository
+
+
     private val productViewmodel: ProductViewModel by viewModels ()
+
     private lateinit var binding: FragmentAppetizersBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAppetizersBinding.inflate(layoutInflater)
+
+
         val bindingMainActivity = (activity as MainActivity).binding
         val recyclerAdapter: ProductListAdapter by lazy {
             ProductListAdapter(this) { title, price ->

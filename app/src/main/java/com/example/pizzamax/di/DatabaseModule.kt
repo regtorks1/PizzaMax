@@ -21,11 +21,11 @@ import kotlinx.coroutines.SupervisorJob
 import javax.inject.Singleton
 
 
-@Module
-@InstallIn(SingletonComponent::class)
+@Module//binds this to hilt
+@InstallIn(SingletonComponent::class)//Install it in app container
+
 object DatabaseModule {
-    @Volatile// Singleton prevents multiple instances of database opening at the same time
-    // if the INSTANCE is not null, then return it, if it is, then create the database
+    @Volatile
     var databaseInstance: RoomDb? = null
 
     //providing database daos instances to hilt
@@ -68,6 +68,7 @@ object DatabaseModule {
     }
 
     @Provides
+    @Singleton
     fun providesDatabase(@ApplicationContext context: Context, scope: CoroutineScope): RoomDb {
         return databaseInstance ?: synchronized(this) {
             val instance = Room.databaseBuilder(
