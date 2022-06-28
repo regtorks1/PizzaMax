@@ -15,5 +15,4 @@ data class Cart(
     @ColumnInfo(name = "quantity") val quantity: String,
     @ColumnInfo(name = "quantity_price") val quantityPrice: String
 
-
 )

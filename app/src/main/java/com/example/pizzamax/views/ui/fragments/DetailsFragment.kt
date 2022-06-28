@@ -40,6 +40,7 @@ class DetailsFragment : Fragment(), AdapterListImpl {
             price.text = "Ghc " + arguments?.getString("price")
             pizzaSize.text = arguments?.getString("size")
             posterBanner.load(arguments?.getString("imgUrl"))
+            arguments?.getParcelable<Cart>("")
             val priceTv = binding.price.text.toString()
             val sizeTv = binding.pizzaSize.text
             val name = binding.deal.text.toString()
