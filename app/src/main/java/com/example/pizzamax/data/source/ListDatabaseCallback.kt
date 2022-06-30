@@ -61,7 +61,7 @@ class ListDatabaseCallback(
                         imgUrl = imgUrl
                     )
                 )
-                //  categoryItemsDao.insertToCategoryList(categoryItems)
+                categoryItemsDao.insertToCategoryList(categoryItems)
                 Log.d("ListItems", ":::::::::::::::$categoryItems")
             }
 

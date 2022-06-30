@@ -9,6 +9,7 @@ import com.example.pizzamax.model.Categories
 import com.example.pizzamax.model.CategoryItems
 import com.example.pizzamax.model.Favorites
 import kotlinx.coroutines.flow.Flow
+import okhttp3.Response
 
 class ProductRepository(
     private val categoriesDao: CategoriesDao,
@@ -37,7 +38,7 @@ class ProductRepository(
         return categoriesDao.deleteCategory(categories)
     }
 
-    override fun insertToCategoryList(categoryItems: CategoryItems) {
+    override fun insertToCategoryList(categoryItems: MutableList<CategoryItems>) {
         return categoryItemsDao.insertToCategoryList(categoryItems)
     }
 
@@ -97,6 +98,5 @@ override  fun insertToFavorites(favorites: List<Favorites>) {
  override fun deleteItem(favorites: Favorites) {
      return favoritesDao.deleteItem(favorites)
  }
-
 
 }

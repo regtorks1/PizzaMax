@@ -8,6 +8,7 @@ import com.example.pizzamax.model.CategoryItems
 import com.example.pizzamax.model.Favorites
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.logging.Handler
 
 class ProductViewModel(
     private val repository: ProductRepository
@@ -34,7 +35,7 @@ class ProductViewModel(
 
     //CATEGORIES LIST
     fun insertIntoCategories(categories: CategoryItems) = viewModelScope.launch {
-        repository.insertToCategoryList(categories)
+       // repository.insertToCategoryList(categories)
     }
 
     fun updateCategories(categories: CategoryItems) = viewModelScope.launch {

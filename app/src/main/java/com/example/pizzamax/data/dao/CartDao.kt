@@ -2,7 +2,9 @@ package com.example.pizzamax.data.dao
 
 import androidx.room.*
 import com.example.pizzamax.model.Cart
+import com.example.pizzamax.model.SliderData
 import kotlinx.coroutines.flow.Flow
+import okhttp3.Response
 
 
 @Dao
@@ -21,4 +23,5 @@ interface CartDao {
 
     @Delete
     fun deleteItem(cart: Cart)//single item
+
 }
