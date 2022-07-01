@@ -52,11 +52,10 @@ class AppetizersFragment : Fragment(), AdapterListImpl {
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
-        productViewmodel.getCategoriesList("appetizer")
-            .observe(viewLifecycleOwner, Observer { list ->
+        productViewmodel.getCategoryWithItems(4).observe(viewLifecycleOwner, Observer { list ->
                 lifecycleScope.launch {
                     list.forEach {
-                        recyclerAdapter.submitList(it.list?.toList())
+                        recyclerAdapter.submitList(it.categoryItems)
                     }
                 }
             })

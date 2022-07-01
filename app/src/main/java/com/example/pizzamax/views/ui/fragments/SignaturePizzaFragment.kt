@@ -52,10 +52,10 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
-        productViewmodel.getCategoriesList("signature").observe(viewLifecycleOwner, Observer {list->
+        productViewmodel.getCategoryWithItems(2).observe(viewLifecycleOwner, Observer {list->
             lifecycleScope.launch {
                 list.forEach {
-                     recyclerAdapter.submitList(it.list)
+                     recyclerAdapter.submitList(it.categoryItems)
                 }
             }
         })

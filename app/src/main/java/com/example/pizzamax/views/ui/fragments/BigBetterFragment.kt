@@ -55,11 +55,11 @@ class BigBetterFragment : Fragment(), AdapterListImpl {
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
-        productViewmodel.getCategoriesList("better").observe(viewLifecycleOwner, Observer { list ->
+        productViewmodel.getCategoryWithItems(3).observe(viewLifecycleOwner, Observer { list ->
             Log.d("BETTER", "$list")
             lifecycleScope.launch {
                 list.forEach {
-                    recyclerAdapter.submitList(it.list)
+                    recyclerAdapter.submitList(it.categoryItems)
                 }
             }
         })

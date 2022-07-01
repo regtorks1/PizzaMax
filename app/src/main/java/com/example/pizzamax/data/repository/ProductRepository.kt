@@ -4,10 +4,8 @@ import com.example.pizzamax.data.dao.CartDao
 import com.example.pizzamax.data.dao.CategoriesDao
 import com.example.pizzamax.data.dao.CategoryItemsDao
 import com.example.pizzamax.data.dao.FavoritesDao
-import com.example.pizzamax.model.Cart
-import com.example.pizzamax.model.Categories
-import com.example.pizzamax.model.CategoryItems
-import com.example.pizzamax.model.Favorites
+import com.example.pizzamax.model.*
+import com.example.pizzamax.model.relation.CategoryWithCategoriesItems
 import kotlinx.coroutines.flow.Flow
 
 class ProductRepository(
@@ -17,8 +15,12 @@ class ProductRepository(
     private  val favoritesDao: FavoritesDao
 
 ) : CategoriesDao, CategoryItemsDao, CartDao, FavoritesDao {
-    override fun insertToCategories(categories: MutableList<Categories>) {
+   /* override fun insertToCategories(categories: MutableList<Categories>) {
         return categoriesDao.insertToCategories(categories)
+    }*/
+
+    override fun insertToCategories(categories: Categories): Long {
+       return categoriesDao.insertToCategories(categories)
     }
 
     override fun updateCategories(categories: Categories) {
@@ -37,7 +39,11 @@ class ProductRepository(
         return categoriesDao.deleteCategory(categories)
     }
 
-    override fun insertToCategoryList(categoryItems: CategoryItems) {
+    override fun getCategoryWithItems(query: Int): Flow<List<CategoryWithCategoriesItems>> {
+        return categoriesDao.getCategoryWithItems(query)
+    }
+
+    override fun insertToCategoryList(categoryItems: MutableList<CategoryItems>) {
         return categoryItemsDao.insertToCategoryList(categoryItems)
     }
 

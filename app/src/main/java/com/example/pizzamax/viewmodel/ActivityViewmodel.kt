@@ -12,7 +12,7 @@ class ActivityViewmodel(private val repository: ProductRepository) : ViewModel()
     val details: LiveData<Cart> get() = _details
 
     //CATEGORIES
-    fun insertIntoCategories(categories: MutableList<Categories>) = viewModelScope.launch {
+    fun insertIntoCategories(categories: Categories) = viewModelScope.launch {
         repository.insertToCategories(categories)
     }
 
@@ -28,7 +28,7 @@ class ActivityViewmodel(private val repository: ProductRepository) : ViewModel()
 
 
     //CATEGORIES LIST
-    fun insertIntoCategories(categories: CategoryItems) = viewModelScope.launch {
+    fun insertIntoCategoryList(categories: MutableList<CategoryItems>) = viewModelScope.launch {
         repository.insertToCategoryList(categories)
     }
 

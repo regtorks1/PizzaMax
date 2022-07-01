@@ -60,11 +60,11 @@ class ValueDealsFragment : Fragment(), AdapterListImpl {
         val thisRecycler = binding.recyclerView
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
-        productViewmodel.getCategoriesList("deals").observe(viewLifecycleOwner, Observer { list ->
+        productViewmodel.getCategoryWithItems(1).observe(viewLifecycleOwner, Observer { list ->
             Log.d("DEALS", "$list")
             lifecycleScope.launch {
                 list.forEach {
-                    recyclerAdapter.submitList(it.list)
+                    recyclerAdapter.submitList(it.categoryItems)
                 }
             }
         })

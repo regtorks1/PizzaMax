@@ -12,6 +12,13 @@ val ALTER_TABLE_MIGRATION_1_2: Migration = object : Migration(1, 2) {
 
 }
 
+val ALTER_TABLE_MIGRATION_2_3: Migration = object : Migration(2, 3) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL("ALTER TABLE category_list ADD COLUMN categoryId INTEGER DEFAULT 1 not null ")
+    }
+
+}
+
 
 /**Changing the column name either id or username or deleting column takes the following steps
  * create a new temporary table with the new schema,
