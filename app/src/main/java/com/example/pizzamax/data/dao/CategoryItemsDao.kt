@@ -12,7 +12,7 @@ interface CategoryItemsDao {
     @Update
     fun updateCategoryList(categoryItems: CategoryItems)
 
-    @Query("SELECT * FROM category_list ORDER BY id ASC")
+    @Query("SELECT * FROM category_list ORDER BY items_id ASC")
     fun getAllFromCategoryList(): Flow<List<CategoryItems>>
 
     @Query("DELETE FROM category_list")

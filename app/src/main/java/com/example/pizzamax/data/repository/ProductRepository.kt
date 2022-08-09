@@ -5,6 +5,7 @@ import com.example.pizzamax.data.dao.CategoriesDao
 import com.example.pizzamax.data.dao.CategoryItemsDao
 import com.example.pizzamax.data.dao.FavoritesDao
 import com.example.pizzamax.model.*
+import com.example.pizzamax.model.relation.CategoryAndItems
 import com.example.pizzamax.model.relation.CategoryWithCategoriesItems
 import kotlinx.coroutines.flow.Flow
 
@@ -39,8 +40,8 @@ class ProductRepository(
         return categoriesDao.deleteCategory(categories)
     }
 
-    override fun getCategoryWithItems(query: Int): Flow<List<CategoryWithCategoriesItems>> {
-        return categoriesDao.getCategoryWithItems(query)
+    override fun getCategoryWithItems(): Flow<List<CategoryWithCategoriesItems>> {
+        return categoriesDao.getCategoryWithItems()
     }
 
     override fun insertToCategoryList(categoryItems: MutableList<CategoryItems>) {

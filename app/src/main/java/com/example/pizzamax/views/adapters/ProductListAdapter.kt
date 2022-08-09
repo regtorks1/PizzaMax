@@ -22,7 +22,7 @@ class ProductListAdapter(
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(product: CategoryItems?) {
-            binding.deal.text = product?.id.toString()
+            binding.deal.text = product?.items_id.toString()
             binding.price.text = "Ghc " + product?.price
             binding.pizzaSize.text = product?.size
             binding.posterBanner.load(product?.imgUrl)
@@ -46,7 +46,7 @@ class ProductListAdapter(
             .into(holder.binding.posterBanner)
 
         holder.binding.addCart.setOnClickListener {
-            itemClick("${getItemPosition.id}", getItemPosition.price)
+            itemClick("${getItemPosition.items_id}", getItemPosition.price)
         }
 
         holder.itemView.setOnClickListener {
@@ -66,7 +66,7 @@ class ProductListAdapter(
         }
 
         override fun areContentsTheSame(oldItem: CategoryItems, newItem: CategoryItems): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.items_id == newItem.items_id
         }
     }
 

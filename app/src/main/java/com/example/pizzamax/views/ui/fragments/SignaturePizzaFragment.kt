@@ -52,16 +52,15 @@ class SignaturePizzaFragment : Fragment(), AdapterListImpl {
         thisRecycler.adapter = recyclerAdapter
         thisRecycler.layoutManager = LinearLayoutManager(context)
 
-        productViewmodel.getCategoryWithItems(2).observe(viewLifecycleOwner, Observer {list->
+        productViewmodel.getCategoryWithItems().observe(viewLifecycleOwner, Observer {list->
             lifecycleScope.launch {
                 list.forEach {
-                     recyclerAdapter.submitList(it.categoryItems)
+                    recyclerAdapter.submitList(it.categoryItems)
                 }
             }
         })
         return binding.root
     }
-
 
     override fun onAddToCartListener(cart: Cart) {
         TODO("Not yet implemented")

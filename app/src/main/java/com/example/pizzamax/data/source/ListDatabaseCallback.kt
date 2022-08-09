@@ -50,23 +50,21 @@ class ListDatabaseCallback(
             val name = jsonArray.getJSONObject(i).getString("name")
             val list = jsonArray.getJSONObject(i).getJSONArray("items")
             Log.d("categories", "\n$name \n$list")
-            var index  = 0
 
             val entity = Categories(i, name)
             val catId = categoriesDao.insertToCategories(entity)
 
             Log.d("LENGTH", "${list.length()}")
             for (j in 0 until list.length()) {
-                index +=i
                 val id = list.getJSONObject(j).getString(id)
                 val size = list.getJSONObject(j).getString(size)
                 val price = list.getJSONObject(j).getString(price)
                 val imgUrl = list.getJSONObject(j).getString(imgUrl)
-                categoryItems.add(CategoryItems(id = id.toInt(),
+                categoryItems.add(CategoryItems(items_id = id.toInt(),
                         size = size,
                         price = price,
                         imgUrl = imgUrl,
-                        categoryItemsId = catId.toInt())
+                        catId = catId.toInt())
                 )
                 categoryItemsDao.insertToCategoryList(categoryItems)
                 Log.d("ListItems", ":::::::::::::::$categoryItems")
@@ -79,8 +77,6 @@ class ListDatabaseCallback(
           //  categoriesDao.insertToCategories(categories as )
             Log.d("categories", ":::::::::::::::$categories")
 
-         //   productListDao.addNewCategoryWithItems(categories, categoryItems)
-
         }
 
     }
@@ -91,7 +87,6 @@ class ListDatabaseCallback(
         const val size = "size"
         const val price = "price"
         const val imgUrl = "image"
-
         const val product = "product_list"
         const val categories = "categories"
         const val name = "name"

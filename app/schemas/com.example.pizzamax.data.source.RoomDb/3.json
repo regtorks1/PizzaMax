@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "fb7a333629453e0ed9277f5889da2962",
+    "identityHash": "89657636e855c67055ecb843323fc213",
     "entities": [
       {
         "tableName": "categories",
@@ -32,17 +32,17 @@
       },
       {
         "tableName": "category_list",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `categoryItemsId` INTEGER NOT NULL, `image` TEXT, `size` TEXT, `price` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`items_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `catId` INTEGER NOT NULL, `image` TEXT, `size` TEXT, `price` TEXT, FOREIGN KEY(`catId`) REFERENCES `categories`(`categoryId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
-            "fieldPath": "id",
-            "columnName": "id",
+            "fieldPath": "items_id",
+            "columnName": "items_id",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "categoryItemsId",
-            "columnName": "categoryItemsId",
+            "fieldPath": "catId",
+            "columnName": "catId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -67,12 +67,24 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "items_id"
           ],
           "autoGenerate": true
         },
         "indices": [],
-        "foreignKeys": []
+        "foreignKeys": [
+          {
+            "table": "categories",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "catId"
+            ],
+            "referencedColumns": [
+              "categoryId"
+            ]
+          }
+        ]
       },
       {
         "tableName": "cart",
@@ -178,7 +190,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fb7a333629453e0ed9277f5889da2962')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '89657636e855c67055ecb843323fc213')"
     ]
   }
 }

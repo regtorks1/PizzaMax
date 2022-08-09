@@ -3,6 +3,7 @@ package com.example.pizzamax.viewmodel
 import androidx.lifecycle.*
 import com.example.pizzamax.data.repository.ProductRepository
 import com.example.pizzamax.model.*
+import com.example.pizzamax.model.relation.CategoryAndItems
 import com.example.pizzamax.model.relation.CategoryWithCategoriesItems
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,7 +44,7 @@ class ProductViewModel(
         repository.deleteAllFromCategoryList()
     }
 
-    fun getCategoryWithItems(query: Int):LiveData<List<CategoryWithCategoriesItems>> = repository.getCategoryWithItems(query).asLiveData()
+    fun getCategoryWithItems():LiveData<List<CategoryWithCategoriesItems>> = repository.getCategoryWithItems().asLiveData()
 
     val getCategoryList: LiveData<List<CategoryItems>> =
         repository.getAllFromCategoryList().asLiveData()

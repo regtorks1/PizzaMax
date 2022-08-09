@@ -9,6 +9,6 @@ data class CategoryWithCategoriesItems(
     @Embedded val categories: Categories,
     @Relation(
         parentColumn = "categoryId",
-        entityColumn = "categoryItemsId"
+        entityColumn = "catId"
     ) var categoryItems: MutableList<CategoryItems>
 )

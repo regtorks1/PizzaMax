@@ -2,6 +2,7 @@ package com.example.pizzamax.data.dao
 
 import androidx.room.*
 import com.example.pizzamax.model.Categories
+import com.example.pizzamax.model.relation.CategoryAndItems
 import com.example.pizzamax.model.relation.CategoryWithCategoriesItems
 import kotlinx.coroutines.flow.Flow
 
@@ -23,6 +24,6 @@ interface CategoriesDao {
     fun deleteCategory(categories: Categories)//single item
 
     @Transaction
-    @Query("SELECT * FROM category_list inner join categories on categoryId =:query ")
-    fun getCategoryWithItems(query: Int): Flow<List<CategoryWithCategoriesItems>>
+    @Query("SELECT * FROM categories inner join category_list on  categories.categoryId = category_list.items_id ")
+    fun getCategoryWithItems(): Flow<List<CategoryWithCategoriesItems>>
 }
